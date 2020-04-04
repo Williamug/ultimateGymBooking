@@ -20,6 +20,7 @@ class CreateBookingsTable extends Migration {
 				$table->text('comment');
 				$table->boolean('status');
 				$table->unsignedInteger('payments_id');
+				$table->unsignedInteger('currencies_id');
 				$table->timestamps();
 			});
 	}

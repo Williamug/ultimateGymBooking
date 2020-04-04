@@ -13,10 +13,8 @@ class CreatePaymentsTable extends Migration {
 	public function up() {
 		Schema::create('payments', function (Blueprint $table) {
 				$table->id();
-				$table->string('payment_method');
 				$table->string('amount');
-				$table->string('currency', 45);
-				$table->string('currency_symbol', 4);
+				$table->string('payment_method');
 				$table->timestamps();
 			});
 	}

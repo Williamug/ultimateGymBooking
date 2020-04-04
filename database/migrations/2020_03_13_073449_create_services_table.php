@@ -24,6 +24,7 @@ class CreateServicesTable extends Migration {
 				$table->boolean('status');
 				$table->string('days');
 				$table->UnsignedInteger('payments_id');
+				$table->UnsignedInteger('currencies_id');
 				$table->timestamps();
 			});
 	}

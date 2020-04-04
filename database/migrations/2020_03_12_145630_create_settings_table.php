@@ -20,8 +20,7 @@ class CreateSettingsTable extends Migration {
 				$table->integer('official_company_number');
 				$table->string('email');
 				$table->string('logo');
-				$table->time('timezone');
-				$table->unsignedInteger('payments_id');
+				$table->string('timezone');
 				$table->timestamps();
 			});
 	}
