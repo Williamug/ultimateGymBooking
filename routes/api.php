@@ -20,3 +20,12 @@ Route::post('currencies', 'API\CurrenciesController@store');
 Route::get('currencies/{currency}', 'API\CurrenciesController@show');
 Route::patch('currencies/{currency}', 'API\CurrenciesController@update');
 Route::delete('currencies/{currency}', 'API\CurrenciesController@destroy');
+
+// roles
+Route::get('roles', 'API\RolesController@index');
+Route::post('roles', 'API\RolesController@store');
+Route::get('roles/{role}', 'API\RolesController@show');
+Route::patch('roles/{role}', 'API\RolesController@update');
+Route::delete('roles/{role}', 'API\RolesController@destroy');
+
+// service
