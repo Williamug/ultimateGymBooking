@@ -13,14 +13,13 @@ class CreateSettingsTable extends Migration {
 	public function up() {
 		Schema::create('settings', function (Blueprint $table) {
 				$table->id();
+				$table->unsignedBigInteger('currency_id');
 				$table->string('company_name');
 				$table->text('address');
-				$table->integer('phone_number');
-				$table->integer('fax_number');
-				$table->integer('official_company_number');
-				$table->string('email');
-				$table->string('logo');
-				$table->string('timezone');
+				$table->string('phone_number')->nullable();
+				$table->string('official_company_number');
+				$table->string('email')->nullable();
+				$table->string('logo')->nullable();
 				$table->timestamps();
 			});
 	}
