@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Http\Resources\CurrencyResource;
+use App\Model\Currency;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SettingResource extends JsonResource {
@@ -19,12 +20,10 @@ class SettingResource extends JsonResource {
 			'company_name'            => $this->company_name,
 			'address'                 => $this->address,
 			'phone_number'            => $this->phone_number,
-			'fax_number'              => $this->fax_number,
 			'official_company_number' => $this->official_company_number,
 			'email'                   => $this->email,
 			'logo'                    => $this->logo,
-			'timezone'                => $this->timezone,
-			'currencies'              => CurrencyResource::collection($this->WhenLoaded('currencies')),
+			'currencies'              => new CurrencyResource(Currency::find(2)),
 			// 'user'       => $this->user,
 		];
 	}
