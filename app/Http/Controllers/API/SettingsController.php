@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-
+use App\Http\Resources\SettingResource;
 use App\Model\Currency;
 use App\Model\Setting;
 use Illuminate\Http\Request;
@@ -15,8 +15,10 @@ class SettingsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$settings = Setting::all();
-		return response()->json($settings, 200);
+
+		return SettingResource::collection(Setting::all());
+		// $settings = Setting::all();
+		// return response()->json($settings, 200);
 	}
 
 	/**
@@ -26,7 +28,7 @@ class SettingsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		$currency = Currency::find(1);
+		$currency = Currency::find(2);
 		// $this->validationRules();
 		$setting = Setting::create([
 				'currency_id'             => $currency->id,
