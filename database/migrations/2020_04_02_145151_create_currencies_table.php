@@ -13,7 +13,7 @@ class CreateCurrenciesTable extends Migration {
 	public function up() {
 		Schema::create('currencies', function (Blueprint $table) {
 				$table->id();
-				$table->unsignedInteger('settings_id');
+				// $table->unsignedInteger('settings_id');
 				$table->string('currency', 45);
 				$table->string('currency_symbol', 4);
 				$table->string('currency_long_name');
