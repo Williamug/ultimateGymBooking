@@ -13,6 +13,7 @@ class CreateServicesTable extends Migration {
 	public function up() {
 		Schema::create('services', function (Blueprint $table) {
 				$table->id();
+				$table->UnsignedBigInteger('currencies_id');
 				$table->string('title');
 				$table->string('service_duration');
 				$table->integer('available_seats');
@@ -23,8 +24,6 @@ class CreateServicesTable extends Migration {
 				$table->string('service_duration_type');
 				$table->boolean('status');
 				$table->string('days');
-				$table->UnsignedInteger('payments_id');
-				$table->UnsignedInteger('currencies_id');
 				$table->timestamps();
 			});
 	}
