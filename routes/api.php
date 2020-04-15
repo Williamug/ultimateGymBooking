@@ -29,3 +29,8 @@ Route::patch('roles/{role}', 'API\RolesController@update');
 Route::delete('roles/{role}', 'API\RolesController@destroy');
 
 // service
+Route::get('services', 'API\ServicesController@index');
+Route::post('services', 'API\ServicesController@store');
+Route::get('services/{service}', 'API\ServicesController@show');
+Route::patch('services/{service}', 'API\ServicesController@update');
+Route::delete('services/{service}', 'API\ServicesController@destroy');
