@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Model\Currency;
+use App\Model\Instructor;
 use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model {
@@ -22,5 +23,9 @@ class Service extends Model {
 
 	public function currencies() {
 		return $this->belongsTo(Currency::class );
+	}
+
+	public function instructors() {
+		return $this->belongsToMany(Instructor::class );
 	}
 }
