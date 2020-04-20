@@ -15,13 +15,13 @@ class CreateInstructorsTable extends Migration {
 				$table->id();
 				$table->string('first_name');
 				$table->string('last_name');
-				$table->integer('phone_number');
+				$table->string('phone_number');
+				$table->string('mobile_number');
 				$table->string('gender');
 				$table->date('dob');
 				$table->string('profile_image');
 				$table->boolean('verified');
-				$table->unsignedInteger('users_id');
-				$table->unsignedInteger('roles_id');
+				$table->unsignedBigInteger('roles_id');
 				$table->timestamps();
 			});
 	}
