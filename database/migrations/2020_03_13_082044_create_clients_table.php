@@ -16,12 +16,12 @@ class CreateClientsTable extends Migration {
 				$table->string('first_name');
 				$table->string('last_name');
 				$table->string('gender');
-				$table->integer('phone_number');
+				$table->string('phone_number');
 				$table->date('dob');
 				$table->string('profile_image');
 				$table->boolean('verified');
-				$table->unsignedInteger('users_id');
-				$table->unsignedInteger('roles_id');
+				$table->unsignedBigInteger('user_id');
+				$table->unsignedBigInteger('role_id');
 				$table->timestamps();
 			});
 	}
