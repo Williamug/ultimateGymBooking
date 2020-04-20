@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\InstructorResource;
 use App\Http\Resources\ServiceResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -27,6 +28,7 @@ class ServiceResource extends JsonResource {
 			'status'                     => $this->status,
 			'days'                       => $this->days,
 			'currencies'                 => new CurrencyResource($this->currencies),
+			'instructors'                => new InstructorResource($this->instructor),
 		];
 	}
 
