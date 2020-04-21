@@ -56,3 +56,10 @@ Route::post('admins', 'API\AdminsController@store');
 Route::get('admins/{admin}', 'API\AdminsController@show');
 Route::patch('admins/{admin}', 'API\AdminsController@update');
 Route::delete('admins/{admin}', 'API\AdminsController@destroy');
+
+// bookings
+Route::get('bookings', 'API\BookingsController@index');
+Route::post('bookings', 'API\BookingsController@store');
+Route::get('bookings/{booking}', 'API\BookingsController@show');
+Route::patch('bookings/{booking}', 'API\BookingsController@update');
+Route::delete('bookings/{booking}', 'API\BookingsController@destroy');
