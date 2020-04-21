@@ -13,14 +13,14 @@ class CreateBookingsTable extends Migration {
 	public function up() {
 		Schema::create('bookings', function (Blueprint $table) {
 				$table->id();
-				$table->integer('phone_number');
+				$table->string('phone_number');
 				$table->date('booking_date');
 				$table->time('booking_time');
 				$table->integer('quality');
 				$table->text('comment');
 				$table->boolean('status');
-				$table->unsignedInteger('payments_id');
-				$table->unsignedInteger('currencies_id');
+				$table->unsignedBigInteger('payment_id');
+				$table->unsignedBigInteger('currency_id');
 				$table->timestamps();
 			});
 	}
