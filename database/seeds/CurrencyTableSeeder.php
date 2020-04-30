@@ -11,6 +11,7 @@ class CurrencyTableSeeder extends Seeder {
 	 */
 	public function run() {
 		DB::table('currencies')->insert([
+				// 'setting_id'         => 1,
 				'currency'           => 'USD',
 				'currency_symbol'    => '$',
 				'currency_long_name' => 'United States Dollar',
@@ -19,6 +20,7 @@ class CurrencyTableSeeder extends Seeder {
 			]);
 
 		DB::table('currencies')->insert([
+				// 'setting_id'         => 1,
 				'currency'           => 'UGX',
 				'currency_symbol'    => '/=',
 				'currency_long_name' => 'Ugandan Shillings',
