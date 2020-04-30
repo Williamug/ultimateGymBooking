@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
-	<link rel="stylesheet" href="">
-</head>
-<body>
-	{{ $settings->company_name }}
+@extends('layouts.master')
+
+@section('content')
+{{ $settings->company_name }}
 	{{$settings->currency->id }}
-</body>
-</html>
+	@endsection
+
