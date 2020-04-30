@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\Models\Setting;
+use App\Model\Setting;
 use Illuminate\Database\Eloquent\Model;
 
 class Currency extends Model {
@@ -12,7 +12,7 @@ class Currency extends Model {
 		'currency_long_name',
 	];
 
-	public function setting() {
+	public function settings() {
 		return $this->hasMany(Setting::class );
 	}
 }
