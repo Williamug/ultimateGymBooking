@@ -19,7 +19,7 @@ class Setting extends Model {
 		'timezone'
 	];
 
-	public function currencies() {
+	public function currency() {
 		return $this->belongsTo(Currency::class );
 	}
 
