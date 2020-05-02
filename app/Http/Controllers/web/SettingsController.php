@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
-
+use App\Model\Currency;
 use App\Model\Setting;
 use Illuminate\Http\Request;
 
@@ -14,48 +14,10 @@ class SettingsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$settings = Setting::first();
+		$setting    = Setting::first();
+		$currencies = Currency::all();
 
-		return view('settings.index', compact('settings'));
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function create() {
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store(Request $request) {
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  \App\Model\Setting  $setting
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show(Setting $setting) {
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  \App\Model\Setting  $setting
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit(Setting $setting) {
-		//
+		return view('settings.index', compact('setting', 'currencies'));
 	}
 
 	/**
@@ -66,16 +28,19 @@ class SettingsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, Setting $setting) {
-		//
+
+		$data = request()->validate([
+				'currency_id'             => '',
+				'company_name'            => 'required',
+				'address'                 => 'required',
+				'phone_number'            => '',
+				'official_company_number' => 'required',
+				'email'                   => '',
+				'website'                 => '',
+				'logo'                    => '',
+			]);
+		$setting->update($data);
+		return redirect('settings')->with('message', 'Your information has been updated');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  \App\Model\Setting  $setting
-	 * @return \Illuminate\Http\Response
-	 */
-	public function destroy(Setting $setting) {
-		//
-	}
 }
