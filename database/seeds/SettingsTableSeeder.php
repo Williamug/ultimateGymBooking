@@ -17,6 +17,7 @@ class SettingsTableSeeder extends Seeder {
 				'phone_number'            => '122344566',
 				'official_company_number' => '0122347877',
 				'email'                   => 'ultimategymbooking@gmail.com',
+				'website'                 => 'ultimate.com',
 				'logo'                    => 'logo.jpg',
 				'created_at'              => now(),
 				'updated_at'              => now(),
