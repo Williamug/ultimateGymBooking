@@ -22,7 +22,7 @@ class CurrencyTableSeeder extends Seeder {
 		DB::table('currencies')->insert([
 				// 'setting_id'         => 1,
 				'currency'           => 'UGX',
-				'currency_symbol'    => '/=',
+				'currency_symbol'    => 'Shs.',
 				'currency_long_name' => 'Ugandan Shillings',
 				'created_at'         => now(),
 				'updated_at'         => now(),
