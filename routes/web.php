@@ -12,8 +12,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// settings
-Route::get('settings', 'web\SettingsController@index');
+Route::get('bookings', 'web\SettingsController@index')->name('bookings.index');
+Route::get('clients', 'web\SettingsController@index')->name('clients.index');
+Route::get('reports', 'web\SettingsController@index')->name('reports.index');
+Route::get('services', 'web\SettingsController@index')->name('services.index');
 /*Route::post('settings', 'web\SettingsController@store');
 Route::put('settings/{setting}', 'web\SettingsController@update');
 Route::delete('settings/{setting}', 'web\SettingsController@destroy');
@@ -66,3 +68,7 @@ Route::post('bookings', 'web\BookingsController@store');
 Route::get('bookings/{booking}', 'web\BookingsController@show');
 Route::patch('bookings/{booking}', 'web\BookingsController@update');
 Route::delete('bookings/{booking}', 'web\BookingsController@destroy');*/
+
+// settings
+Route::get('settings', 'web\SettingsController@index')->name('settings.index');
+Route::patch('settings/{setting}', 'web\SettingsController@update')->name('settings.update');
