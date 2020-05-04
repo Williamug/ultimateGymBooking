@@ -13,7 +13,7 @@ class CreateServicesTable extends Migration {
 	public function up() {
 		Schema::create('services', function (Blueprint $table) {
 				$table->id();
-				$table->UnsignedBigInteger('currencies_id');
+				$table->integer('price');
 				$table->string('title');
 				$table->string('service_duration');
 				$table->integer('available_seats');
