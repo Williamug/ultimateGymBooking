@@ -2,13 +2,12 @@
 
 namespace App\Model;
 
-use App\Model\Currency;
 use App\Model\Instructor;
 use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model {
 	protected $fillable = [
-		'currencies_id',
+		'price',
 		'title',
 		'service_duration',
 		'available_seats',
@@ -20,10 +19,6 @@ class Service extends Model {
 		'status',
 		'days',
 	];
-
-	public function currencies() {
-		return $this->belongsTo(Currency::class );
-	}
 
 	public function instructors() {
 		return $this->belongsToMany(Instructor::class );
