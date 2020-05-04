@@ -14,6 +14,9 @@ Route::post('settings', 'API\SettingsController@store');
 Route::put('settings/{setting}', 'API\SettingsController@update');
 Route::delete('settings/{setting}', 'API\SettingsController@destroy');
 
+// email template
+Route::post('email-templates', 'API\EmailTemplateController@store');
+
 // currencies
 Route::get('currencies', 'API\CurrenciesController@index');
 Route::post('currencies', 'API\CurrenciesController@store');

@@ -14,7 +14,19 @@
           <img src="{{ asset('images/logo/user.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+            @guest
+            <div class="login-again">Please login again</div>
+                {{-- <li class="nav-item">
+                    <a href="{{ route('login') }}" class="nav-link">{{ __('Login') }}</a>
+                </li>
+                @if(Route::has('register'))
+                    <li class="nav-item">
+                        <a href="{{ route('register') }}" class="nav-link">{{ __('Register') }}</a>
+                    </li>
+                @endif --}}
+            @else
+                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+            @endguest
         </div>
       </div>
 

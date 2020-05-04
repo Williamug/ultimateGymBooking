@@ -20,12 +20,11 @@
 	</div>
 	<div class="col-7 col-sm-9">
 		<div class="tab-content" id="vert-tabs-tabContent">
+			{{-- application settings --}}
 			<div class="tab-pane text-left fade show active" id="vert-tabs-home" role="tabpanel"
 				aria-labelledby="vert-tabs-home-tab">
 				<!-- general form elements -->
-				@if(session()->has('message'))
-					<div class="alert alert-success"><strong>Success:</strong> {{ session()->get('message')}}</div>
-				@endif
+				@include('patials.messages')
 				<div class="card card-default">
 					<div class="card-header">
 						<h3 class="card-title">Application Settings</h3>
@@ -39,17 +38,20 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="companyName">Company Name <span class="star">*</span></label>
-									<input type="text" class="form-control form-control-sm" name="company_name" id="companyName"
-										placeholder="Enter company name" value="{{ $setting->company_name ?? old('company_name')}}">
+									<input type="text"
+										class="form-control form-control-sm @error('company_name') is-invalid @enderror"
+										name="company_name" id="companyName" placeholder="Enter company name"
+										value="{{ $setting->company_name ?? old('company_name')}}">
 									@error('company_name')
-    									<div class="error-alert">{{ $message }}</div>
+									<div class="error-alert">{{ $message }}</div>
 									@enderror
 								</div>
 								<div class="form-group">
 									<label for="logo">Company Logo</label>
 									<div class="input-group input-group-sm">
 										<div class="custom-file">
-											<input type="file" class="custom-file-input" id="logo" name="logo" value="{{ $setting->logo ?? old('logo') }}">
+											<input type="file" class="custom-file-input" id="logo" name="logo"
+												value="{{ $setting->logo ?? old('logo') }}">
 											<label class="custom-file-label" for="logo">Choose logo</label>
 										</div>
 										<div class="input-group-append">
@@ -58,11 +60,15 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="officePhoneNumber">Office Phone Number <span class="star">*</span></label>
-									<input type="text" class="form-control form-control-sm" name="official_company_number"
-										id="officePhoneNumber" placeholder="Office number" value="{{ $setting->official_company_number  ?? old('official_company_number') }}">
+									<label for="officePhoneNumber">Office Phone Number <span
+											class="star">*</span></label>
+									<input type="text"
+										class="form-control form-control-sm @error('official_company_number') is-invalid @enderror"
+										name="official_company_number" id="officePhoneNumber"
+										placeholder="Office number"
+										value="{{ $setting->official_company_number  ?? old('official_company_number') }}">
 									@error('official_company_number')
-    									<div class="error-alert">{{ $message }}</div>
+									<div class="error-alert">{{ $message }}</div>
 									@enderror
 								</div>
 								<div class="form-group">
@@ -71,29 +77,38 @@
 										placeholder="Enter website" value="{{ $setting->website  ?? old('website') }}">
 								</div>
 								<div class="form-group">
-			                        <label for="currency_id">Select Currency</label>
-				                        <select class="form-control form-control-sm" name="currency_id" id="currency_id">
-					                        @foreach($currencies as $currency)
-					                        	<option value="{{ $currency->id }}">{{ $currency->currency}}</option>
-						                    @endforeach
-				                        </select>
-			                      </div>
+									<label for="currency_id">Select Currency</label>
+									<select
+										class="form-control form-control-sm @error('currency_id') is-invalid @enderror"
+										name="currency_id" id="currency_id">
+										<option value="">--Select--</option>
+										@foreach($currencies as $currency)
+										<option value="{{ $currency->id }}">{{ $currency->currency}}</option>
+										@endforeach
+									</select>
+									@error('currency_id')
+									<div class="error-alert">{{ $message }}</div>
+									@enderror
+								</div>
 								<div class="form-group">
-									<button type="submit" class="btn btn-block bg-gradient-primary btn-sm">Submit</button>
+									<button type="submit" class="btn bg-gradient-primary btn-sm">Submit</button>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Company Address <span class="star">*</span></label>
-									<textarea class="form-control" rows="4" placeholder="Enter ..." name="address">{{ $setting->address  ?? old('address') }}</textarea>
+									<textarea class="form-control @error('address') is-invalid @enderror" rows="4"
+										placeholder="Enter ..."
+										name="address">{{ $setting->address  ?? old('address') }}</textarea>
 									@error('address')
-    									<div class="error-alert">{{ $message }}</div>
+									<div class="error-alert">{{ $message }}</div>
 									@enderror
 								</div>
 								<div class="form-group">
 									<label for="mobleNumber">Mobile Phone Number</label>
-									<input type="text" class="form-control form-control-sm" name="phone_number" id="mobleNumber"
-										placeholder="Enter mobile number" value="{{ $setting->phone_number  ?? old('phone_number') }}">
+									<input type="text" class="form-control form-control-sm" name="phone_number"
+										id="mobleNumber" placeholder="Enter mobile number"
+										value="{{ $setting->phone_number  ?? old('phone_number') }}">
 								</div>
 								<div class="form-group">
 									<label for="email">Company Email</label>
@@ -107,11 +122,117 @@
 					</form>
 				</div>
 			</div>
+
+			{{-- email settings --}}
 			<div class="tab-pane fade" id="vert-tabs-profile" role="tabpanel" aria-labelledby="vert-tabs-profile-tab">
-				jdahd
+				<div class="card card-default">
+					<div class="card-header">
+						<h3 class="card-title">Email Settings</h3>
+					</div>
+					<!-- /.card-header -->
+					<!-- form start -->
+					<form role="form" action="/emailsettings/{{ $emailSetting->id }}" method="post">
+						@method('PATCH')
+						@csrf
+						<div class="card-body row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="email_sent_from_name">Email sent from name <span
+											class="star">*</span></label>
+									<input type="text"
+										class="form-control form-control-sm @error('email_sent_from_name') is-invalid @enderror"
+										name="email_sent_from_name" id="email_sent_from_name"
+										placeholder="e.g name of your company"
+										value="{{ $emailSetting->email_sent_from_name }}">
+								</div>
+								@error('email_sent_from_name')
+								<div class="error-alert">{{ $message }}</div>
+								@enderror
+
+								<div class="form-group">
+									<button type="submit" class="btn bg-gradient-primary btn-sm">Submit</button>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="email">Email <span class="star">*</span></label>
+									<input type="email"
+										class="form-control form-control-sm @error('email') is-invalid @enderror"
+										name="email" id="email" placeholder="Enter email"
+										value="{{ $emailSetting->email }}">
+								</div>
+								@error('email')
+								<div class="error-alert">{{ $message }}</div>
+								@enderror
+							</div>
+						</div>
+					</form>
+					<div class="pb-4"></div>
+					<!-- email templates-->
+					<div class="card-header email-header">
+						<h3 class="card-title">Email Templates</h3>
+						<div class="card-tools">
+							<div class="input-group input-group-sm" style="width: 150px;">
+								<button type="submit" class="btn bg-gradient-primary btn-sm" data-toggle="modal"
+									data-target="#email-template">Add Email Template</button>
+							</div>
+						</div>
+					</div>
+					<div class="card-body table-responsive p-0">
+						<table class="table table-hover text-nowrap">
+							<thead>
+								<tr>
+									<th>Title</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							@foreach($emailtemplates as $emailtemplate)
+							<tbody>
+								<tr>
+									<td>{{$emailtemplate->title}}</td>
+									<td>
+										<a href="/email-templates/{{$emailtemplate->id}}" class="view-email">
+											<i class="fas fa-eye" title="View"></i>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+							@endforeach
+						</table>
+					</div>
+				</div>
 			</div>
+
 			<div class="tab-pane fade" id="vert-tabs-messages" role="tabpanel" aria-labelledby="vert-tabs-messages-tab">
-				jd;ad
+				<!-- roles -->
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">Roles</h3>
+					</div>
+					<!-- /.card-header -->
+					<div class="card-body table-responsive p-0">
+						<table class="table table-hover text-nowrap">
+							<thead>
+								<tr>
+									<th>Title</th>
+									{{-- <th>Action</th> --}}
+								</tr>
+							</thead>
+							@foreach($roles as $role)
+							<tbody>
+								<tr>
+									<td>{{$role->role}}</td>
+									{{-- <td>
+										<a href="/roles/{{ $role->id }}" class="view-email"  data-toggle="modal"
+									data-target="#role-model"><i class="fas fa-eye"></i></a>
+									</td> --}}
+								</tr>
+							</tbody>
+							@endforeach
+						</table>
+					</div>
+					<!-- /.card-body -->
+				</div>
 			</div>
 			<div class="tab-pane fade" id="vert-tabs-settings" role="tabpanel" aria-labelledby="vert-tabs-settings-tab">
 				dahkdjg
@@ -119,4 +240,7 @@
 		</div>
 	</div>
 </div>
+@include('models.email-template')
+@include('models.role')
+
 @endsection
