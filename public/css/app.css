@@ -46827,3 +46827,29 @@ readers do not read off random characters that represent icons */
   color: red;
 }
 
+.login-again {
+  color: #000;
+  background: #fff;
+  font-weight: bold;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.email-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+a.view-email {
+  color: #30ce26;
+}
+
+a.view-email:hover {
+  color: #2c7714;
+}
+
+.delete-button {
+  color: blue;
+}
+
