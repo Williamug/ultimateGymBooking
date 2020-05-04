@@ -17,6 +17,7 @@ class ServiceResource extends JsonResource {
 		// return parent::toArray($request);
 		return [
 			'id'                         => $this->id,
+			'price'                      => $this->price,
 			'title'                      => $this->title,
 			'service_duration'           => $this->service_duration,
 			'available_seats'            => $this->available_seats,
@@ -27,7 +28,6 @@ class ServiceResource extends JsonResource {
 			'service_duration_type'      => $this->service_duration_type,
 			'status'                     => $this->status,
 			'days'                       => $this->days,
-			'currencies'                 => new CurrencyResource($this->currencies),
 			'instructors'                => new InstructorResource($this->instructor),
 		];
 	}
