@@ -24,6 +24,11 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "admin-lte": "^3.0.2"
+        "admin-lte": "^3.0.2",
+        "chart.js": "^2.9.3",
+        "moment": "^2.25.1",
+        "sweetalert2": "^9.10.12",
+        "vform": "^1.0.1",
+        "vue-chartjs": "^3.5.0"
     }
 }
