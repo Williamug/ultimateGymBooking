@@ -30,7 +30,7 @@ class ServicesController extends Controller {
 		$this->serviceValidationRules();
 
 		$serviceData = Service::create([
-				'currencies_id'              => $currency->id,
+				'price'                      => $request['price'],
 				'title'                      => $request['title'],
 				'service_duration'           => $request['service_duration'],
 				'available_seats'            => $request['available_seats'],
