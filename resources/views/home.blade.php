@@ -373,13 +373,8 @@
                 </h3>
 
                 <div class="card-tools">
-                  <ul class="pagination pagination-sm">
-                    <li class="page-item"><a href="#" class="page-link">«</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">»</a></li>
-                  </ul>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -406,22 +401,6 @@
                       <i class="fas fa-trash-o"></i>
                     </div>
                   </li>
-                  <li class="done">
-                    <span class="handle ui-sortable-handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo2" id="todoCheck2" checked="">
-                      <label for="todoCheck2"></label>
-                    </div>
-                    <span class="text">Make the theme responsive</span>
-                    <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
                   <li>
                     <span class="handle ui-sortable-handle">
                       <i class="fas fa-ellipsis-v"></i>
@@ -443,7 +422,20 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
-                <button type="button" class="btn btn-info float-right"><i class="fas fa-plus"></i> Add item</button>
+                <div class="row">
+                    <div class="col-6">
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item"><a href="#" class="page-link">«</a></li>
+                            <li class="page-item"><a href="#" class="page-link">1</a></li>
+                            <li class="page-item"><a href="#" class="page-link">2</a></li>
+                            <li class="page-item"><a href="#" class="page-link">3</a></li>
+                            <li class="page-item"><a href="#" class="page-link">»</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="btn btn-info float-right"><i class="fas fa-plus"></i> Add item</button>
+                    </div>
+                </div>
               </div>
             </div>
           </div>

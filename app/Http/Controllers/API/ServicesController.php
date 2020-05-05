@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ServiceResource;
 use App\Model\Currency;
+use App\Model\Instructor;
 use App\Model\Service;
 use Illuminate\Http\Request;
 
@@ -25,14 +26,14 @@ class ServicesController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		$currency = Currency::find(2);
+		$instructor = Instructor::all();
 
 		$this->serviceValidationRules();
 
 		$serviceData = Service::create([
-				'price'                      => $request['price'],
-				'title'                      => $request['title'],
-				'service_duration'           => $request['service_duration'],
+				'price' => $request['price'],
+				'title' => $request['title'],
+				// 'service_duration'           => $request['service_duration'],
 				'available_seats'            => $request['available_seats'],
 				'description'                => $request['description'],
 				'service_starts_at'          => $request['service_starts_at'],

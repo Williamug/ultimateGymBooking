@@ -14,6 +14,7 @@
 	<link href="{{ asset('images/logo/logo.png') }}" rel='shortcut icon'>
 	<!-- styles -->
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+	<link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -205,6 +206,7 @@
 	<!-- REQUIRED SCRIPTS -->
 
 	<script src="{{ asset('js/app.js') }}"></script>
+	<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 </body>
 
 </html>

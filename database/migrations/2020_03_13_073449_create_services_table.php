@@ -14,16 +14,16 @@ class CreateServicesTable extends Migration {
 		Schema::create('services', function (Blueprint $table) {
 				$table->id();
 				$table->integer('price');
-				$table->string('title');
-				$table->string('service_duration');
-				$table->integer('available_seats');
-				$table->text('description');
-				$table->time('service_starts_at');
-				$table->time('service_ends_at');
-				$table->integer('allow_booking_max_days_ago');
-				$table->string('service_duration_type');
-				$table->boolean('status');
-				$table->string('days');
+				$table->string('title')->unique();
+				// $table->string('service_duration');
+				$table->integer('available_seats')->nullable();
+				$table->text('description')->nullable();
+				$table->time('service_starts_at')->nullable();
+				$table->time('service_ends_at')->nullable();
+				$table->integer('allow_booking_max_days_ago')->nullable();
+				$table->boolean('service_duration_type')->nullable();
+				$table->boolean('status')->nullable();
+				$table->string('days')->nullable();
 				$table->timestamps();
 			});
 	}
