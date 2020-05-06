@@ -21,6 +21,6 @@ class Service extends Model {
 	];
 
 	public function instructors() {
-		return $this->belongsToMany(Instructor::class );
+		return $this->belongsToMany(Instructor::class )->withTimestamps();
 	}
 }
