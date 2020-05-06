@@ -31,7 +31,7 @@
 					</div>
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form role="form" action="/settings/{{$setting->id}}" method="post" enctype="">
+					<form role="form" action="/settings/{{$setting->id}}" method="post" enctype="multipart/form-data">
 						@method('PATCH')
 						@csrf
 						<div class="card-body row">

@@ -31,10 +31,11 @@ Route::get('services', 'web\SettingsController@index')->name('services.index');
 // // service
 Route::get('services', 'web\ServicesController@index')->name('services.index');
 Route::get('services/create', 'web\ServicesController@create')->name('services.create');
-Route::post('services', 'web\ServicesController@store');
-Route::get('services/{service:title}', 'web\ServicesController@show');
-Route::patch('services/{service}', 'web\ServicesController@update');
-Route::delete('services/{service}', 'web\ServicesController@destroy');
+Route::post('services', 'web\ServicesController@store')->name('services.store');
+Route::get('services/{service:title}', 'web\ServicesController@show')->name('services.show');
+Route::get('services/{service:title}/edit', 'web\ServicesController@edit')->name('services.edit');
+Route::patch('services/{service}', 'web\ServicesController@update')->name('services.update');
+Route::delete('services/{service}', 'web\ServicesController@destroy')->name('services.destroy');
 
 // // instructor
 // Route::get('instructors', 'web\InstructorsController@index');

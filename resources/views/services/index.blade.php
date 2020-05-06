@@ -24,6 +24,8 @@
                       <th>Status</th>
                       <th>Duration Type</th>
                       <th>Price</th>
+                      <th>Starts</th>
+                      <th>Ends</th>
                       <th>Days</th>
                       <th>Action</th>
                     </tr>
@@ -34,12 +36,16 @@
 	                      		<td>{{$service->title}}</td>
 								<td>{{$service->available_seats}}</td>
 								<td>
-									<small class="badge badge-success">
-										{{$service->status == 1 ? 'Active' : 'Inactive'}}
-									</small>
+									@if($service->status == 1)
+										<small class="badge badge-success">Active</small>
+									@else
+										<small class="badge badge-danger">Inctive</small>
+									@endif
 								</td>
 								<td>{{$service->service_duration_type == 1 ? 'Hourly' : 'Daily'}}</td>
 								<td>{{$service->price}}</td>
+								<td>{{$service->service_starts_at}}</td>
+								<td>{{$service->service_ends_at}}</td>
 								<td>{{$service->days}}</td>
 								<td>
 									<a href="/services/{{ $service->title }}" title="View" class="email-view">
@@ -50,6 +56,8 @@
 	                  	</tbody>
 					@endforeach
                 </table>
+
+          <div class="ml-4 mt-4">{{ $services->links() }}</div>
               </div>
               <!-- /.card-body -->
             </div>
