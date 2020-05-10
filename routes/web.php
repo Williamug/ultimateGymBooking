@@ -10,10 +10,12 @@ function () {
 
 Auth::routes();
 
+Route::patch('user/{user}', 'web\UsersController@update')->name('user.update');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('bookings', 'web\SettingsController@index')->name('bookings.index');
-Route::get('clients', 'web\SettingsController@index')->name('clients.index');
+// Route::get('clients', 'web\SettingsController@index')->name('clients.index');
 Route::get('reports', 'web\SettingsController@index')->name('reports.index');
 Route::get('services', 'web\SettingsController@index')->name('services.index');
 
@@ -45,11 +47,13 @@ Route::delete('services/{service}', 'web\ServicesController@destroy')->name('ser
 // Route::delete('instructors/{instructor}', 'web\InstructorsController@destroy');
 
 // // clients
-// Route::get('clients', 'web\ClientsController@index');
-// Route::post('clients', 'web\ClientsController@store');
-// Route::get('clients/{client}', 'web\ClientsController@show');
-// Route::patch('clients/{client}', 'web\ClientsController@update');
-// Route::delete('clients/{client}', 'web\ClientsController@destroy');
+Route::get('clients', 'web\ClientsController@index')->name('clients.index');
+Route::get('clients/create', 'web\ClientsController@create')->name('clients.create');
+Route::post('clients', 'web\ClientsController@store')->name('clients.store');
+Route::get('clients/{client}', 'web\ClientsController@show')->name('clients.show');
+Route::get('clients/{client}/edit', 'web\ClientsController@edit')->name('clients.edit');
+Route::patch('clients/{client}', 'web\ClientsController@update')->name('clients.update');
+Route::delete('clients/{client}', 'web\ClientsController@destroy')->name('clients.destroy');
 
 // // admins
 // Route::get('admins', 'web\AdminsController@index');
@@ -59,7 +63,7 @@ Route::delete('services/{service}', 'web\ServicesController@destroy')->name('ser
 // Route::delete('admins/{admin}', 'web\AdminsController@destroy');
 
 // // bookings
-// Route::get('bookings', 'web\BookingsController@index');
+Route::get('bookings', 'web\BookingsController@index');
 // Route::post('bookings', 'web\BookingsController@store');
 // Route::get('bookings/{booking}', 'web\BookingsController@show');
 // Route::patch('bookings/{booking}', 'web\BookingsController@update');
