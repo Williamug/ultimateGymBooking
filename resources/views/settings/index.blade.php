@@ -223,7 +223,7 @@
 								<tr>
 									<td>{{$role->role}}</td>
 									{{-- <td>
-										<a href="/roles/{{ $role->id }}" class="view-email"  data-toggle="modal"
+										<a href="/roles/{{ $role->id }}" class="view-email" data-toggle="modal"
 									data-target="#role-model"><i class="fas fa-eye"></i></a>
 									</td> --}}
 								</tr>

@@ -184,18 +184,19 @@
 			<!-- /.content-header -->
 
 			<!-- Main content -->
-            <div class="container">
-            	@unless (Auth::check())
-    				You are not signed in.
-				@endunless
-    			@yield('content')
-            </div>
+			<div class="container">
+				@guest
+				{{ route('login') }}
+				@else
+				@yield('content')
+				@endguest
+			</div>
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
 
 		<!-- Control Sidebar -->
-            @include('patials.control-sidebar')
+		@include('patials.control-sidebar')
 		<!-- /.control-sidebar -->
 
 		<!-- Main Footer -->
