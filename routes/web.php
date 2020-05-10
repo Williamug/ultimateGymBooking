@@ -63,7 +63,7 @@ Route::delete('clients/{client}', 'web\ClientsController@destroy')->name('client
 // Route::delete('admins/{admin}', 'web\AdminsController@destroy');
 
 // // bookings
-// Route::get('bookings', 'web\BookingsController@index');
+Route::get('bookings', 'web\BookingsController@index')->name('bookings.index');
 // Route::post('bookings', 'web\BookingsController@store');
 // Route::get('bookings/{booking}', 'web\BookingsController@show');
 // Route::patch('bookings/{booking}', 'web\BookingsController@update');
