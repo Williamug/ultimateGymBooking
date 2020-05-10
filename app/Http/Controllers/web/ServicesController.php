@@ -38,8 +38,8 @@ class ServicesController extends Controller {
 	public function store(Request $request) {
 
 		$instructor = Instructor::where('id', $request['instructor_id'])->get();
-
-		$data = request()->validate([
+		$weekDays   = implode(',', $request->get('days'));
+		$data       = request()->validate([
 				'price'                      => 'required',
 				'title'                      => 'required|unique:App\Model\Service,title',
 				'service_duration'           => '',
@@ -52,10 +52,21 @@ class ServicesController extends Controller {
 				'status'                     => '',
 				'days'                       => '',
 			]);
-		$services = Service::create($data);
+		$services = Service::create([
+				'price'                      => $request['price'],
+				'title'                      => $request['title'],
+				'available_seats'            => $request['available_seats'],
+				'description'                => $request['description'],
+				'service_starts_at'          => $request['service_starts_at'],
+				'service_ends_at'            => $request['service_ends_at'],
+				'allow_booking_max_days_ago' => $request['allow_booking_max_days_ago'],
+				'service_duration_type'      => $request['service_duration_type'],
+				'status'                     => $request['status'],
+				'days'                       => $weekDays,
+			]);
 
 		$services->instructors()->attach($instructor);
-		return redirect('services/create')->with('message', 'A new service has been added successfully');
+		return redirect()->route('services.index')->with('message', 'A new service has been added successfully');
 	}
 
 	/**
@@ -89,6 +100,7 @@ class ServicesController extends Controller {
 	 */
 	public function update(Request $request, Service $service) {
 		$instructor = Instructor::where('id', $request['instructor_id'])->get();
+		$weekDays   = implode(",", $request->get('days'));
 		$data       = request()->validate([
 				'price'                      => 'required',
 				'title'                      => 'required',
@@ -102,7 +114,18 @@ class ServicesController extends Controller {
 				'status'                     => '',
 				'days'                       => '',
 			]);
-		$service->update($data);
+		$service->update([
+				'price'                      => $request['price'],
+				'title'                      => $request['title'],
+				'available_seats'            => $request['available_seats'],
+				'description'                => $request['description'],
+				'service_starts_at'          => $request['service_starts_at'],
+				'service_ends_at'            => $request['service_ends_at'],
+				'allow_booking_max_days_ago' => $request['allow_booking_max_days_ago'],
+				'service_duration_type'      => $request['service_duration_type'],
+				'status'                     => $request['status'],
+				'days'                       => $weekDays,
+			]);
 		$service->instructors()->detach();
 		$service->instructors()->attach($instructor);
 		return redirect()->route('services.show', ['service' => $service])->with('message', 'Service has been updated');
