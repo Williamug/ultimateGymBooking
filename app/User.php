@@ -2,8 +2,8 @@
 
 namespace App;
 
+use App\Model\Client;
 use App\Model\Instructor;
-
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -39,5 +39,9 @@ class User extends Authenticatable {
 
 	public function instructors() {
 		return $this->belongsToMany(Instructor::class );
+	}
+
+	public function client() {
+		return $this->hasOne(Client::class );
 	}
 }
