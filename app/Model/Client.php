@@ -6,7 +6,8 @@ use App\Model\Role;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model {
+class Client extends Model
+{
 	protected $fillable = [
 		'first_name',
 		'last_name',
@@ -19,11 +20,13 @@ class Client extends Model {
 		'role_id',
 	];
 
-	public function roles() {
-		return $this->belongsTo(Role::class );
+	public function role()
+	{
+		return $this->belongsTo(Role::class);
 	}
 
-	public function user() {
-		return $this->belongsTo(User::class );
+	public function user()
+	{
+		return $this->belongsTo(User::class);
 	}
 }
