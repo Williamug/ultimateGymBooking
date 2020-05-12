@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Model\Booking;
 use App\Model\Instructor;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,5 +23,9 @@ class Service extends Model {
 
 	public function instructors() {
 		return $this->belongsToMany(Instructor::class )->withTimestamps();
+	}
+
+	public function bookings() {
+		return $this->belongsToMany(Booking::class )->withTimestamps();
 	}
 }
