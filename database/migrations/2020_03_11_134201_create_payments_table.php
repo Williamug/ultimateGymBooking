@@ -13,7 +13,9 @@ class CreatePaymentsTable extends Migration {
 	public function up() {
 		Schema::create('payments', function (Blueprint $table) {
 				$table->id();
-				$table->string('payment_method');
+				$table->unsignedBigInteger('payment_method_id')->nullable();
+				$table->string('amount')->nullable();
+				$table->unsignedBigInteger('currency_id')->nullable();
 				$table->timestamps();
 			});
 	}

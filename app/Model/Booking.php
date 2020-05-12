@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use App\Model\Client;
-use App\Model\Currency;
+
 use App\Model\Instructor;
 use App\Model\Payment;
 use App\Model\Service;
@@ -20,10 +20,6 @@ class Booking extends Model {
 		'payment_id',
 		'currency_id'
 	];
-
-	public function currencies() {
-		return $this->belongsTo(Currency::class );
-	}
 	public function payments() {
 		return $this->belongsTo(Payment::class );
 	}
