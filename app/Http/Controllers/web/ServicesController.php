@@ -88,7 +88,8 @@ class ServicesController extends Controller {
 	 */
 	public function edit(Service $service) {
 		$instructors = Instructor::all();
-		return view('services.edit', compact('service', 'instructors'));
+		$weekDays    = explode(',', $service->days);
+		return view('services.edit', compact('service', 'instructors', 'weekDays'));
 	}
 
 	/**
