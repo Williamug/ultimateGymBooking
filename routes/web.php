@@ -19,6 +19,11 @@ Route::get('bookings', 'web\SettingsController@index')->name('bookings.index');
 Route::get('reports', 'web\SettingsController@index')->name('reports.index');
 Route::get('services', 'web\SettingsController@index')->name('services.index');
 
+Route::get('instructor', 'web\SettingsController@index')->name('instructor.index');
+Route::get('admin', 'web\SettingsController@index')->name('admin.index');
+Route::get('inbox', 'web\SettingsController@index')->name('inbox.index');
+Route::get('compose', 'web\SettingsController@index')->name('compose.index');
+Route::get('read', 'web\SettingsController@index')->name('read.index');
 // Route::post('settings', 'web\SettingsController@store');
 // Route::put('settings/{setting}', 'web\SettingsController@update');
 // Route::delete('settings/{setting}', 'web\SettingsController@destroy');
@@ -64,10 +69,12 @@ Route::delete('clients/{client}', 'web\ClientsController@destroy')->name('client
 
 // // bookings
 Route::get('bookings', 'web\BookingsController@index')->name('bookings.index');
-// Route::post('bookings', 'web\BookingsController@store');
-// Route::get('bookings/{booking}', 'web\BookingsController@show');
-// Route::patch('bookings/{booking}', 'web\BookingsController@update');
-// Route::delete('bookings/{booking}', 'web\BookingsController@destroy');
+Route::get('bookings/create', 'web\BookingsController@create')->name('bookings.create');
+Route::post('bookings', 'web\BookingsController@store')->name('bookings.store');
+Route::get('bookings/{booking}', 'web\BookingsController@show')->name('bookings.show');
+Route::get('bookings/{booking}/edit', 'web\BookingsController@edit')->name('bookings.edit');
+Route::patch('bookings/{booking}', 'web\BookingsController@update')->name('bookings.update');
+Route::delete('bookings/{booking}', 'web\BookingsController@destroy')->name('bookings.destroy');
 
 // roles
 Route::get('roles/{role}', 'web\RolesController@show');
