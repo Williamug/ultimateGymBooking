@@ -4,6 +4,10 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Model\Booking;
+use App\Model\Client;
+use App\Model\Payment;
+use App\Model\Service;
+use App\User;
 use Illuminate\Http\Request;
 
 class BookingsController extends Controller {
@@ -14,7 +18,9 @@ class BookingsController extends Controller {
 	 */
 	public function index() {
 		$bookings = Booking::all();
-		return view('bookings.index', compact('bookings'));
+		$payments = Payment::all();
+
+		return view('bookings.index', compact('bookings', 'payments'));
 	}
 
 	/**
@@ -23,7 +29,11 @@ class BookingsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		//
+		$services = Service::all();
+		$users    = User::all();
+		$clients  = Client::all();
+
+		return view('bookings.create', compact('services', 'users', 'clients'));
 	}
 
 	/**
@@ -33,7 +43,28 @@ class BookingsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		//
+		$service = Service::where('id', $request['service_id'])->get();
+		$client  = Client::where('id', $request['client_id'])->get();
+
+		$data = request()->validate([
+				'booking_date' => '',
+				'booking_time' => '',
+				'quantity'     => '',
+				'comment'      => '',
+				'status'       => '',
+			]);
+		$bookings = Booking::create([
+				'booking_date' => $request['booking_date'],
+				'booking_time' => $request['booking_time'],
+				'quantity'     => $request['quantity'],
+				'comment'      => $request['comment'],
+				'status'       => $request['status'],
+			]);
+
+		$bookings->services()->attach($service);
+		$bookings->clients()->attach($client);
+
+		return redirect()->route('bookings.index')->with('message', 'A new service has been added successfully');
 	}
 
 	/**
@@ -43,7 +74,11 @@ class BookingsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show(Booking $booking) {
-		//
+		$client  = Client::all();
+		$payment = Payment::all();
+		$service = Service::all();
+
+		return view('bookings.show', compact('booking', 'client', 'payment', 'service'));
 	}
 
 	/**

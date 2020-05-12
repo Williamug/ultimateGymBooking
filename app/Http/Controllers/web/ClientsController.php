@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
+use App\Model\Booking;
 use App\Model\Client;
 use App\Model\Role;
 use App\User;
@@ -16,7 +17,7 @@ class ClientsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$clients = Client::all();
+		$clients = Client::where('id', '>', 0)->orderBy('id', 'desc')->get();
 
 		return view('clients.index', compact('clients'));
 	}
@@ -75,9 +76,10 @@ class ClientsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show(Client $client) {
-		$roles = Role::all();
+		$roles    = Role::all();
+		$bookings = Booking::all();
 
-		return view('clients.show', compact('client', 'roles'));
+		return view('clients.show', compact('client', 'roles', 'bookings'));
 	}
 
 	/**
