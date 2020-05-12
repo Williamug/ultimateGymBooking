@@ -34,7 +34,7 @@
 						<b>Gender:</b> <a class="float-right">{{ $client->gender }}</a>
 					</li>
 					<li class="list-group-item">
-						<b>Date of birth:</b> <a class="float-right">{{ $client->dob }}</a>
+						<b>Date of birth:</b> <a class="float-right">{{ Carbon\Carbon::parse($client->dob)->format('jS M Y') }}</a>
 					<li class="list-group-item">
 						<b>Verified:</b> <a class="float-right">
 							@if($client->user->email_verified_at !== null)
@@ -49,7 +49,7 @@
 						<b>User role:</b> <a class="float-right">{{ $client->role->role }}</a>
 					</li>
 					<li class="list-group-item">
-						<b>Joined on:</b> <a class="float-right">{{ $client->created_at }}</a>
+						<b>Joined:</b> <a class="float-right">{{ Carbon\Carbon::parse($client->user->created_at)->diffForHumans(Carbon\Carbon::now(), Carbon\CarbonInterface::DIFF_ABSOLUTE) }} ago</a>
 					</li>
 				</ul>
 			</div>
@@ -80,23 +80,41 @@
 							<thead>
 								<tr>
 									<th>Service</th>
+									<th>Bill</th>
 									<th>Status</th>
 									<th>Date</th>
 									<th>Time</th>
-									<th>Bill</th>
 									<th>Payment Status</th>
 								</tr>
 							</thead>
+							@foreach($bookings as $booking)
 							<tbody>
 								<tr>
-									<td>Kona Dance</td>
-									<td>Active</td>
-									<td>2020/03/05</td>
-									<td>17:30</td>
-									<td>20000</td>
-									<td>Paid</td>
+								@foreach($booking->services as $service)
+									<td>{{ $service->title }}</td>
+									<td>{{ $service->price }}</td>
+								@endforeach
+									<td>
+									@if($booking->status == 1)
+										<small class="badge badge-success">Confirmed</small>
+									@elseif($booking->status == 2)
+										<small class="badge badge-warning">Pending</small>
+									@else
+										<small class="badge badge-danger">Canceled</small>
+									@endif
+									</td>
+									<td>{{ Carbon\Carbon::parse($booking->booking_date)->format('jS M Y') }}</td>
+									<td>{{ Carbon\Carbon::parse($booking->booking_time)->format('h:m A') }}</td>
+									<td>
+									@if($booking->payments !== null)
+										<small class="badge badge-success">Paid</small>
+									@else
+										<small class="badge badge-danger">Due</small>
+									@endif
+									</td>
 								</tr>
 							</tbody>
+							@endforeach
 						</table>
 					</div>
 					<!-- /.tab-pane -->

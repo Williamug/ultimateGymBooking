@@ -4,7 +4,7 @@
 
 @section('content')
 @if(session()->has('message'))
-    <div class="alert alert-danger">{{ session()->get('message') }}</div>
+    <div class="alert alert-success">{{ session()->get('message') }}</div>
 @endif
 <div class="card">
 	<div class="card-header">
@@ -45,7 +45,7 @@
 						<small class="badge badge-warning">Pending</small>
 						@endif
 					</td>
-					<td>{{$client->created_at}}</td>
+					<td>{{ Carbon\Carbon::parse($client->user->created_at)->format('d M Y') }}</td>
 
 					<td>
                         <div class="row">
