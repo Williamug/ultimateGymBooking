@@ -88,10 +88,36 @@
 				</li>
 				<!-- / .Clients -->
 
+				<!-- Instructor -->
+				<li class="nav-item">
+					<a href="{{ route('instructor.index') }}"
+						class="nav-link {{ Route::current()->getName() == 'instructor.index' ? 'active' : '' }}">
+						<i class="nav-icon fas fa-running"></i>
+						<p>
+							Instructor
+							{{-- <span class="right badge badge-danger">New</span> --}}
+						</p>
+					</a>
+				</li>
+				<!-- / .Instructor -->
+
+
+				<!-- Administrators -->
+				<li class="nav-item">
+					<a href="{{ route('admin.index') }}"
+						class="nav-link {{ Route::current()->getName() == 'admin.index' ? 'active' : '' }}">
+						<i class="nav-icon fas fa-key"></i>
+						<p>
+							Administrators
+							{{-- <span class="right badge badge-danger">New</span> --}}
+						</p>
+					</a>
+				</li>
+				<!-- / .Administrators -->
+
 				<!-- Reports -->
 				<li class="nav-item">
-					<a href="{{ route('reports.index') }}"
-						class="nav-link {{ Route::current()->getName() == 'reports.index' ? 'active' : '' }}">
+					<a href="{{ route('reports.index') }}" class="nav-link {{ Route::current()->getName() == 'reports.index' ? 'active' : '' }}">
 						<i class="nav-icon fas fa-chart-pie"></i>
 						<p>
 							Reports
@@ -100,6 +126,38 @@
 					</a>
 				</li>
 				<!-- / .Reports -->
+
+				<!-- Email -->
+				<li class="nav-item has-treeview">
+            		<a href="#" class="nav-link active">
+              			<i class="nav-icon fas fa-envelope"></i>
+              			<p>
+                			Mailbox
+                			<i class="fas fa-angle-left right"></i>
+              			</p>
+            		</a>
+            		<ul class="nav nav-treeview" style="display: none;">
+              			<li class="nav-item">
+                			<a href="{{ route('inbox.index') }}" class="nav-link {{ Route::current()->getName() == 'inbox.index' ? 'active' : '' }}">
+                  				<i class="far fa-circle nav-icon"></i>
+                  				<p>Inbox</p>
+                			</a>
+              			</li>
+              			<li class="nav-item">
+                			<a href="{{ route('compose.index') }}" class="nav-link {{ Route::current()->getName() == 'compose.index' ? 'active' : '' }}">
+                  				<i class="far fa-circle nav-icon"></i>
+                  				<p>Compose</p>
+                			</a>
+              			</li>
+              			<li class="nav-item">
+                			<a href="{{ route('read.index') }}" class="nav-link {{ Route::current()->getName() == 'read.index' ? 'active' : '' }}">
+                  				<i class="far fa-circle nav-icon"></i>
+                  				<p>Read</p>
+                			</a>
+              			</li>
+            		</ul>
+          		</li>
+          		<!-- /.email -->
 
 				<!-- Settings -->
 				<li class="nav-item">
