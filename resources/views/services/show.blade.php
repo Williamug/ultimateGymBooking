@@ -38,8 +38,8 @@
 					<div class="col-6">
 						<p>{{ $service->available_seats }} Seats</p>
 						<p>{{ $service->service_duration_type == 1 ? 'Hourly' : 'Daily' }}</p>
-						<p>{{ $service->service_starts_at }}</p>
-						<p>{{ $service->service_ends_at }}</p>
+						<p>{{ Carbon\Carbon::parse($service->service_starts_at)->format('h:i A') }}</p>
+						<p>{{ Carbon\Carbon::parse($service->service_ends_at)->format('h:i A') }}</p>
 						<p>
 							@if($service->status === 1)
 							<small class="badge badge-success">Active</small>

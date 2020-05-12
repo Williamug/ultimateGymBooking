@@ -83,7 +83,7 @@
 										name="currency_id" id="currency_id">
 										<option value="">--Select--</option>
 										@foreach($currencies as $currency)
-										<option value="{{ $currency->id }}">{{ $currency->currency}}</option>
+										<option value="{{ $currency->id }}" {{ $currency->id == $currency->id ? 'selected' : '' }}>{{ $currency->currency}}</option>
 										@endforeach
 									</select>
 									@error('currency_id')
