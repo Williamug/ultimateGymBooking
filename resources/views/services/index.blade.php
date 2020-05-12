@@ -45,8 +45,8 @@
 					</td>
 					<td>{{$service->service_duration_type == 1 ? 'Hourly' : 'Daily'}}</td>
 					<td>{{$service->price}}</td>
-					<td>{{$service->service_starts_at}}</td>
-					<td>{{$service->service_ends_at}}</td>
+					<td>{{ Carbon\Carbon::parse($service->service_starts_at)->format('h:i A') }}</td>
+					<td>{{ Carbon\Carbon::parse($service->service_ends_at)->format('h:i A') }}</td>
 					<td>{{$service->days}}</td>
 					<td>
 						<div class="row">

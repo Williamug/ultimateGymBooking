@@ -69,9 +69,9 @@
 					<label>Instructor <span class="star">*</span></label>
 					<select class="form-control form-control-sm @error('instructor_id') is-invalid @enderror"
 						name="instructor_id" id="instructor_id">
-						<option placeholder="Select instructor"></option>
+						<option>-- Select instructor --</option>
 						@foreach($instructors as $instructor)
-						<option value="{{ old('instructor_id') ?? $instructor->id }}">{{ $instructor->first_name }}
+						<option value="{{ old('instructor_id') ?? $instructor->id }}"{{ $instructor->id == $instructor->id ? 'selected' : '' }}>{{ $instructor->first_name }}
 							{{ $instructor->last_name }}</option>
 						@endforeach
 					</select>
@@ -166,33 +166,33 @@
 					<div class="row">
 						<div class="col-6">
 							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" type="checkbox" id="monday" name="days[]" value="Monday" {{ $service->days == 'days[]' ? 'checked' : '' }}>
+								<input class="custom-control-input" type="checkbox" id="monday" name="days[]" value="Monday" {{ $service->days == $weekDays ? 'checked' : '' }}>
 								<label for="monday" class="custom-control-label">Monday</label>
 							</div>
 							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" type="checkbox" id="tuesday" name="days[]" value="Tuesday" {{ $service->days == 'days[]' ? 'checked' : '' }}>
+								<input class="custom-control-input" type="checkbox" id="tuesday" name="days[]" value="Tuesday" {{ $service->days == $weekDays ? 'checked' : '' }}>
 								<label for="tuesday" class="custom-control-label">Tuesday</label>
 							</div>
 							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" type="checkbox" id="wednesday" name="days[]" value="Wednesday" {{ $service->days == 'days[]' ? 'checked' : '' }}>
+								<input class="custom-control-input" type="checkbox" id="wednesday" name="days[]" value="Wednesday" {{ $service->days == $weekDays ? 'checked' : '' }}>
 								<label for="wednesday" class="custom-control-label">Wednesday</label>
 							</div>
 							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" type="checkbox" id="thursday" name="days[]" value="Thursday" {{ $service->days == 'days[]' ? 'checked' : '' }}>
+								<input class="custom-control-input" type="checkbox" id="thursday" name="days[]" value="Thursday" {{ $service->days == $weekDays ? 'checked' : '' }}>
 								<label for="thursday" class="custom-control-label">Thursday</label>
 							</div>
 						</div>
 						<div class="col-6">
 							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" type="checkbox" id="friday" name="days[]" value="Friday" {{ $service->days == 'days[]' ? 'checked' : '' }}>
+								<input class="custom-control-input" type="checkbox" id="friday" name="days[]" value="Friday" {{ $service->days == $weekDays ? 'checked' : '' }}>
 								<label for="friday" class="custom-control-label">Friday</label>
 							</div>
 							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" type="checkbox" id="saturday" name="days[]" value="Saturday" {{ $service->days == 'days[]' ? 'checked' : '' }}>
+								<input class="custom-control-input" type="checkbox" id="saturday" name="days[]" value="Saturday" {{ $service->days == $weekDays ? 'checked' : '' }}>
 								<label for="saturday" class="custom-control-label">Saturday</label>
 							</div>
 							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" type="checkbox" id="sunday" name="days[]" value="Sunday" {{ $service->days == 'days[]' ? 'checked' : '' }}>
+								<input class="custom-control-input" type="checkbox" id="sunday" name="days[]" value="Sunday" {{ $service->days == $weekDays ? 'checked' : '' }}>
 								<label for="sunday" class="custom-control-label">Sunday</label>
 							</div>
 						</div>
