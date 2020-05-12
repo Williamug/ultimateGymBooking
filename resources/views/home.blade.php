@@ -439,13 +439,14 @@
               </div>
             </div>
           </div>
+          <!-- latest members-->
           <div class="col-md-4">
             <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Latest Members</h3>
+                    <h4 class="card-title">Clients</h4>
 
                     <div class="card-tools">
-                      <span class="badge badge-danger">8 New Members</span>
+                      <small class="badge badge-danger">{{ $clients->count() }} New clients this week </small>
                       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                       </button>
                       <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
@@ -455,46 +456,17 @@
                   <!-- /.card-header -->
                   <div class="card-body p-0">
                     <ul class="users-list clearfix">
-                      <li>
-                        <img src="dist/img/user1-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">Alexander Pierce</a>
-                        <span class="users-list-date">Today</span>
-                      </li>
-                      <li>
-                        <img src="dist/img/user8-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">Norman</a>
-                        <span class="users-list-date">Yesterday</span>
-                      </li>
-                      <li>
-                        <img src="dist/img/user7-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">Jane</a>
-                        <span class="users-list-date">12 Jan</span>
-                      </li>
-                      <li>
-                        <img src="dist/img/user6-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">John</a>
-                        <span class="users-list-date">12 Jan</span>
-                      </li>
-                      <li>
-                        <img src="dist/img/user2-160x160.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">Alexander</a>
-                        <span class="users-list-date">13 Jan</span>
-                      </li>
-                      <li>
-                        <img src="dist/img/user5-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">Sarah</a>
-                        <span class="users-list-date">14 Jan</span>
-                      </li>
-                      <li>
-                        <img src="dist/img/user4-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">Nora</a>
-                        <span class="users-list-date">15 Jan</span>
-                      </li>
-                      <li>
-                        <img src="dist/img/user3-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">Nadia</a>
-                        <span class="users-list-date">15 Jan</span>
-                      </li>
+                      @foreach($clients as $client)
+                        <li>
+                            @if($client->profile_image)
+                                <img class="profile-user-img img-fluid img-circle" src="{{ asset('storage/' . $client->profile_image) }}" alt="User profile picture">
+                            @else
+                                <img class="profile-user-img img-fluid img-circle" src="{{ asset('images/profiles/profile.png') }}" alt="User profile picture">
+                            @endif
+                          <a class="users-list-name" href="{{ route('clients.show', ['client' => $client]) }}">{{ $client->user->name }}</a>
+                          <span class="users-list-date">{{ Carbon\Carbon::parse($client->user->created_at)->calendar() }}</span>
+                        </li>
+                      @endforeach
                     </ul>
                     <!-- /.users-list -->
                   </div>
