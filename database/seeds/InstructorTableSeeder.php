@@ -11,8 +11,6 @@ class InstructorTableSeeder extends Seeder {
 	 */
 	public function run() {
 		DB::table('instructors')->insert([
-				'first_name'    => 'William',
-				'last_name'     => 'Asaba',
 				'phone_number'  => '+256788379938',
 				'mobile_number' => '+256788374558',
 				'gender'        => 'Male',
