@@ -129,7 +129,7 @@
 
 				<!-- Email -->
 				<li class="nav-item has-treeview">
-            		<a href="#" class="nav-link active">
+            		<a href="#" class="nav-link">
               			<i class="nav-icon fas fa-envelope"></i>
               			<p>
                 			Mailbox
