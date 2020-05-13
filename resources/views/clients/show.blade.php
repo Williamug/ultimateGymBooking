@@ -34,7 +34,7 @@
 						<b>Gender:</b> <a class="float-right">{{ $client->gender }}</a>
 					</li>
 					<li class="list-group-item">
-						<b>Date of birth:</b> <a class="float-right">{{ Carbon\Carbon::parse($client->dob)->format('jS M Y') }}</a>
+						<b>Date of birth:</b> <a class="float-right">{{ Carbon\Carbon::parse($client->dob,)->format('jS M Y') }}</a>
 					<li class="list-group-item">
 						<b>Verified:</b> <a class="float-right">
 							@if($client->user->email_verified_at !== null)
@@ -49,7 +49,7 @@
 						<b>User role:</b> <a class="float-right">{{ $client->role->role }}</a>
 					</li>
 					<li class="list-group-item">
-						<b>Joined:</b> <a class="float-right">{{ Carbon\Carbon::parse($client->user->created_at)->diffForHumans(Carbon\Carbon::now(), Carbon\CarbonInterface::DIFF_ABSOLUTE) }} ago</a>
+						<b>Joined:</b> <a class="float-right">{{ Carbon\Carbon::parse($client->user->created_at,  'Africa/Nairobi')->diffForHumans(Carbon\Carbon::now(), Carbon\CarbonInterface::DIFF_ABSOLUTE) }} ago</a>
 					</li>
 				</ul>
 			</div>
