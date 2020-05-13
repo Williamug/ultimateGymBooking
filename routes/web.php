@@ -21,7 +21,9 @@ Route::get('services', 'web\SettingsController@index')->name('services.index');
 
 Route::get('instructor', 'web\SettingsController@index')->name('instructor.index');
 Route::get('admin', 'web\SettingsController@index')->name('admin.index');
-Route::get('inbox', 'web\SettingsController@index')->name('inbox.index');
+
+// email
+Route::get('inbox', 'web\EmailInboxesController@index')->name('inbox.index');
 Route::get('compose', 'web\SettingsController@index')->name('compose.index');
 Route::get('read', 'web\SettingsController@index')->name('read.index');
 // Route::post('settings', 'web\SettingsController@store');
