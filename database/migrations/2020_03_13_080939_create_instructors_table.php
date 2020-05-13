@@ -13,15 +13,14 @@ class CreateInstructorsTable extends Migration {
 	public function up() {
 		Schema::create('instructors', function (Blueprint $table) {
 				$table->id();
-				$table->string('first_name');
-				$table->string('last_name');
-				$table->string('phone_number');
-				$table->string('mobile_number');
-				$table->string('gender');
-				$table->date('dob');
-				$table->string('profile_image');
-				$table->boolean('verified');
-				$table->unsignedBigInteger('roles_id');
+				$table->unsignedBigInteger('user_id')->nullable();
+				$table->string('phone_number')->nullable();
+				$table->string('mobile_number')->nullable();
+				$table->string('gender')->nullable();
+				$table->date('dob')->nullable();
+				$table->string('profile_image')->nullable();
+				$table->boolean('verified')->nullable();
+				$table->unsignedBigInteger('roles_id')->nullable();
 				$table->timestamps();
 			});
 	}
