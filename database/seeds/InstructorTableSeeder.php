@@ -17,7 +17,7 @@ class InstructorTableSeeder extends Seeder {
 				'dob'           => '1993/03/14',
 				'profile_image' => 'profile.jpg',
 				'verified'      => 1,
-				'roles_id'      => 1,
+				'role_id'       => 4,
 				'created_at'    => now(),
 				'updated_at'    => now(),
 			]);
