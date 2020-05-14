@@ -90,8 +90,8 @@
 
 				<!-- Instructor -->
 				<li class="nav-item">
-					<a href="{{ route('instructor.index') }}"
-						class="nav-link {{ Route::current()->getName() == 'instructor.index' ? 'active' : '' }}">
+					<a href="{{ route('instructors.index') }}"
+						class="nav-link {{ Route::current()->getName() == 'instructors.index' ? 'active' : '' }}">
 						<i class="nav-icon fas fa-running"></i>
 						<p>
 							Instructor

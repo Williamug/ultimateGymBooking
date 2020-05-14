@@ -53,7 +53,7 @@
 						</p>
 						<p>
 							@foreach($service->instructors as $instructor)
-							<p>{{ $instructor->first_name }} {{ $instructor->last_name }}</p>
+							<p>{{ $instructor->user->name }}</p>
 							@endforeach
 						</p>
 					</div>

@@ -1,13 +1,15 @@
 @extends('layouts.master')
 
-@section('title', 'Services')
+@section('title', 'Edit service')
 
 @section('content')
 
 @if($errors->any())
-<div class="alert alert-danger">
-	<strong>Oops!</strong> Something went wrong, please check your form and try again
-</div>
+	<div class="alert alert-danger">
+		<strong>Oops!</strong> Something went wrong, please check your form and try again
+	</div>
+@elseif(session()->has('message'))
+	<div class="alert alert-danger"><strong>Oops:</strong> {{ session()->get('message') }}</div>
 @endif
 
 <div class="card card-default">
@@ -71,8 +73,7 @@
 						name="instructor_id" id="instructor_id">
 						<option>-- Select instructor --</option>
 						@foreach($instructors as $instructor)
-						<option value="{{ old('instructor_id') ?? $instructor->id }}"{{ $instructor->id == $instructor->id ? 'selected' : '' }}>{{ $instructor->first_name }}
-							{{ $instructor->last_name }}</option>
+						<option value="{{ old('instructor_id') ?? $instructor->id }}"{{ $instructor->id == $instructor->id ? 'selected' : '' }}>{{ $instructor->user->name }}</option>
 						@endforeach
 					</select>
 					@error('instructor_id')

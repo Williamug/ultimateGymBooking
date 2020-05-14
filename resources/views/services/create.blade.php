@@ -68,9 +68,9 @@
 					<label>Instructor <span class="star">*</span></label>
 					<select class="form-control form-control-sm @error('instructor_id') is-invalid @enderror"
 						name="instructor_id" id="instructor_id">
-						<option placeholder="Select instructor"></option>
+						<option placeholder="Select instructor"> -- Select instructor --</option>
 						@foreach($instructors as $instructor)
-						<option value="{{ $instructor->id }}">{{ $instructor->first_name }}</option>
+						<option value="{{ $instructor->id }}">{{ $instructor->user->name }}</option>
 						@endforeach
 					</select>
 					@error('instructor_id')
