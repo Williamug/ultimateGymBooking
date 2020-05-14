@@ -12,7 +12,7 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Total bookings</span>
-                <span class="info-box-number">1,410</span>
+                <span class="info-box-number">{{ $bookings->count() }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -21,11 +21,19 @@
           <!-- /.col -->
           <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
-              <span class="info-box-icon bg-success"><i class="fas fa-handshake"></i></span>
+                <span class="info-box-icon bg-success"><i class="fas fa-handshake"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Confirmed bookings</span>
-                <span class="info-box-number">410</span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Confirmed bookings</span>
+                    <span class="info-box-number">
+                        @foreach($bookings as $booking)
+                            @if($booking->status == 1)
+                                {{ $booking->count() }}
+                            @else
+                                {{ 0 }}
+                            @endif
+                        @endforeach
+                </span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -38,7 +46,7 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Total Clients</span>
-                <span class="info-box-number">13,648</span>
+                <span class="info-box-number">{{ $clients->count() }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -51,7 +59,15 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Pending bookings</span>
-                <span class="info-box-number">93,139</span>
+                <span class="info-box-number">
+                    @foreach($bookings as $booking)
+                        @if($booking->status == 2)
+                            {{ $booking->count() }}
+                        @else
+                            {{ 0 }}
+                        @endif
+                    @endforeach
+                </span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -472,7 +488,7 @@
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer text-center">
-                    <a href="javascript::">View All Users</a>
+                    <a href="{{ route('clients.index') }}">View All Users</a>
                   </div>
                   <!-- /.card-footer -->
                 </div>
