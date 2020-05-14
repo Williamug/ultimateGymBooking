@@ -38,8 +38,13 @@ class ServicesController extends Controller {
 	public function store(Request $request) {
 
 		$instructor = Instructor::where('id', $request['instructor_id'])->get();
-		$weekDays   = implode(',', $request->get('days'));
-		$data       = request()->validate([
+
+		if ($request->get('days')) {
+			$weekDays = implode(',', $request->get('days'));
+		} else {
+			return redirect()->route('services.edit', ['service' => $service])->with('message', 'No day(s) selected, Please select at least one day');
+		}
+		$data = request()->validate([
 				'price'                      => 'required',
 				'title'                      => 'required|unique:App\Model\Service,title',
 				'service_duration'           => '',
@@ -88,7 +93,8 @@ class ServicesController extends Controller {
 	 */
 	public function edit(Service $service) {
 		$instructors = Instructor::all();
-		$weekDays    = explode(',', $service->days);
+
+		$weekDays = explode(',', $service->days);
 		return view('services.edit', compact('service', 'instructors', 'weekDays'));
 	}
 
@@ -101,8 +107,14 @@ class ServicesController extends Controller {
 	 */
 	public function update(Request $request, Service $service) {
 		$instructor = Instructor::where('id', $request['instructor_id'])->get();
-		$weekDays   = implode(",", $request->get('days'));
-		$data       = request()->validate([
+
+		if ($request->get('days')) {
+			$weekDays = implode(',', $request->get('days'));
+		} else {
+			return redirect()->route('services.edit', ['service' => $service])->with('message', 'No day(s) selected, Please select at least one day');
+		}
+		// $weekDays   = implode(",", $request->get('days'));
+		$data = request()->validate([
 				'price'                      => 'required',
 				'title'                      => 'required',
 				'service_duration'           => '',
