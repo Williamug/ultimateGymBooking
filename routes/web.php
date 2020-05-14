@@ -19,7 +19,6 @@ Route::get('bookings', 'web\SettingsController@index')->name('bookings.index');
 Route::get('reports', 'web\SettingsController@index')->name('reports.index');
 Route::get('services', 'web\SettingsController@index')->name('services.index');
 
-Route::get('instructor', 'web\SettingsController@index')->name('instructor.index');
 Route::get('admin', 'web\SettingsController@index')->name('admin.index');
 
 // email
@@ -37,7 +36,7 @@ Route::get('read', 'web\SettingsController@index')->name('read.index');
 // Route::patch('currencies/{currency}', 'web\CurrenciesController@update');
 // Route::delete('currencies/{currency}', 'web\CurrenciesController@destroy');
 
-// // service
+// service
 Route::get('services', 'web\ServicesController@index')->name('services.index');
 Route::get('services/create', 'web\ServicesController@create')->name('services.create');
 Route::post('services', 'web\ServicesController@store')->name('services.store');
@@ -46,12 +45,14 @@ Route::get('services/{service:title}/edit', 'web\ServicesController@edit')->name
 Route::patch('services/{service}', 'web\ServicesController@update')->name('services.update');
 Route::delete('services/{service}', 'web\ServicesController@destroy')->name('services.destroy');
 
-// // instructor
-// Route::get('instructors', 'web\InstructorsController@index');
-// Route::post('instructors', 'web\InstructorsController@store');
-// Route::get('instructors/{instructor}', 'web\InstructorsController@show');
-// Route::patch('instructors/{instructor}', 'web\InstructorsController@update');
-// Route::delete('instructors/{instructor}', 'web\InstructorsController@destroy');
+// instructor
+Route::get('instructors', 'web\InstructorsController@index')->name('instructors.index');
+Route::get('instructors/create', 'web\InstructorsController@create')->name('instructors.create');
+Route::post('instructors', 'web\InstructorsController@store')->name('instructors.store');
+Route::get('instructors/{instructor}', 'web\InstructorsController@show')->name('instructors.show');
+Route::get('instructors/{instructor}/edit', 'web\InstructorsController@edit')->name('instructors.edit');
+Route::patch('instructors/{instructor}', 'web\InstructorsController@update')->name('instructors.update');
+Route::delete('instructors/{instructor}', 'web\InstructorsController@destroy')->name('instructors.destroy');
 
 // // clients
 Route::get('clients', 'web\ClientsController@index')->name('clients.index');
