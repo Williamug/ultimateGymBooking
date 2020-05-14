@@ -17,18 +17,19 @@ class Instructor extends Model {
 		'dob',
 		'profile_image',
 		'verified',
-		'roles_id',
+		'role_id',
+		'user_id',
 	];
 
 	public function services() {
 		return $this->belongsToMany(Service::class );
 	}
 
-	public function roles() {
+	public function role() {
 		return $this->belongsTo(Role::class );
 	}
 
-	public function users() {
-		return $this->belongsToMany(User::class )->withTimestamps();
+	public function user() {
+		return $this->belongsTo(User::class );
 	}
 }
