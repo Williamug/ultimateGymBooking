@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Booking;
 use App\Model\Client;
 
 class HomeController extends Controller {
@@ -20,7 +21,9 @@ class HomeController extends Controller {
 	 * @return \Illuminate\Contracts\Support\Renderable
 	 */
 	public function index() {
-		$clients = Client::all();
-		return view('home', compact('clients'));
+		$clients  = Client::all();
+		$bookings = Booking::all();
+
+		return view('home', compact('clients', 'bookings'));
 	}
 }
