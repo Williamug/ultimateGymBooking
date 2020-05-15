@@ -46,19 +46,17 @@
 									<div class="error-alert">{{ $message }}</div>
 									@enderror
 								</div>
+
+								<!-- company logo-->
 								<div class="form-group">
 									<label for="logo">Company Logo</label>
-									<div class="input-group input-group-sm">
-										<div class="custom-file">
-											<input type="file" class="custom-file-input" id="logo" name="logo"
-												value="{{ $setting->logo ?? old('logo') }}">
-											<label class="custom-file-label" for="logo">Choose logo</label>
-										</div>
-										<div class="input-group-append">
-											<span class="input-group-text" id="">Upload</span>
-										</div>
-									</div>
+									<input type="file" class="form-control form-control-sm" name="logo" id="logo" placeholder="Enter phone number" value="{{ old('logo') ?? $setting->logo}}"  @error('logo') is-invalid @enderror>
+									@error('logo')
+										<div class="error-alert">{{ $message }}</div>
+									@enderror
 								</div>
+								<!-- /.company logo-->
+
 								<div class="form-group">
 									<label for="officePhoneNumber">Office Phone Number <span
 											class="star">*</span></label>
