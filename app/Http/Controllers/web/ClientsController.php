@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Booking;
 use App\Model\Client;
 use App\Model\Role;
+use App\Model\Setting;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,8 +19,9 @@ class ClientsController extends Controller {
 	 */
 	public function index() {
 		$clients = Client::where('id', '>', 0)->orderBy('id', 'desc')->get();
+		$setting = Setting::first();
 
-		return view('clients.index', compact('clients'));
+		return view('clients.index', compact('clients', 'setting'));
 	}
 
 	/**
@@ -28,8 +30,10 @@ class ClientsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		$roles = Role::all();
-		return view('clients.create', compact('roles'));
+		$roles   = Role::all();
+		$setting = Setting::first();
+
+		return view('clients.create', compact('roles', 'setting'));
 	}
 
 	/**
@@ -78,8 +82,9 @@ class ClientsController extends Controller {
 	public function show(Client $client) {
 		$roles    = Role::all();
 		$bookings = Booking::all();
+		$setting  = Setting::first();
 
-		return view('clients.show', compact('client', 'roles', 'bookings'));
+		return view('clients.show', compact('client', 'roles', 'bookings', 'setting'));
 	}
 
 	/**

@@ -7,6 +7,7 @@ use App\Model\Booking;
 use App\Model\Client;
 use App\Model\Payment;
 use App\Model\Service;
+use App\Model\Setting;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,9 @@ class BookingsController extends Controller {
 	public function index() {
 		$bookings = Booking::all();
 		$payments = Payment::all();
+		$setting  = Setting::first();
 
-		return view('bookings.index', compact('bookings', 'payments'));
+		return view('bookings.index', compact('bookings', 'payments', 'setting'));
 	}
 
 	/**
@@ -32,8 +34,9 @@ class BookingsController extends Controller {
 		$services = Service::all();
 		$users    = User::all();
 		$clients  = Client::all();
+		$setting  = Setting::first();
 
-		return view('bookings.create', compact('services', 'users', 'clients'));
+		return view('bookings.create', compact('services', 'users', 'clients', 'setting'));
 	}
 
 	/**
@@ -77,8 +80,9 @@ class BookingsController extends Controller {
 		$client  = Client::all();
 		$payment = Payment::all();
 		$service = Service::all();
+		$setting = Setting::first();
 
-		return view('bookings.show', compact('booking', 'client', 'payment', 'service'));
+		return view('bookings.show', compact('booking', 'client', 'payment', 'service', 'setting'));
 	}
 
 	/**

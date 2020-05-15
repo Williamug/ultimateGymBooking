@@ -4,6 +4,7 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Model\EmailTemplate;
+use App\Model\Setting;
 use Illuminate\Http\Request;
 
 class EmailTemplatesController extends Controller {
@@ -42,7 +43,8 @@ class EmailTemplatesController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show(EmailTemplate $emailTemplate) {
-		return view('settings.emailTemplates.show', compact('emailTemplate'));
+		$setting = Setting::first();
+		return view('settings.emailTemplates.show', compact('emailTemplate', 'setting'));
 	}
 
 	/**

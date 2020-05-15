@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Booking;
 use App\Model\Client;
+use App\Model\Setting;
 
 class HomeController extends Controller {
 	/**
@@ -23,7 +24,8 @@ class HomeController extends Controller {
 	public function index() {
 		$clients  = Client::all();
 		$bookings = Booking::all();
+		$setting  = Setting::first();
 
-		return view('home', compact('clients', 'bookings'));
+		return view('home', compact('clients', 'bookings', 'setting'));
 	}
 }

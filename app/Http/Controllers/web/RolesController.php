@@ -4,6 +4,7 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Model\Role;
+use App\Model\Setting;
 use Illuminate\Http\Request;
 
 class RolesController extends Controller {
@@ -42,7 +43,8 @@ class RolesController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show(Role $role) {
-		return view('settings.roles.role', compact('role'));
+		$setting = Setting::first();
+		return view('settings.roles.role', compact('role', 'setting'));
 	}
 
 	/**

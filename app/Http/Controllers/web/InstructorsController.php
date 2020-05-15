@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Instructor;
 use App\Model\Role;
 use App\Model\Service;
+use App\Model\Setting;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +19,9 @@ class InstructorsController extends Controller {
 	 */
 	public function index() {
 		$instructors = Instructor::paginate(10);
-		return view('instructors.index', compact('instructors'));
+		$setting     = Setting::first();
+
+		return view('instructors.index', compact('instructors', 'setting'));
 	}
 
 	/**
@@ -27,8 +30,9 @@ class InstructorsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
+		$setting = Setting::first();
 
-		return view('instructors.create');
+		return view('instructors.create', 'setting');
 	}
 
 	/**
@@ -86,8 +90,9 @@ class InstructorsController extends Controller {
 	 */
 	public function show(Instructor $instructor) {
 		$services = Service::all();
+		$setting  = Setting::first();
 
-		return view('instructors.show', compact('instructor', 'services'));
+		return view('instructors.show', compact('instructor', 'services', 'setting'));
 	}
 
 	/**

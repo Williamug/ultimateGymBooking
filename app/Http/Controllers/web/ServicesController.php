@@ -5,6 +5,7 @@ namespace App\Http\Controllers\web;
 use App\Http\Controllers\Controller;
 use App\Model\Instructor;
 use App\Model\Service;
+use App\Model\Setting;
 use Illuminate\Http\Request;
 
 class ServicesController extends Controller {
@@ -15,7 +16,9 @@ class ServicesController extends Controller {
 	 */
 	public function index() {
 		$services = Service::where('id', '>', 0)->orderBy('id', 'desc')->paginate(10);
-		return view('services.index', compact('services'));
+		$setting  = Setting::first();
+
+		return view('services.index', compact('services', 'setting'));
 	}
 
 	/**
@@ -25,8 +28,9 @@ class ServicesController extends Controller {
 	 */
 	public function create() {
 		$instructors = Instructor::all();
+		$setting     = Setting::first();
 
-		return view('services.create', compact('instructors'));
+		return view('services.create', compact('instructors', 'setting'));
 	}
 
 	/**
@@ -81,8 +85,9 @@ class ServicesController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show(Service $service) {
+		$setting = Setting::first();
 
-		return view('services.show', compact('service'));
+		return view('services.show', compact('service', 'setting'));
 	}
 
 	/**
@@ -93,9 +98,10 @@ class ServicesController extends Controller {
 	 */
 	public function edit(Service $service) {
 		$instructors = Instructor::all();
+		$setting     = Setting::first();
 
 		$weekDays = explode(',', $service->days);
-		return view('services.edit', compact('service', 'instructors', 'weekDays'));
+		return view('services.edit', compact('service', 'instructors', 'weekDays', 'setting'));
 	}
 
 	/**

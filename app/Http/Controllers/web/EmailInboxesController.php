@@ -4,6 +4,7 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Model\EmailInbox;
+use App\Model\Setting;
 use Illuminate\Http\Request;
 
 class EmailInboxesController extends Controller {
@@ -13,7 +14,9 @@ class EmailInboxesController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		return view('emailBox.index');
+		$setting = Setting::first();
+
+		return view('emailBox.index', compact('setting'));
 	}
 
 	/**
