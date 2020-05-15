@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Admin;
 use App\Model\Client;
 use App\Model\Instructor;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -43,5 +44,11 @@ class User extends Authenticatable {
 
 	public function client() {
 		return $this->hasOne(Client::class );
+	}
+	public function instructor() {
+		return $this->hasOne(Instructor::class );
+	}
+	public function admin() {
+		return $this->hasOne(Admin::class );
 	}
 }
