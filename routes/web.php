@@ -10,24 +10,24 @@ function () {
 
 Auth::routes();
 
+// register super admin
+Route::get('super-admin', 'web\SuperAdminsController@index')->name('super-admin.index');
+Route::get('super-admin/create', 'web\SuperAdminsController@create')->name('super-admin.create');
+Route::post('super-admin', 'web\SuperAdminsController@store')->name('super-admin.store');
+
+// users
 Route::patch('user/{user}', 'web\UsersController@update')->name('user.update');
 
+// home
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('bookings', 'web\SettingsController@index')->name('bookings.index');
-// Route::get('clients', 'web\SettingsController@index')->name('clients.index');
+// testing routes
 Route::get('reports', 'web\SettingsController@index')->name('reports.index');
-Route::get('services', 'web\SettingsController@index')->name('services.index');
-
-Route::get('admin', 'web\SettingsController@index')->name('admin.index');
 
 // email
 Route::get('inbox', 'web\EmailInboxesController@index')->name('inbox.index');
 Route::get('compose', 'web\SettingsController@index')->name('compose.index');
 Route::get('read', 'web\SettingsController@index')->name('read.index');
-// Route::post('settings', 'web\SettingsController@store');
-// Route::put('settings/{setting}', 'web\SettingsController@update');
-// Route::delete('settings/{setting}', 'web\SettingsController@destroy');
 
 // // currencies
 // Route::get('currencies', 'web\CurrenciesController@index');
@@ -63,12 +63,14 @@ Route::get('clients/{client}/edit', 'web\ClientsController@edit')->name('clients
 Route::patch('clients/{client}', 'web\ClientsController@update')->name('clients.update');
 Route::delete('clients/{client}', 'web\ClientsController@destroy')->name('clients.destroy');
 
-// // admins
-// Route::get('admins', 'web\AdminsController@index');
-// Route::post('admins', 'web\AdminsController@store');
-// Route::get('admins/{admin}', 'web\AdminsController@show');
-// Route::patch('admins/{admin}', 'web\AdminsController@update');
-// Route::delete('admins/{admin}', 'web\AdminsController@destroy');
+// admins
+Route::get('admins', 'web\AdminsController@index')->name('admins.index');
+Route::get('admins/create', 'web\AdminsController@create')->name('admins.create');
+Route::post('admins', 'web\AdminsController@store')->name('admins.store');
+Route::get('admins/{admin}', 'web\AdminsController@show')->name('admins.show');
+Route::get('admins/{admin}/edit', 'web\AdminsController@edit')->name('admins.edit');
+Route::patch('admins/{admin}', 'web\AdminsController@update')->name('admins.update');
+Route::delete('admins/{admin}', 'web\AdminsController@destroy')->name('admins.destroy');
 
 // // bookings
 Route::get('bookings', 'web\BookingsController@index')->name('bookings.index');
