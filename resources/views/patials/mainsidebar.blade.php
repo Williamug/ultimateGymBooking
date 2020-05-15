@@ -1,34 +1,17 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 	<!-- Brand Logo -->
 	<a href="{{ route('home') }}" class="brand-link">
-		<img src="{{ asset('images/logo/logo.png') }}" alt="Ultimate Gym" class="brand-image img-circle elevation-3"
-			style="opacity: .8">
-		<span class="brand-text font-weight-light">Ultimate Gym</span>
+		@if($setting->logo)
+			<img src="{{ asset('storage/' . $setting->logo) }}" alt="company logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+		@else
+			<img src="{{ asset('images/profiles/profile.png') }}" alt="company logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+		@endif
+		<span class="brand-text font-weight-light">{{ $setting->company_name }}</span>
 	</a>
 
 	<!-- Sidebar -->
 	<div class="sidebar">
 		<!-- Sidebar user panel (optional) -->
-		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-			<div class="image">
-				<img src="{{ asset('images/profiles/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
-			</div>
-			<div class="info">
-				@guest
-				<div class="login-again">Please login again</div>
-				{{-- <li class="nav-item">
-                    <a href="{{ route('login') }}" class="nav-link">{{ __('Login') }}</a>
-				</li>
-				@if(Route::has('register'))
-				<li class="nav-item">
-					<a href="{{ route('register') }}" class="nav-link">{{ __('Register') }}</a>
-				</li>
-				@endif --}}
-				@else
-				<a href="#" class="d-block">{{ Auth::user()->name }}</a>
-				@endguest
-			</div>
-		</div>
 
 		<!-- Sidebar Menu -->
 		<nav class="mt-2">
@@ -104,8 +87,8 @@
 
 				<!-- Administrators -->
 				<li class="nav-item">
-					<a href="{{ route('admin.index') }}"
-						class="nav-link {{ Route::current()->getName() == 'admin.index' ? 'active' : '' }}">
+					<a href="{{ route('admins.index') }}"
+						class="nav-link {{ Route::current()->getName() == 'admins.index' ? 'active' : '' }}">
 						<i class="nav-icon fas fa-key"></i>
 						<p>
 							Administrators
