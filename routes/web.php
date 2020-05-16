@@ -11,8 +11,7 @@ function () {
 Auth::routes();
 
 // register super admin
-Route::get('super-admin', 'web\SuperAdminsController@index')->name('super-admin.index');
-Route::get('super-admin/create', 'web\SuperAdminsController@create')->name('super-admin.create');
+Route::get('super-admin', 'web\SuperAdminsController@create')->name('super-admin.create');
 Route::post('super-admin', 'web\SuperAdminsController@store')->name('super-admin.store');
 
 // users
