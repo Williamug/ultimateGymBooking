@@ -5,11 +5,11 @@
 @section('content')
 <!-- form data -->
 	<div class="register-logo">
-  		@if($setting->logo)
+  		{{-- @if($setting->logo)
 			<img src="{{ asset('storage/' . $setting->logo) }}" alt="company logo" class="brand-image img-circle elevation-3" style="opacity: .8" width="100" height="100">
 		@else
 			<img src="{{ asset('images/profiles/profile.png') }}" alt="company logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-		@endif
+		@endif --}}
 	</div>
 
 	<div class="card">
