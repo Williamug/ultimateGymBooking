@@ -2,6 +2,11 @@
 
 @section('title', 'Add new booking')
 
+@section('styles')
+<!-- daterange picker -->
+  <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
+@endsection
+
 @section('content')
 @if(session()->has('message'))
 <div class="alert alert-success"><strong>Success:</strong> {{ session()->get('message') }}</div>
@@ -129,4 +134,15 @@
 		<!-- /.card -->
 	</form>
 </div>
+@endsection
+@section('js')
+<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+<script>
+	//Timepicker
+    $('#booking_time').datetimepicker({
+      format: 'LT'
+    })
+
+</script>
 @endsection
