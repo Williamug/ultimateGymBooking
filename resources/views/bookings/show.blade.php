@@ -90,7 +90,7 @@
 						@foreach($booking->services as $service)
 							@foreach($service->instructors as $instructor)
 								@if($instructor !== null)
-									<p>{{ $instructor->first_name }} {{ $instructor->last_name }}</p>
+									<p>{{ $instructor->user->name }}</p>
 								@else
 									<p>No instructor for this service/booking yet</p>
 								@endif
