@@ -50,22 +50,19 @@
 					@enderror
 				</div>
 				<!-- /.password-->
-
-				<!-- role -->
+					<hr>
+				<!-- profile_image-->
 				<div class="form-group">
-					<label for="role_id">Role</label>
-					<select class="form-control form-control-sm @error('role_id') is-invalid @enderror"
-						name="role_id" id="role_id">
-						<option placeholder="Select role">Select user role</option>
-						@foreach($roles as $role)
-						<option value="{{ $role->id }}">{{ $role->role }}</option>
-						@endforeach
-					</select>
-					@error('role_id')
-					<div class="error-alert">{{ $message }}</div>
+					<label for="profile_image">Profile image</label>
+					<input type="file" class="form-control form-control-sm" name="profile_image"
+						id="profile_image" placeholder="Enter phone number"
+						value="{{ old('profile_image') }}"  @error('profile_image') is-invalid @enderror>
+					@error('profile_image')
+						<div class="error-alert">{{ $message }}</div>
 					@enderror
 				</div>
-				<!-- /.role -->
+				<!-- /.profile_image-->
+
 
 				<div class="row">
 					<div class="col-2">
@@ -112,17 +109,7 @@
 				</div>
 				<!-- date of birth-->
 
-				<!-- profile_image-->
-				<div class="form-group">
-					<label for="profile_image">Profile image</label>
-					<input type="file" class="form-control form-control-sm" name="profile_image"
-						id="profile_image" placeholder="Enter phone number"
-						value="{{ old('profile_image') }}"  @error('profile_image') is-invalid @enderror>
-					@error('profile_image')
-						<div class="error-alert">{{ $message }}</div>
-					@enderror
-				</div>
-				<!-- /.profile_image-->
+
 			</div>
 		</div>
 		<!-- /.card-body -->

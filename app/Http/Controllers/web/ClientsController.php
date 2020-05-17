@@ -50,15 +50,14 @@ class ClientsController extends Controller {
 				'password' => 'required|min:8'
 			]);
 
-		// if ($validation->fails()) {
-		// 	return back() ->with('toast_error', 'Oops! An error occured please check your inputs and try again');
-		// }
-
 		$user = User::create([
 				'name'     => $request['name'],
 				'email'    => $request['email'],
 				'password' => Hash::make($request['password']),
 			]);
+
+		$role = Role::find(5);
+
 		request()->validate([
 				'gender'        => '',
 				'phone_number'  => '',
@@ -72,7 +71,7 @@ class ClientsController extends Controller {
 				'gender'       => $request['gender'],
 				'phone_number' => $request['phone_number'],
 				'dob'          => $request['dob'],
-				'role_id'      => $request['role_id'],
+				'role_id'      => $role->id,
 				'user_id'      => $user->id,
 			]);
 
