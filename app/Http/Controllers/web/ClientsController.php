@@ -18,7 +18,8 @@ class ClientsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$clients = Client::where('id', '>', 0)->orderBy('id', 'desc')->get();
+		// $clients = Client::paginate(5)->where('id', '>', 0)->orderBy('id', 'desc')->get();
+		$clients = Client::where('id', '>', 0)->orderBy('id', 'desc')->paginate(10);
 		$setting = Setting::first();
 
 		return view('clients.index', compact('clients', 'setting'));
@@ -43,11 +44,16 @@ class ClientsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		request()->validate([
+		$validation = request()->validate([
 				'name'     => 'required',
 				'email'    => 'required|unique:users',
 				'password' => 'required|min:8'
 			]);
+
+		// if ($validation->fails()) {
+		// 	return back() ->with('toast_error', 'Oops! An error occured please check your inputs and try again');
+		// }
+
 		$user = User::create([
 				'name'     => $request['name'],
 				'email'    => $request['email'],
@@ -63,14 +69,19 @@ class ClientsController extends Controller {
 			]);
 
 		$client = Client::create([
-				'gender'        => $request['gender'],
-				'phone_number'  => $request['phone_number'],
-				'dob'           => $request['dob'],
-				'profile_image' => request()->profile_image->store('profiles', 'public'),
-				'role_id'       => $request['role_id'],
-				'user_id'       => $user->id,
+				'gender'       => $request['gender'],
+				'phone_number' => $request['phone_number'],
+				'dob'          => $request['dob'],
+				'role_id'      => $request['role_id'],
+				'user_id'      => $user->id,
 			]);
-		return redirect()->route('clients.index')->with('message', 'You have added a new user');
+
+		if (request()->has('profile_image')) {
+			$client->update([
+					'profile_image' => request()->profile_image->store('profiles', 'public'),
+				]);
+		}
+		return redirect()->route('clients.index')->with('toast_success', 'A new client has been added');
 	}
 
 	/**
@@ -123,7 +134,8 @@ class ClientsController extends Controller {
 					'profile_image' => request()->profile_image->store('profiles', 'public'),
 				]);
 		}
-		return redirect()->route('clients.show', ['client' => $client])->with('message', 'You have updated user details');
+
+		return redirect()->route('clients.show', ['client' => $client])->with('toast_success', 'You have updated client details');
 	}
 
 	/**
