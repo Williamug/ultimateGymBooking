@@ -12,7 +12,7 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Total bookings</span>
-                <span class="info-box-number">{{ $bookings->count() }}</span>
+                <span class="info-box-number">{{ $totalBooking->count() }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -25,15 +25,7 @@
 
                 <div class="info-box-content">
                     <span class="info-box-text">Confirmed bookings</span>
-                    <span class="info-box-number">
-                        @foreach($bookings as $booking)
-                            @if($booking->status == 1)
-                                {{ $booking->count() }}
-                            @else
-                                {{ 0 }}
-                            @endif
-                        @endforeach
-                </span>
+                    <span class="info-box-number">{{ $confirmedBooking->count() }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -59,15 +51,7 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Pending bookings</span>
-                <span class="info-box-number">
-                    @foreach($bookings as $booking)
-                        @if($booking->status == 2)
-                            {{ $booking->count() }}
-                        @else
-                            {{ 0 }}
-                        @endif
-                    @endforeach
-                </span>
+                <span class="info-box-number">{{ $pendingBooking->count() }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -96,7 +80,7 @@
               <div class="card-body">
                 <div class="d-flex">
                   <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">{{ $bookings->count() }}</span>
+                    <span class="text-bold text-lg">{{ $totalBooking->count() }}</span>
                     <span>Bookings Over Time</span>
                   </p>
                   <p class="ml-auto d-flex flex-column text-right">
@@ -444,7 +428,7 @@
                     <h4 class="card-title">Clients</h4>
 
                     <div class="card-tools">
-                      <small class="badge badge-danger">{{ $clients->count() }} New clients this week </small>
+                      <small class="badge badge-danger">{{ $clients->count() }} Clients today</small>
                       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                       </button>
                       <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
@@ -455,7 +439,7 @@
                   <div class="card-body p-0">
                     <ul class="users-list clearfix">
                       @foreach($clients as $client)
-                        <li>
+                          <li>
                             @if($client->profile_image)
                                 <img class="profile-user-img img-fluid img-circle" src="{{ asset('storage/' . $client->profile_image) }}" alt="User profile picture">
                             @else
