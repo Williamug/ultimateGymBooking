@@ -70,8 +70,7 @@
 			@endforeach
 		</table>
 
-		{{-- <div class="ml-4 mt-4">{{ $clients->links() }}
-	</div> --}}
+		<div class="ml-4 mt-4">{{ $clients->links() }}</div>
 </div>
 <!-- /.card-body -->
 </div>

@@ -4,16 +4,12 @@
 
 @section('content')
 	@if(session()->has('message'))
-<div class="alert alert-success"><strong>Success:</strong> {{ session()->get('message') }}</div>
-@elseif($errors->any())
-<div class="alert alert-danger">
-	<strong>Oops!</strong> Something went wrong, please check your form and try again
-</div>
-@endif
+		<div class="alert alert-success"><strong>Success:</strong> {{ session()->get('message') }}</div>
+	@endif
 
 <div class="card card-default">
 	<div class="card-header">
-		<h3 class="card-title">Add a new service</h3>
+		<h3 class="card-title">Add a new client</h3>
 	</div>
 	<!-- /.card-header -->
 	<!-- form start -->
