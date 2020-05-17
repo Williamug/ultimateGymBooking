@@ -79,7 +79,7 @@ class InstructorsController extends Controller {
 					'profile_image' => request()->profile_image->store('profiles', 'public'),
 				]);
 		}
-		return redirect()->route('instructors.index')->with('message', 'You have added a new instructor');
+		return redirect()->route('instructors.index')->with('toast_success', 'You have added a new instructor');
 	}
 
 	/**
@@ -136,7 +136,7 @@ class InstructorsController extends Controller {
 					'profile_image' => request()->profile_image->store('profiles', 'public'),
 				]);
 		}
-		return redirect()->route('instructors.show', ['instructor' => $instructor])->with('message', 'You have update instructor details');
+		return redirect()->route('instructors.show', ['instructor' => $instructor])->with('toast_success', 'You have update instructor details');
 	}
 
 	/**

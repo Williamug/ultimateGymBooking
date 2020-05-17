@@ -27,7 +27,7 @@
 					<th>Gender</th>
 					<th>Phone Number</th>
 					<th>Verified</th>
-					<th>Joined At</th>
+					<th>Joined On</th>
 					<th>Action</th>
 				</tr>
 			</thead>
