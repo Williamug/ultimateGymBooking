@@ -32,7 +32,7 @@ class InstructorsController extends Controller {
 	public function create() {
 		$setting = Setting::first();
 
-		return view('instructors.create', 'setting');
+		return view('instructors.create', compact('setting'));
 	}
 
 	/**
