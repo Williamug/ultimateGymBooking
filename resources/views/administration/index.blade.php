@@ -3,9 +3,7 @@
 @section('title', 'Administrators')
 
 @section('content')
-@if(session()->has('message'))
-    <div class="alert alert-success">{{ session()->get('message') }}</div>
-@endif
+
 <div class="card">
 	<div class="card-header">
 		<h3 class="card-title">Administrators</h3>
@@ -27,7 +25,7 @@
 					<th>Gender</th>
 					<th>Phone Number</th>
 					<th>Verified</th>
-					<th>Joined At</th>
+					<th>Joined On</th>
 					<th>Action</th>
 				</tr>
 			</thead>
