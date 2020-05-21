@@ -47,7 +47,7 @@
 							<small class="badge badge-danger">Inactive</small>
 							@endif
 						</p>
-						<p>{{ $service->days }}</p>
+						<p><span class="badge badge-info">{{ $service->days }}</span></p>
 						<p>{{ $service->price }}</p>
 						<p>{{ $service->description === null ? 'No description for this service' : $service->description }}
 						</p>
@@ -60,7 +60,12 @@
 				</div>
 			</div>
 			<div class="col-5">
-				<img class="img-fluid pad" src="{{ asset('images/photo2.png') }}" alt="Photo">
+				{{-- @if($service->profile_image)
+					<img class="img-fluid pad" src="{{ asset('storage/' . $service->service_img) }}" alt="Service cover photo">
+				@else
+					<img class="img-fluid pad" src="{{ asset('images/cover.png') }}" alt="Service cover photo">
+					{{-- <span class="flex justify-center">405.14 x 384</span> --}}
+				{{-- @endif --}}
 			</div>
 		</div>
 		<hr>
