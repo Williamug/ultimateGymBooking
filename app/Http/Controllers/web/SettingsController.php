@@ -42,9 +42,10 @@ class SettingsController extends Controller {
 				'phone_number'            => '',
 				'official_company_number' => 'required',
 				'email'                   => '',
-				'website'                 => '',
+				'company_website'         => '',
 				'logo'                    => 'sometimes|file|image|max:5000',
 			]);
+		// dd($data);
 		$setting->update($data);
 
 		if (request()->has('logo')) {
@@ -52,6 +53,11 @@ class SettingsController extends Controller {
 					'logo' => request()->logo->store('logo', 'public'),
 				]);
 		}
-		return redirect('settings')->with('success-message', 'Your information has been updated');
+		if (request()->has('company_website')) {
+			$setting->update([
+					'company_website' => request()->company_website,
+				]);
+		}
+		return redirect('settings')->with('toast_success', 'Settings have been saved');
 	}
 }
