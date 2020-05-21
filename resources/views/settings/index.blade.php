@@ -58,8 +58,7 @@
 								<!-- /.company logo-->
 
 								<div class="form-group">
-									<label for="officePhoneNumber">Office Phone Number <span
-											class="star">*</span></label>
+									<label for="officePhoneNumber">Office Phone Number <span class="star">*</span></label>
 									<input type="text"
 										class="form-control form-control-sm @error('official_company_number') is-invalid @enderror"
 										name="official_company_number" id="officePhoneNumber"
@@ -69,13 +68,17 @@
 									<div class="error-alert">{{ $message }}</div>
 									@enderror
 								</div>
+
+								<!--/ website-->
 								<div class="form-group">
 									<label for="website">Company Website</label>
-									<input type="text" class="form-control form-control-sm" name="website" id="website"
-										placeholder="Enter website" value="{{ $setting->website  ?? old('website') }}">
+									<input type="text" class="form-control form-control-sm" name="company_website" id="website"
+										placeholder="Enter website" value="{{ old('company_website') ?? $setting->company_website }}">
 								</div>
-								<div class="form-group">
-									<label for="currency_id">Select Currency</label>
+								<!--/.website-->
+
+								{{-- <div class="form-group">
+									<label for="currency_id">Currency</label>
 									<select
 										class="form-control form-control-sm @error('currency_id') is-invalid @enderror"
 										name="currency_id" id="currency_id">
@@ -87,7 +90,7 @@
 									@error('currency_id')
 									<div class="error-alert">{{ $message }}</div>
 									@enderror
-								</div>
+								</div> --}}
 								<div class="form-group">
 									<button type="submit" class="btn bg-gradient-primary btn-sm">Submit</button>
 								</div>
