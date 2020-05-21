@@ -113,6 +113,13 @@ class BookingsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy(Booking $booking) {
+		// $clients = Client::all();
+		// foreach ($booking->clients as $client) {
+		// 	if ($client) {
+		// 		return redirect('bookings')->with('warning', 'This booking has clients. You can\'t delete it.');
+		// 	}
+		// }
+
 		$booking->delete();
 
 		return redirect()->route('bookings.index');
