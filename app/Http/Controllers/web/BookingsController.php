@@ -18,7 +18,7 @@ class BookingsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$bookings = Booking::all();
+		$bookings = Booking::where('id', '>', 0)->orderBy('id', 'desc')->paginate(10);
 		$payments = Payment::all();
 		$setting  = Setting::first();
 

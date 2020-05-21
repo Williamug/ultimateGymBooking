@@ -84,6 +84,7 @@
 				</tr>
 			</tbody>
 			@endforeach
+			{{ $bookings->links() }}
 		</table>
 
 		{{-- <div class="ml-4 mt-4">{{ $clients->links() }}
