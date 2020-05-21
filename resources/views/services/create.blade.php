@@ -5,10 +5,10 @@
 @section('content')
 @if(session()->has('message'))
 <div class="alert alert-success"><strong>Success:</strong> {{ session()->get('message') }}</div>
-@elseif($errors->any())
+{{-- @elseif($errors->any())
 <div class="alert alert-danger">
 	<strong>Oops!</strong> Something went wrong, please check your form and try again
-</div>
+</div> --}}
 @endif
 
 <div class="card card-default">
@@ -17,7 +17,7 @@
 	</div>
 	<!-- /.card-header -->
 	<!-- form start -->
-	<form role="form" action="{{ route('services.store') }}" method="post">
+	<form role="form" action="{{ route('services.store') }}" method="post" enctype="multipart/form-data">
 		@csrf
 		<div class="card-body row">
 			<div class="col-md-6">
@@ -25,7 +25,7 @@
 				<div class="form-group">
 					<label for="title">Title <span class="star">*</span></label>
 					<input type="text" class="form-control form-control-sm @error('title') is-invalid @enderror"
-						name="title" id="title" placeholder="Enter title">
+						name="title" id="title" placeholder="Enter title" value="{{ old('title') }}">
 					@error('title')
 					<div class="error-alert">{{ $message }}</div>
 					@enderror
@@ -36,7 +36,7 @@
 				<div class="form-group">
 					<label for="price">Price <span class="star">*</span></label>
 					<input type="text" class="form-control form-control-sm @error('price') is-invalid @enderror"
-						name="price" id="price" placeholder="Enter price">
+						name="price" id="price" placeholder="Enter price" value="{{ old('price') }}">
 					@error('price')
 					<div class="error-alert">{{ $message }}</div>
 					@enderror
@@ -56,7 +56,7 @@
 					<label for="available_seats">Number of Seats Available <span class="star">*</span></label>
 					<input type="text"
 						class="form-control form-control-sm @error('available_seats') is-invalid @enderror"
-						name="available_seats" id="available_seats" placeholder="Enter available seats">
+						name="available_seats" id="available_seats" placeholder="Enter available seats" value="{{ old('available_seats') }}">
 					@error('available_seats')
 					<div class="error-alert">{{ $message }}</div>
 					@enderror
@@ -70,7 +70,7 @@
 						name="instructor_id" id="instructor_id">
 						<option placeholder="Select instructor"> -- Select instructor --</option>
 						@foreach($instructors as $instructor)
-						<option value="{{ $instructor->id }}">{{ $instructor->user->name }}</option>
+						<option value="{{ $instructor->id }}" {{ old('instructor_id') }}>{{ $instructor->user->name }}</option>
 						@endforeach
 					</select>
 					@error('instructor_id')
@@ -83,7 +83,7 @@
 				<div class="form-group">
 					<label for="description">Description</label>
 					<textarea class="form-control" rows="4" placeholder="Enter service description"
-						name="description"></textarea>
+						name="description">{{ old('description') }}</textarea>
 				</div>
 				<!-- /.description-->
 				<div class="row">
@@ -105,7 +105,7 @@
 					<label for="service_starts_at">Service Starts <span class="star">*</span></label>
 					<input type="time"
 						class="form-control form-control-sm @error('service_starts_at') is-invalid @enderror"
-						name="service_starts_at" id="service_starts_at" placeholder="hh:mm:ss">
+						name="service_starts_at" id="service_starts_at" placeholder="hh:mm:ss" value="{{ old('service_starts_at') }}">
 					@error('service_starts_at')
 					<div class="error-alert">{{ $message }}</div>
 					@enderror
@@ -117,24 +117,34 @@
 					<label for="service_ends_at">Service Ends At <span class="star">*</span></label>
 					<input type="time"
 						class="form-control form-control-sm @error('service_ends_at') is-invalid @enderror"
-						name="service_ends_at" id="service_ends_at" placeholder="hh:mm:ss">
+						name="service_ends_at" id="service_ends_at" placeholder="hh:mm:ss" value="{{ old('service_ends_at') }}">
 					@error('service_ends_at')
 					<div class="error-alert">{{ $message }}</div>
 					@enderror
 				</div>
 				<!-- /.service_ends_at-->
 
+				<!-- service_img-->
+				{{-- <div class="form-group">
+					<label for="service_img">Service Image<span class="star"></span></label>
+					<input type="file" class="form-control form-control-sm @error('service_img') is-invalid @enderror" name="service_img" id="service_img" value="{{ old('service_img') }}">
+					@error('service_img')
+					<div class="error-alert">{{ $message }}</div>
+					@enderror
+				</div> --}}
+				<!-- /.service_img-->
+
 				<!-- service duration type -->
 				<div class="form-group">
 					<label>Service duration type</label>
 					<div class="custom-control custom-radio">
 						<input class="custom-control-input" type="radio" id="hourly" name="service_duration_type"
-							value="1" checked>
+							value="1" {{ old('service_duration_type') ? 'checked' : '' }} checked>
 						<label for="hourly" class="custom-control-label">Hourly</label>
 					</div>
 					<div class="custom-control custom-radio">
 						<input class="custom-control-input" type="radio" id="daily" name="service_duration_type"
-							value="0">
+							value="0" {{ old('service_duration_type') ? 'checked' : '' }}>
 						<label for="daily" class="custom-control-label">Daily</label>
 					</div>
 				</div>
@@ -144,11 +154,11 @@
 				<div class="form-group">
 					<label for="">Status</label>
 					<div class="custom-control custom-radio">
-						<input class="custom-control-input" type="radio" id="active" name="status" value="1">
+						<input class="custom-control-input" type="radio" id="active" name="status" value="1" {{ old('status') ? 'checked' : '' }}>
 						<label for="active" class="custom-control-label">Active</label>
 					</div>
 					<div class="custom-control custom-radio">
-						<input class="custom-control-input" type="radio" id="inactive" name="status" value="0" checked>
+						<input class="custom-control-input" type="radio" id="inactive" name="status" value="0" {{ old('status') ? 'checked' : '' }} checked>
 						<label for="inactive" class="custom-control-label">Inactive</label>
 					</div>
 				</div>
@@ -156,7 +166,7 @@
 
 				<!-- days-->
 				<div class="form-group">
-					<label for="">Days</label>
+					<label for="">Days <span class="star">*</span></label>
 					<div class="row">
 						<div class="col-6">
 							<div class="custom-control custom-checkbox">
