@@ -10,8 +10,7 @@
 		<div class="card-tools">
 			<div class="input-group input-group-sm" style="width: 150px;">
 				{{-- <button type="submit" class="btn bg-gradient-primary btn-sm" data-toggle="modal" data-target="#modal-lg">Add <i class="fas fa-plus"></i></button> --}}
-				<a href="{{ route('services.create') }}" class="btn bg-gradient-primary btn-sm">Add New Service <i
-						class="fas fa-plus"></i></a>
+					<a href="{{ route('services.create') }}" class="btn bg-gradient-primary btn-sm">Add New Service <i class="fas fa-plus"></i></a>
 			</div>
 		</div>
 	</div>
