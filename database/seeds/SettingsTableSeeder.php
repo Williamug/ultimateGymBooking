@@ -12,13 +12,13 @@ class SettingsTableSeeder extends Seeder {
 	public function run() {
 		DB::table('settings')->insert([
 				'currency_id'             => 2,
-				'company_name'            => 'Ultimate Gym Booking',
+				'company_name'            => 'Ultimate Gym',
 				'address'                 => 'Plot 3 Industrial area, Design Hub Kampala',
 				'phone_number'            => '122344566',
 				'official_company_number' => '0122347877',
 				'email'                   => 'ultimategymbooking@gmail.com',
-				'website'                 => 'ultimate.com',
-				'logo'                    => 'logo.jpg',
+				'company_website'         => 'ultimate.com',
+				'logo'                    => 'logo/default.png',
 				'created_at'              => now(),
 				'updated_at'              => now(),
 			]);
