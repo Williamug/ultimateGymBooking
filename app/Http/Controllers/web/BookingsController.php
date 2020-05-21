@@ -67,7 +67,7 @@ class BookingsController extends Controller {
 		$bookings->services()->attach($service);
 		$bookings->clients()->attach($client);
 
-		return redirect()->route('bookings.index')->with('message', 'A new service has been added successfully');
+		return redirect()->route('bookings.index')->with('toast_success', 'A new service has been added successfully');
 	}
 
 	/**
