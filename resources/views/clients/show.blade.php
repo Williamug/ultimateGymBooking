@@ -49,7 +49,7 @@
 						<b>User role:</b> <a class="float-right">{{ $client->role->role }}</a>
 					</li>
 					<li class="list-group-item">
-						<b>Joined:</b> <a class="float-right">{{ Carbon\Carbon::parse($client->user->created_at,  'Africa/Nairobi')->diffForHumans(Carbon\Carbon::now(), Carbon\CarbonInterface::DIFF_ABSOLUTE) }} ago</a>
+						<b>Joined:</b> <a class="float-right">{{ $client->user->created_at->diffForHumans() }}</a>
 					</li>
 				</ul>
 			</div>
