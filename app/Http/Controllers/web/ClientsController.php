@@ -145,6 +145,11 @@ class ClientsController extends Controller {
 	 */
 	public function destroy(Client $client) {
 		$client->delete();
-		return redirect()->route('clients.index')->with('message', 'Client with '.$client->id.'has been delete');
+
+		alert()->question('Are you sure?', 'You won\'t be able to revert this!')
+		       ->showConfirmButton('Yes! Delete it', '#3085d6')
+		       ->showCancelButton('Cancel', '#aaa')
+		       ->reverseButtons();
+		return redirect()->route('clients.index');
 	}
 }
