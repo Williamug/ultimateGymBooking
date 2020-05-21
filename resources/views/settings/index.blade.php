@@ -14,8 +14,8 @@
 				aria-controls="vert-tabs-profile" aria-selected="false">Email Settings</a>
 			<a class="nav-link" id="vert-tabs-messages-tab" data-toggle="pill" href="#vert-tabs-messages" role="tab"
 				aria-controls="vert-tabs-messages" aria-selected="false">Roles</a>
-			<a class="nav-link" id="vert-tabs-settings-tab" data-toggle="pill" href="#vert-tabs-settings" role="tab"
-				aria-controls="vert-tabs-settings" aria-selected="false">Off Days and Holidays</a>
+			{{-- <a class="nav-link" id="vert-tabs-settings-tab" data-toggle="pill" href="#vert-tabs-settings" role="tab"
+				aria-controls="vert-tabs-settings" aria-selected="false">Off Days and Holidays</a> --}}
 		</div>
 	</div>
 	<div class="col-7 col-sm-9">
