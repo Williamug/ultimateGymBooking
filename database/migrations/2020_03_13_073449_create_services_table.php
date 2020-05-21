@@ -24,6 +24,7 @@ class CreateServicesTable extends Migration {
 				$table->boolean('service_duration_type')->nullable();
 				$table->boolean('status')->nullable();
 				$table->string('days')->nullable();
+				$table->string('service_img')->nullable();
 				$table->timestamps();
 			});
 	}
