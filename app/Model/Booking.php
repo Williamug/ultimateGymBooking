@@ -14,7 +14,7 @@ class Booking extends Model {
 		'phone_number',
 		'booking_date',
 		'booking_time',
-		'quality',
+		'quantity',
 		'comment',
 		'status',
 		'payment_id',
