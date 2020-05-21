@@ -18,7 +18,7 @@
 	</div>
 	<!-- /.card-header -->
 	<!-- form start -->
-	<form role="form" action="{{ route('services.update', ['service' => $service]) }}" method="post">
+	<form role="form" action="{{ route('services.update', ['service' => $service]) }}" method="post" enctype="multipart/form-data">
 		@method('PATCH')
 		@csrf
 		<div class="card-body row">
@@ -131,6 +131,16 @@
 				</div>
 				<!-- /.service_ends_at-->
 
+				<!-- service_img-->
+				{{-- <div class="form-group">
+					<label for="service_img">Service Image<span class="star"></span></label>
+					<input type="file" class="form-control form-control-sm @error('service_img') is-invalid @enderror" name="service_img" id="service_img" value="{{ old('service_img')}}">
+					@error('service_img')
+					<div class="error-alert">{{ $message }}</div>
+					@enderror
+				</div> --}}
+				<!-- /.service_img-->
+
 				<!-- service duration type -->
 				<div class="form-group">
 					<label>Service duration type</label>
@@ -167,33 +177,33 @@
 					<div class="row">
 						<div class="col-6">
 							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" type="checkbox" id="monday" name="days[]" value="Monday" {{ $service->days == $weekDays ? 'checked' : '' }}>
+								<input class="custom-control-input" type="checkbox" id="monday" name="days[]" value="Monday" {{ !empty($weekDays[0]) ? 'checked' : '' }}>
 								<label for="monday" class="custom-control-label">Monday</label>
 							</div>
 							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" type="checkbox" id="tuesday" name="days[]" value="Tuesday" {{ $service->days == $weekDays ? 'checked' : '' }}>
+								<input class="custom-control-input" type="checkbox" id="tuesday" name="days[]" value="Tuesday" {{ !empty($weekDays[1]) ? 'checked' : '' }}>
 								<label for="tuesday" class="custom-control-label">Tuesday</label>
 							</div>
 							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" type="checkbox" id="wednesday" name="days[]" value="Wednesday" {{ $service->days == $weekDays ? 'checked' : '' }}>
+								<input class="custom-control-input" type="checkbox" id="wednesday" name="days[]" value="Wednesday" {{ !empty($weekDays[2]) ? 'checked' : '' }}>
 								<label for="wednesday" class="custom-control-label">Wednesday</label>
 							</div>
 							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" type="checkbox" id="thursday" name="days[]" value="Thursday" {{ $service->days == $weekDays ? 'checked' : '' }}>
+								<input class="custom-control-input" type="checkbox" id="thursday" name="days[]" value="Thursday" {{ !empty($weekDays[3]) ? 'checked' : '' }}>
 								<label for="thursday" class="custom-control-label">Thursday</label>
 							</div>
 						</div>
 						<div class="col-6">
 							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" type="checkbox" id="friday" name="days[]" value="Friday" {{ $service->days == $weekDays ? 'checked' : '' }}>
+								<input class="custom-control-input" type="checkbox" id="friday" name="days[]" value="Friday" {{ !empty($weekDays[4]) ? 'checked' : '' }}>
 								<label for="friday" class="custom-control-label">Friday</label>
 							</div>
 							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" type="checkbox" id="saturday" name="days[]" value="Saturday" {{ $service->days == $weekDays ? 'checked' : '' }}>
+								<input class="custom-control-input" type="checkbox" id="saturday" name="days[]" value="Saturday" {{ !empty($weekDays[5]) ? 'checked' : '' }}>
 								<label for="saturday" class="custom-control-label">Saturday</label>
 							</div>
 							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" type="checkbox" id="sunday" name="days[]" value="Sunday" {{ $service->days == $weekDays ? 'checked' : '' }}>
+								<input class="custom-control-input" type="checkbox" id="sunday" name="days[]" value="Sunday" {{ !empty($weekDays[6]) ? 'checked' : '' }}>
 								<label for="sunday" class="custom-control-label">Sunday</label>
 							</div>
 						</div>
