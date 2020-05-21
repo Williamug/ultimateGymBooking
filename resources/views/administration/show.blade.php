@@ -92,15 +92,7 @@
 										</div>
 										<!-- /.phone_number-->
 
-										<!-- profile_image-->
-										<div class="form-group">
-											<label for="profile_image">Profile image</label>
-											<input type="file" class="form-control form-control-sm" name="profile_image" id="profile_image" placeholder="Enter phone number" value="{{ old('profile_image') ?? $admin->profile_image }}" @error('profile_image') is-invalid @enderror>
-											@error('profile_image')
-												<div class="error-alert">{{ $message }}</div>
-											@enderror
-										</div>
-										<!-- /.profile_image-->
+
 
 										<div class="row">
 											<div class="col-5">
@@ -134,11 +126,21 @@
 										</div>
 										<!-- /.gender-->
 
-										<!-- mobile number-->
+										<!-- profile_image-->
 										<div class="form-group">
+											<label for="profile_image">Profile image</label>
+											<input type="file" class="form-control form-control-sm" name="profile_image" id="profile_image" placeholder="Enter phone number" value="{{ old('profile_image') ?? $admin->profile_image }}" @error('profile_image') is-invalid @enderror>
+											@error('profile_image')
+												<div class="error-alert">{{ $message }}</div>
+											@enderror
+										</div>
+										<!-- /.profile_image-->
+
+										<!-- mobile number-->
+										{{-- <div class="form-group">
 											<label for="mobile_number">Mobile Number</label>
 											<input type="text" class="form-control form-control-sm" name="mobile_number" id="mobile_number" placeholder="Enter phone number" value="{{ old('mobile_number') ?? $admin->mobile_number}}">
-										</div>
+										</div> --}}
 										<!-- /.mobile number-->
 									</div>
 								</div>
