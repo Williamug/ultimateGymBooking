@@ -113,6 +113,8 @@ class BookingsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy(Booking $booking) {
-		//
+		$booking->delete();
+
+		return redirect()->route('bookings.index');
 	}
 }
