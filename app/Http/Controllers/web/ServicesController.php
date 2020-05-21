@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
+use App\Model\Booking;
 use App\Model\Instructor;
 use App\Model\Service;
 use App\Model\Setting;
@@ -15,10 +16,12 @@ class ServicesController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$services = Service::where('id', '>', 0)->orderBy('id', 'desc')->paginate(10);
-		$setting  = Setting::first();
+		$services    = Service::where('id', '>', 0)->orderBy('id', 'desc')->paginate(10);
+		$setting     = Setting::first();
+		$instructors = Instructor::all();
+		$service     = Service::first();
 
-		return view('services.index', compact('services', 'setting'));
+		return view('services.index', compact('services', 'setting', 'instructors', 'service'));
 	}
 
 	/**
@@ -44,9 +47,9 @@ class ServicesController extends Controller {
 		$instructor = Instructor::where('id', $request['instructor_id'])->get();
 
 		if ($request->get('days')) {
-			$weekDays = implode(',', $request->get('days'));
+			$weekDays = implode(', ', $request->get('days'));
 		} else {
-			return redirect()->route('services.edit', ['service' => $service])->with('message', 'No day(s) selected, Please select at least one day');
+			return redirect()->route('services.create')->with('toast_error', 'No day(s) selected, Please select at least one day');
 		}
 		$data = request()->validate([
 				'price'                      => 'required',
@@ -60,6 +63,7 @@ class ServicesController extends Controller {
 				'service_duration_type'      => '',
 				'status'                     => '',
 				'days'                       => '',
+				'service_img'                => 'sometimes|file|image|max:5000',
 			]);
 		$services = Service::create([
 				'price'                      => $request['price'],
@@ -73,9 +77,14 @@ class ServicesController extends Controller {
 				'status'                     => $request['status'],
 				'days'                       => $weekDays,
 			]);
+		if (request()->has('service_img')) {
+			$services->update([
+					'service_img' => request()->service_img->store('services', 'public'),
+				]);
+		}
 
 		$services->instructors()->attach($instructor);
-		return redirect()->route('services.index')->with('message', 'A new service has been added successfully');
+		return redirect()->route('services.index')->with('toast_success', 'A new service has been added successfully');
 	}
 
 	/**
@@ -101,6 +110,8 @@ class ServicesController extends Controller {
 		$setting     = Setting::first();
 
 		$weekDays = explode(',', $service->days);
+
+		// dd($weekDays);
 		return view('services.edit', compact('service', 'instructors', 'weekDays', 'setting'));
 	}
 
@@ -115,7 +126,7 @@ class ServicesController extends Controller {
 		$instructor = Instructor::where('id', $request['instructor_id'])->get();
 
 		if ($request->get('days')) {
-			$weekDays = implode(',', $request->get('days'));
+			$weekDays = implode(', ', $request->get('days'));
 		} else {
 			return redirect()->route('services.edit', ['service' => $service])->with('message', 'No day(s) selected, Please select at least one day');
 		}
@@ -132,6 +143,7 @@ class ServicesController extends Controller {
 				'service_duration_type'      => '',
 				'status'                     => '',
 				'days'                       => '',
+				'service_img'                => 'sometimes|file|image|max:5000',
 			]);
 		$service->update([
 				'price'                      => $request['price'],
@@ -145,9 +157,14 @@ class ServicesController extends Controller {
 				'status'                     => $request['status'],
 				'days'                       => $weekDays,
 			]);
+		if (request()->has('service_img')) {
+			$service->update([
+					'service_img' => request()->service_img->store('services', 'public'),
+				]);
+		}
 		$service->instructors()->detach();
 		$service->instructors()->attach($instructor);
-		return redirect()->route('services.show', ['service' => $service])->with('message', 'Service has been updated');
+		return redirect()->route('services.show', ['service' => $service])->with('toast_success', 'Service has been updated');
 	}
 
 	/**
@@ -157,27 +174,14 @@ class ServicesController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy(Service $service) {
+		$bookings = Booking::all();
+		foreach ($service->bookings as $booking) {
+			if ($booking) {
+				return redirect('services')->with('warning', 'This service has bookings. You can not delete it.');
+			}
+		}
 		$service->delete();
 		$service->instructors()->detach();
-		return redirect('services')->with('message', 'This service has been deleted permanently');
-	}
-
-	// validation
-	public function serviceValidationRules() {
-		request()->validate([
-				'price'                      => 'required',
-				'title'                      => 'required',
-				'service_duration'           => '',
-				'available_seats'            => 'required',
-				'instructor_id'              => 'required',
-				'description'                => '',
-				'service_starts_at'          => 'required',
-				'service_ends_at'            => 'required',
-				'allow_booking_max_days_ago' => '',
-				'service_duration_type'      => '',
-				'status'                     => '',
-				'days'                       => '',
-			]);
-
+		return redirect('services')->with('success', 'Service has been deleted.');
 	}
 }
