@@ -17,7 +17,7 @@ class AdminsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$admins  = Admin::paginate(15);
+		$admins  = Admin::where('id', '>', 0)->orderBy('id', 'desc')->paginate(10);
 		$setting = Setting::first();
 
 		return view('administration.index', compact('admins', 'setting'));
@@ -75,7 +75,7 @@ class AdminsController extends Controller {
 					'profile_image' => request()->profile_image->store('profiles', 'public'),
 				]);
 		}
-		return redirect()->route('admins.index')->with('message', 'You have added a new Admin');
+		return redirect()->route('admins.index')->with('toast_success', 'You have added a new Administrator');
 	}
 
 	/**
@@ -109,39 +109,26 @@ class AdminsController extends Controller {
 	 */
 	public function update(Request $request, Admin $admin) {
 		request()->validate([
-				'name'     => 'required',
-				'email'    => 'required|unique:users',
-				'password' => 'required|min:8'
-			]);
-		$user = User::create([
-				'name'     => $request['name'],
-				'email'    => $request['email'],
-				'password' => Hash::make($request['password']),
-			]);
-
-		request()->validate([
 				'gender'        => '',
 				'phone_number'  => 'required',
+				'mobile_number' => '',
 				'dob'           => '',
 				'profile_image' => 'sometimes|file|image|max:5000',
-				'role_id'       => '',
-				'user_id'       => '',
 			]);
 
-		$instructor = Admin::create([
-				'gender'       => $request['gender'],
-				'phone_number' => $request['phone_number'],
-				'dob'          => $request['dob'],
-				'role_id'      => $request['role_id'],
-				'user_id'      => $user->id,
+		$admin->update([
+				'gender'        => $request['gender'],
+				'phone_number'  => $request['phone_number'],
+				'mobile_number' => $request['mobile_number'],
+				'dob'           => $request['dob'],
 			]);
 
 		if (request()->has('profile_image')) {
-			$instructor->update([
+			$admin->update([
 					'profile_image' => request()->profile_image->store('profiles', 'public'),
 				]);
 		}
-		return redirect()->route('admins.index')->with('message', 'You have added a new Admin');
+		return redirect()->route('admins.show', ['admin' => $admin])->with('toast_success', 'You have update administrator\'s details');
 	}
 
 	/**
