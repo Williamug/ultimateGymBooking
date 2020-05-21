@@ -16,7 +16,8 @@ class Setting extends Model {
 		'official_company_number',
 		'email',
 		'logo',
-		'timezone'
+		'timezone',
+		'company_website'
 	];
 
 	public function currency() {
