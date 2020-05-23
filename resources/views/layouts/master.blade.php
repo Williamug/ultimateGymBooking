@@ -151,24 +151,42 @@
 				<li class="nav-item dropdown">
 					<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-						{{ Auth::user()->name }} <span class="caret"></span>
+						{{-- <img src="{{ asset('images/profiles/profile.png') }}" alt="" class="circle avatar"> --}}
+						@if(Auth::user()->admin->profile_image != null)
+							<img src="{{ asset('storage/' . Auth::user()->admin->profile_image) }}" class="img-circle elevation-1" alt="User Image" width="35" height="35">
+						@else
+							<img src="{{ asset('images/profiles/profile.png') }}" class="img-circle elevation-1" alt="User Image" width="35" height="35">
+							{{-- {{ Auth::user()->name }} <span class="caret"></span> --}}
+						@endif
 					</a>
 
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+						<div class="dropdown-item">
+							<span>{{ Auth::user()->name }}</span><br>
+							<small class="text-muted">{{ Auth::user()->email }}</small>
+						</div>
+							<hr>
+						<!-- my profile-->
+						<a class="dropdown-item" href="{{ route('user-profile.show', ['user' => Auth::user()]) }}">
+							<i class="far fa-user"></i>  {{ __('My Profile') }}
+						</a>
+						<!-- /.my profile-->
+						<!-- logout -->
 						<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-							{{ __('Logout') }}
+							<i class="far fa-arrow-alt-circle-right"></i>  {{ __('Logout') }}
 						</a>
 
 						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 							@csrf
 						</form>
-					</div>
+						<!--/logout -->
+
 				</li>
-				<li class="nav-item">
+				{{-- <li class="nav-item">
 					<a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
 							class="fas fa-th-large"></i></a>
-				</li>
+				</li> --}}
 				@endguest
 			</ul>
 		</nav>
