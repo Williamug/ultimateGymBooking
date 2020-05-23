@@ -106,7 +106,7 @@
 
 				<!-- roles-->
 				<div class="form-group">
-					<label for="role_id">Role</label>
+					<label for="role_id">Role <span class="star">*</span></label>
 					<select class="form-control form-control-sm @error('role_id') is-invalid @enderror" name="role_id" id="role_id">
 						<option value="">-- Select role --</option>
 							@foreach($roles as $role)
