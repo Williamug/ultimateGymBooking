@@ -95,3 +95,10 @@ Route::patch('emailsettings/{emailSetting}', 'web\EmailSettingsController@update
 // email template
 Route::get('email-templates/{emailTemplate}', 'web\EmailTemplatesController@show')->name('email-template.show');
 Route::delete('email-templates/{emailTemplate}', 'web\EmailTemplatesController@destroy')->name('email-template.destroy');
+
+// update user profile
+Route::get('user-profile/{user}', 'web\UserProfilesController@show')->name('user-profile.show');
+Route::patch('user-profile/{user}', 'web\UserProfilesController@update')->name('user-profile.update');
+
+// change user password
+Route::patch('change-password/{user}', 'web\ChangePasswordController@update')->name('change-password.update');
