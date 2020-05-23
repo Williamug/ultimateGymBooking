@@ -58,11 +58,11 @@ class AdminsController extends Controller {
 				'phone_number'  => 'required',
 				'dob'           => '',
 				'profile_image' => 'sometimes|file|image|max:5000',
-				'role_id'       => '',
+				'role_id'       => 'required|numeric',
 				'user_id'       => '',
 			]);
 
-		$instructor = Admin::create([
+		$admin = Admin::create([
 				'gender'       => $request['gender'],
 				'phone_number' => $request['phone_number'],
 				'dob'          => $request['dob'],
@@ -71,7 +71,7 @@ class AdminsController extends Controller {
 			]);
 
 		if (request()->has('profile_image')) {
-			$instructor->update([
+			$admin->update([
 					'profile_image' => request()->profile_image->store('profiles', 'public'),
 				]);
 		}
