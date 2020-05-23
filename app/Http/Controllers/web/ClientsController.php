@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class ClientsController extends Controller {
+	public function __construct() {
+		$this->middleware('auth');
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -95,16 +99,6 @@ class ClientsController extends Controller {
 		$setting  = Setting::first();
 
 		return view('clients.show', compact('client', 'roles', 'bookings', 'setting'));
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  \App\Model\Client  $client
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit(Client $client) {
-		//
 	}
 
 	/**
