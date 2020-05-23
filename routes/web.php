@@ -102,3 +102,6 @@ Route::patch('user-profile/{user}', 'web\UserProfilesController@update')->name('
 
 // change user password
 Route::patch('change-password/{user}', 'web\ChangePasswordController@update')->name('change-password.update');
+
+// test verify blade
+// Route::get('show-email/', 'web\UserProfilesController@showEmail')->name('user-profile.showEmail');
