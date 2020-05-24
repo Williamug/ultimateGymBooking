@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use App\Model\Booking;
-use App\Model\Role;
+
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,10 +19,6 @@ class Client extends Model {
 		'user_id',
 		'role_id',
 	];
-
-	public function role() {
-		return $this->belongsTo(Role::class );
-	}
 
 	public function user() {
 		return $this->belongsTo(User::class );

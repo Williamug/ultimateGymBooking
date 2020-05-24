@@ -20,7 +20,6 @@ class CreateInstructorsTable extends Migration {
 				$table->date('dob')->nullable();
 				$table->string('profile_image')->nullable();
 				$table->boolean('verified')->nullable();
-				$table->unsignedBigInteger('role_id')->nullable();
 				$table->timestamps();
 			});
 	}

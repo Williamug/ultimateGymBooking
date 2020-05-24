@@ -35,19 +35,20 @@ class SuperAdminsController extends Controller {
 				'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
 				'password' => ['required', 'string', 'min:8', 'confirmed'],
 			]);
+
+		$role = Role::find(1);
+
 		$user = User::create([
 				'name'     => $request['name'],
 				'email'    => $request['email'],
 				'password' => Hash::make($request['password']),
+				'role_id'  => $role->id,
 			]);
-
-		$role = Role::find(1);
 
 		$admin = Admin::create([
 				'user_id' => $user->id,
-				'role_id' => $role->id,
 			]);
 
-		return redirect()->route('home');
+		return redirect()->route('super-dashboard');
 	}
 }

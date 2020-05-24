@@ -1,6 +1,6 @@
 @extends('superAdmin.layouts.masterSuper')
 
-@section('title', 'Home')
+@section('title', 'Super Admin Dashboard')
 
 @section('content')
       <div class="container-fluid">

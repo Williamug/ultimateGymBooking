@@ -44,10 +44,10 @@
 							@endif
 						</a>
 					</li>
-					</li>
+					</li>{{--
 					<li class="list-group-item">
-						<b>User role:</b> <a class="float-right">{{ $admin->role->role }}</a>
-					</li>
+						<b>User role:</b> <a class="float-right">{{ $user->role->role }}</a>
+					</li> --}}
 					<li class="list-group-item">
 						<b>Joined:</b> <a class="float-right">{{ Carbon\Carbon::parse($admin->user->created_at,  'Africa/Nairobi')->diffForHumans(Carbon\Carbon::now(), Carbon\CarbonInterface::DIFF_ABSOLUTE) }} ago</a>
 					</li>

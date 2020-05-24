@@ -54,6 +54,7 @@ class AdminsController extends Controller {
 				'name'     => $request['name'],
 				'email'    => $request['email'],
 				'password' => Hash::make($request['password']),
+				'role_id'  => $request['role_id'],
 			]);
 
 		request()->validate([
@@ -61,7 +62,6 @@ class AdminsController extends Controller {
 				'phone_number'  => 'required',
 				'dob'           => '',
 				'profile_image' => 'sometimes|file|image|max:5000',
-				'role_id'       => 'required|numeric',
 				'user_id'       => '',
 			]);
 
@@ -69,7 +69,6 @@ class AdminsController extends Controller {
 				'gender'       => $request['gender'],
 				'phone_number' => $request['phone_number'],
 				'dob'          => $request['dob'],
-				'role_id'      => $request['role_id'],
 				'user_id'      => $user->id,
 			]);
 
@@ -90,7 +89,7 @@ class AdminsController extends Controller {
 	public function show(Admin $admin) {
 		$setting = Setting::first();
 
-		return view('administration.show', compact('admin', 'setting'));
+		return view('administration.show', compact('admin', 'setting', ));
 	}
 
 	/**

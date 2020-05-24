@@ -19,7 +19,6 @@ class CreateClientsTable extends Migration {
 				$table->string('profile_image')->nullable();
 				$table->boolean('verified')->nullable();
 				$table->unsignedBigInteger('user_id')->nullable();
-				$table->unsignedBigInteger('role_id')->nullable();
 				$table->timestamps();
 			});
 	}
