@@ -10,15 +10,25 @@ function () {
 
 Auth::routes();
 
+/**
+|--------------------------------------
+| home(Dashboards)
+|-------------------------------------
+| Super Admin
+| Admin
+| Accountant
+| Clients
+| Instructor
+ */
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/super-dashboard', 'web\SuperAdminDashboardController@index')->name('super-dashboard');
+
 // register super admin
 Route::get('super-admin', 'web\SuperAdminsController@create')->name('super-admin.create');
 Route::post('super-admin', 'web\SuperAdminsController@store')->name('super-admin.store');
 
 // users
 Route::patch('user/{user}', 'web\UsersController@update')->name('user.update');
-
-// home
-Route::get('/home', 'HomeController@index')->name('home');
 
 // testing routes
 Route::get('reports', 'web\SettingsController@index')->name('reports.index');
