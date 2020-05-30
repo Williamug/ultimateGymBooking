@@ -54,8 +54,11 @@
 					<hr>
 				<!-- phone_number-->
 				<div class="form-group">
-					<label for="phone_number">Phone Number</label>
-					<input type="text" class="form-control form-control-sm" name="phone_number" id="phone_number" placeholder="Enter phone number" value="{{ old('phone_number') }}">
+					<label for="phone_number">Phone Number<span class="star">*</span></label>
+					<input type="text" class="form-control form-control-sm @error('phone_number') is-invalid @enderror" name="phone_number" id="phone_number" placeholder="Enter phone number" value="{{ old('phone_number') }}">
+					@error('phone_number')
+						<div class="error-alert">{{ $message }}</div>
+					@enderror
 				</div>
 				<!-- /.phone_number-->
 
