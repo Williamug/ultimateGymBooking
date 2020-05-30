@@ -28,7 +28,17 @@
 					<a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
 				</li>
 				<li class="nav-item d-none d-sm-inline-block">
-					<a href="{{ route('home') }}" class="nav-link">Home</a>
+					@if(auth()->user()->role->role == 'Super Admin')
+						<a href="{{ route('super-dashboard') }}" class="nav-link">Dashboard</a>
+					@elseif(auth()->user()->role->role == 'Admin')
+						<a href="{{ route('home') }}" class="nav-link">Dashboard</a>
+					@elseif(auth()->user()->role->role == 'Accountant')
+						<a href="{{ route('Accountant-dashboard') }}" class="nav-link">Dashboard</a>
+					@elseif(auth()->user()->role->role == 'Instructor')
+						<a href="{{ route('instructor-dashboard') }}" class="nav-link">Dashboard</a>
+					@elseif(auth()->user()->role->role == 'Client')
+						<a href="{{ route('client-dashboard') }}" class="nav-link">Dashboard</a>
+					@endif
 				</li>
 			</ul>
 
