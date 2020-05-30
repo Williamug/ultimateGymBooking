@@ -48,15 +48,16 @@ class InstructorsController extends Controller {
 		request()->validate([
 				'name'     => 'required',
 				'email'    => 'required|unique:users',
-				'password' => 'required|min:8'
+				'password' => 'required|min:8',
+				'role_id'  => '',
 			]);
+		$role = Role::find(4);
 		$user = User::create([
 				'name'     => $request['name'],
 				'email'    => $request['email'],
 				'password' => Hash::make($request['password']),
+				'role_id'  => $role->id,
 			]);
-
-		$role = Role::find(4);
 
 		request()->validate([
 				'gender'        => '',
@@ -64,7 +65,6 @@ class InstructorsController extends Controller {
 				'mobile_number' => '',
 				'dob'           => '',
 				'profile_image' => 'sometimes|file|image|max:5000',
-				'role_id'       => '',
 				'user_id'       => '',
 			]);
 
@@ -73,7 +73,6 @@ class InstructorsController extends Controller {
 				'phone_number'  => $request['phone_number'],
 				'mobile_number' => $request['mobile_number'],
 				'dob'           => $request['dob'],
-				'role_id'       => $role->id,
 				'user_id'       => $user->id,
 			]);
 

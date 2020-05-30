@@ -54,13 +54,13 @@ class ClientsController extends Controller {
 				'password' => 'required|min:8'
 			]);
 
+		$role = Role::find(5);
 		$user = User::create([
 				'name'     => $request['name'],
 				'email'    => $request['email'],
 				'password' => Hash::make($request['password']),
+				'role_id'  => $role->id,
 			]);
-
-		$role = Role::find(5);
 
 		request()->validate([
 				'gender'        => '',
@@ -75,7 +75,6 @@ class ClientsController extends Controller {
 				'gender'       => $request['gender'],
 				'phone_number' => $request['phone_number'],
 				'dob'          => $request['dob'],
-				'role_id'      => $role->id,
 				'user_id'      => $user->id,
 			]);
 
