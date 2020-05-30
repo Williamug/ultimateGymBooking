@@ -22,6 +22,7 @@ Auth::routes();
  */
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/super-dashboard', 'web\SuperAdminDashboardController@index')->name('super-dashboard');
+Route::get('/client-dashboard', 'web\ClientDashboardController@index')->name('client-dashboard');
 
 // register super admin
 Route::get('super-admin', 'web\SuperAdminsController@create')->name('super-admin.create');
