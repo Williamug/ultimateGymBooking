@@ -113,6 +113,17 @@ Route::patch('user-profile/{user}', 'web\UserProfilesController@update')->name('
 // change user password
 Route::patch('change-password/{user}', 'web\ChangePasswordController@update')->name('change-password.update');
 
-// clients
-Route::get('/client-dashboard', 'web\ClientDashboardController@index')->name('client-dashboard');
-Route::get('')
+/*----------------------------------------------------------------------------------------------
+|
+| clients
+|------------------------------------------------------------------------------------------------
+ */
+Route::get('clients-dashboard', 'web\ClientDashboardController@index')->name('clients-dashboard');
+
+// service
+Route::get('client/services', 'web\Client\ClientServicesController@index')->name('client-services.index');
+Route::get('client/services/{service}', 'web\Client\ClientServicesController@show')->name('client-services.show');
+
+// bookings
+Route::get('client/bookings', 'web\Client\ClientBookingsController@index')->name('client-bookings.index');
+Route::get('client/bookings/create', 'web\Client\ClientBookingsController@create')->name('client-bookings.create');

@@ -1,21 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\web;
+namespace App\Http\Controllers\web\Client;
 
 use App\Http\Controllers\Controller;
+use App\Model\Instructor;
+use App\Model\Service;
 use App\Model\Setting;
-use App\User;
 use Illuminate\Http\Request;
 
-class ClientDashboardController extends Controller {
+class ClientServicesController extends Controller {
+	public function __contruct() {
+		$this->middleware('auth');
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$setting = Setting::first();
-		return view('front-client.layouts.masterClient', compact('setting'));
+		$services   = Service::where('id', '>', 0)->orderBy('id', 'desc')->paginate(10);
+		$setting    = Setting::first();
+		$instructor = Instructor::all();
+		$service    = Service::first();
+		return view('front-client.services.index', compact('services', 'setting', 'instructor', 'service'));
 	}
 
 	/**
@@ -40,20 +47,22 @@ class ClientDashboardController extends Controller {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  \App\User  $user
+	 * @param  \App\Model\Service  $service
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(User $user) {
-		//
+	public function show(Service $service) {
+		$setting = Setting::first();
+
+		return view('front-client.services.show', compact('service', 'setting'));
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  \App\User  $user
+	 * @param  \App\Model\Service  $service
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit(User $user) {
+	public function edit(Service $service) {
 		//
 	}
 
@@ -61,20 +70,20 @@ class ClientDashboardController extends Controller {
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\User  $user
+	 * @param  \App\Model\Service  $service
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, User $user) {
+	public function update(Request $request, Service $service) {
 		//
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  \App\User  $user
+	 * @param  \App\Model\Service  $service
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(User $user) {
+	public function destroy(Service $service) {
 		//
 	}
 }

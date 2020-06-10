@@ -28,7 +28,7 @@
 					<a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
 				</li>
 				<li class="nav-item d-none d-sm-inline-block">
-					<a href="{{ route('super-dashboard') }}" class="nav-link">Home</a>
+					<a href="{{ route('clients-dashboard') }}" class="nav-link">Home</a>
 				</li>
 			</ul>
 
@@ -152,8 +152,8 @@
 					<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 						{{-- <img src="{{ asset('images/profiles/profile.png') }}" alt="" class="circle avatar"> --}}
-						@if(Auth::user()->admin->profile_image != null)
-							<img src="{{ asset('storage/' . Auth::user()->admin->profile_image) }}" class="img-circle elevation-1" alt="User Image" width="35" height="35">
+						@if(Auth::user()->client->profile_image != null)
+							<img src="{{ asset('storage/' . Auth::user()->client->profile_image) }}" class="img-circle elevation-1" alt="User Image" width="35" height="35">
 						@else
 							<img src="{{ asset('images/profiles/profile.png') }}" class="img-circle elevation-1" alt="User Image" width="35" height="35">
 							{{-- {{ Auth::user()->name }} <span class="caret"></span> --}}
@@ -193,7 +193,7 @@
 		<!-- /.navbar -->
 
 		<!-- Main Sidebar Container -->
-		@include('superAdmin.partials.super-sidebar')
+		@include('front-client.layouts.mainsidebar')
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
