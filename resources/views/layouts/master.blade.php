@@ -37,7 +37,7 @@
 					@elseif(auth()->user()->role->role == 'Instructor')
 						<a href="{{ route('instructor-dashboard') }}" class="nav-link">Dashboard</a>
 					@elseif(auth()->user()->role->role == 'Client')
-						<a href="{{ route('client-dashboard') }}" class="nav-link">Dashboard</a>
+						<a href="{{ route('clients-dashboard') }}" class="nav-link">Dashboard</a>
 					@endif
 				</li>
 			</ul>
@@ -214,7 +214,7 @@
 			<!-- Main content -->
 			<div class="container">
 				@guest
-				{{ route('login') }}
+				  <h4>You need to <a href="{{ route('login') }}">{{ __('login') }}</a> to resume your session</h4>
 				@else
 				@yield('content')
 				@endguest

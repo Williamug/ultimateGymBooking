@@ -47,10 +47,10 @@
 							@endif
 						</a>
 					</li>
-					</li>
+					</li>{{--
 					<li class="list-group-item">
 						<b>User role:</b> <a class="float-right">{{ $instructor->role->role }}</a>
-					</li>
+					</li> --}}
 					<li class="list-group-item">
 						<b>Joined:</b> <a class="float-right">{{ Carbon\Carbon::parse($instructor->user->created_at,  'Africa/Nairobi')->diffForHumans(Carbon\Carbon::now(), Carbon\CarbonInterface::DIFF_ABSOLUTE) }} ago</a>
 					</li>
