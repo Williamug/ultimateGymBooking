@@ -127,3 +127,14 @@ Route::get('client/services/{service}', 'web\Client\ClientServicesController@sho
 // bookings
 Route::get('client/bookings', 'web\Client\ClientBookingsController@index')->name('client-bookings.index');
 Route::get('client/bookings/create', 'web\Client\ClientBookingsController@create')->name('client-bookings.create');
+Route::post('client/bookings', 'web\Client\ClientBookingsController@store')->name('client-bookings.store');
+Route::get('client/bookings/{booking}', 'web\Client\ClientBookingsController@edit')->name('client-bookings.edit');
+Route::patch('client/bookings/{booking}', 'web\Client\ClientBookingsController@update')->name('client-bookings.update');
+
+// instructor
+Route::get('client/instructors', 'web\Client\ClientInstructorsController@index')->name('client-instructors.index');
+Route::get('cleint/instructors/{instructor}', 'web\Client\ClientInstructorsController@show')->name('client-instructors.show');
+
+// update user profile
+Route::get('client/profile/{user}', 'web\Client\ClientProfilesController@show')->name('client-profile.show');
+Route::patch('client/profile/{user}', 'web\Client\ClientProfilesController@update')->name('client-profile.update');
