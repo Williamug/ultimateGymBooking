@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Model\Client;
 use App\Model\Role;
-use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -30,7 +30,33 @@ class RegisterController extends Controller {
 	 *
 	 * @var string
 	 */
-	protected $redirectTo = RouteServiceProvider::HOME;
+	// protected $redirectTo = RouteServiceProvider::HOME;
+	public function redirectTo() {
+		// user roles
+		$role = Auth::user()->role->role;
+
+		// check user role
+		switch ($role) {
+			case 'Super Admin':
+				return route('super-dashboard');
+				break;
+			case 'Admin':
+				return route('home');
+				break;
+			case 'Accountant':
+				return route('accounts-dashboard');
+				break;
+			case 'Instructor':
+				return route('instructor-dashboard');
+				break;
+			case 'Client':
+				return route('clients-dashboard');
+				break;
+			default:
+				return '/login';
+				break;
+		}
+	}
 
 	/**
 	 * Create a new controller instance.
@@ -62,17 +88,16 @@ class RegisterController extends Controller {
 	 * @return \App\User
 	 */
 	protected function create(array $data) {
+		$role = Role::find(5);
 		$user = User::create([
 				'name'     => $data['name'],
 				'email'    => $data['email'],
 				'password' => Hash::make($data['password']),
+				'role_id'  => $role->id,
 			]);
-
-		$role = Role::find(5);
 
 		$client = Client::create([
 				'user_id' => $user->id,
-				'role_id' => $role->id,
 			]);
 
 		return $user;
