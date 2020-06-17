@@ -22,7 +22,7 @@ class ClientBookingsController extends Controller {
 	 */
 	public function index() {
 		// $bookings = Booking::where('id', '>', 0)->orderBy('id', 'desc')->paginate(10);
-		$bookings = Booking::where('booking_id', 'client_id')->get();
+		$bookings = Booking::where('user_id', auth()->id())->paginate(10);
 		$payments = Payment::all();
 		$setting  = Setting::first();
 
@@ -50,17 +50,30 @@ class ClientBookingsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		//
-	}
+		$service = Service::where('id', $request['service_id'])->get();
+		$client  = User::where('id', $request['client_id'])->get();
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  \App\Model\Booking  $booking
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show(Booking $booking) {
-		//
+		$data = request()->validate([
+				'booking_date' => '',
+				'booking_time' => '',
+				'quantity'     => '',
+				'comment'      => '',
+				'status'       => '',
+				'client_id'    => '',
+			]);
+		$bookings = Booking::create([
+				'booking_date' => $request['booking_date'],
+				'booking_time' => $request['booking_time'],
+				'quantity'     => $request['quantity'],
+				'comment'      => $request['comment'],
+				'status'       => 2,
+				'user_id'      => Auth()->id(),
+			]);
+
+		$bookings->services()->attach($service);
+		$bookings->clients()->attach($client);
+
+		return redirect()->route('client-bookings.index')->with('toast_success', 'A new service has been added successfully');
 	}
 
 	/**
@@ -70,7 +83,11 @@ class ClientBookingsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit(Booking $booking) {
-		//
+		$setting  = Setting::first();
+		$services = Service::all();
+		$users    = User::all();
+
+		return view('front-client.bookings.edit', compact('booking', 'setting', 'services', 'users'));
 	}
 
 	/**
@@ -81,7 +98,33 @@ class ClientBookingsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, Booking $booking) {
-		//
+		$service = Service::where('id', $request['service_id'])->get();
+		$client  = User::where('id', $request['client_id'])->get();
+
+		$data = request()->validate([
+				'booking_date' => '',
+				'booking_time' => '',
+				'quantity'     => '',
+				'comment'      => '',
+				'status'       => '',
+				'client_id'    => '',
+			]);
+		$booking->update([
+				'booking_date' => $request['booking_date'],
+				'booking_time' => $request['booking_time'],
+				'quantity'     => $request['quantity'],
+				'comment'      => $request['comment'],
+				'status'       => 2,
+				'user_id'      => Auth()->id(),
+			]);
+
+		$booking->services()->detach();
+		$booking->clients()->detach();
+
+		$booking->services()->attach($service);
+		$booking->clients()->attach($client);
+
+		return redirect()->route('client-bookings.index')->with('toast_success', 'A new service has been added successfully');
 	}
 
 	/**
