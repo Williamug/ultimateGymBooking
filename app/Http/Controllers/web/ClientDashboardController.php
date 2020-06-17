@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
+use App\Model\Booking;
+use App\Model\Client;
 use App\Model\Setting;
 use App\User;
 use Illuminate\Http\Request;
@@ -14,8 +16,23 @@ class ClientDashboardController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
+		$clients          = Client::all();
+		$totalBooking     = Booking::where('user_id', auth()->id());
+		$confirmedBooking = Booking::where([
+				['user_id', auth()->id()],
+				['status', 1],
+			]);
+		$pendingBooking = Booking::where([
+				['user_id', auth()->id()],
+				['status', 2],
+			]);
+		$cancelBooking = Booking::where([
+				['user_id', auth()->id()],
+				['status', 3],
+			]);
 		$setting = Setting::first();
-		return view('front-client.layouts.masterClient', compact('setting'));
+
+		return view('front-client.home', compact('clients', 'totalBooking', 'confirmedBooking', 'pendingBooking', 'cancelBooking', 'setting'));
 	}
 
 	/**
