@@ -50,7 +50,7 @@ class BookingsController extends Controller {
 	 */
 	public function store(Request $request) {
 		$service = Service::where('id', $request['service_id'])->get();
-		$client  = Client::where('id', $request['client_id'])->get();
+		$client  = User::where('id', $request['client_id'])->get();
 
 		$data = request()->validate([
 				'booking_date' => '',
@@ -58,6 +58,7 @@ class BookingsController extends Controller {
 				'quantity'     => '',
 				'comment'      => '',
 				'status'       => '',
+				'client_id'    => '',
 			]);
 		$bookings = Booking::create([
 				'booking_date' => $request['booking_date'],
@@ -65,6 +66,7 @@ class BookingsController extends Controller {
 				'quantity'     => $request['quantity'],
 				'comment'      => $request['comment'],
 				'status'       => $request['status'],
+				'user_id'      => $request['client_id'],
 			]);
 
 		$bookings->services()->attach($service);
@@ -84,8 +86,9 @@ class BookingsController extends Controller {
 		$payment = Payment::all();
 		$service = Service::all();
 		$setting = Setting::first();
+		$user    = User::all();
 
-		return view('bookings.show', compact('booking', 'client', 'payment', 'service', 'setting'));
+		return view('bookings.show', compact('booking', 'client', 'payment', 'service', 'setting', 'user'));
 	}
 
 	/**
