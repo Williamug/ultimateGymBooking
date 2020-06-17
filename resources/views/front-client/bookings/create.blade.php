@@ -22,7 +22,7 @@
 	</div>
 	<!-- /.card-header -->
 	<!-- form start -->
-	<form role="form" action="{{ route('bookings.store') }}" method="post">
+	<form role="form" action="{{ route('client-bookings.store') }}" method="post">
 		@csrf
 		<div class="card-body row">
 			<div class="col-md-6">
@@ -51,20 +51,6 @@
 				</div>
 				<!-- /.abooking date-->
 
-				<!-- name -->
-				<div class="form-group">
-					<label>Client Name <span class="star">*</span></label>
-					<select class="form-control form-control-sm @error('client_id') is-invalid @enderror" name="client_id" id="client_id">
-						<option>Select name</option>
-						@foreach($clients as $client)
-							<option value="{{ $client->id }}">{{ $client->user->name }}</option>
-						@endforeach
-					</select>
-					@error('client_id')
-					<div class="error-alert">{{ $message }}</div>
-					@enderror
-				</div>
-				<!-- /.name -->
 
 				<!-- description-->
 				<div class="form-group">
@@ -82,7 +68,7 @@
 					</div>
 					<div class="col-6">
 						<div class="form-group">
-							<a href="{{ route('bookings.index') }}" class="btn bg-gradient-danger btn-sm">Cancel</a>
+							<a href="{{ route('client-bookings.index') }}" class="btn bg-gradient-danger btn-sm">Cancel</a>
 						</div>
 					</div>
 				</div>
@@ -110,24 +96,6 @@
 					@enderror
 				</div>
 				<!-- /.quantity-->
-
-				<!-- status -->
-				<div class="form-group">
-					<label for="">Status</label>
-					<div class="custom-control custom-radio">
-						<input class="custom-control-input" type="radio" id="confirmed" name="status" value="1" checked>
-						<label for="confirmed" class="custom-control-label">Confirmed</label>
-					</div>
-					<div class="custom-control custom-radio">
-						<input class="custom-control-input" type="radio" id="pending" name="status" value="2">
-						<label for="pending" class="custom-control-label">Pending</label>
-					</div>
-					<div class="custom-control custom-radio">
-						<input class="custom-control-input" type="radio" id="canceled" name="status" value="3">
-						<label for="canceled" class="custom-control-label">Canceled</label>
-					</div>
-				</div>
-				<!-- /.status -->
 			</div>
 		</div>
 		<!-- /.card-body -->

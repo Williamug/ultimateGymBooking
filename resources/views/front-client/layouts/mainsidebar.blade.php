@@ -59,16 +59,16 @@
 				<!-- / .Bookings -->
 
 				<!-- Instructor -->
-				{{-- <li class="nav-item">
-					<a href="{{ route('instructors.index') }}"
-						class="nav-link {{ Route::current()->getName() == 'instructors.index' ? 'active' : '' }}">
+				<li class="nav-item">
+					<a href="{{ route('client-instructors.index') }}"
+						class="nav-link {{ Route::current()->getName() == 'client-instructors.index' ? 'active' : '' }}">
 						<i class="nav-icon fas fa-running"></i>
 						<p>
-							Instructor --}}
+							Instructors
 							{{-- <span class="right badge badge-danger">New</span> --}}
-				{{-- 		</p>
+						</p>
 					</a>
-				</li> --}}
+				</li>
 				<!-- / .Instructor -->
 				<!-- Reports -->
 				{{-- <li class="nav-item">
@@ -83,7 +83,7 @@
 				<!-- / .Reports -->
 
 				<!-- Email -->
-				<li class="nav-item has-treeview">
+				{{-- <li class="nav-item has-treeview">
             		<a href="#" class="nav-link">
               			<i class="nav-icon fas fa-envelope"></i>
               			<p>
@@ -111,7 +111,7 @@
                 			</a>
               			</li>
             		</ul>
-          		</li>
+          		</li> --}}
           		<!-- /.email -->
 			</ul>
 		</nav>

@@ -56,8 +56,10 @@
 					<label>Client Name <span class="star">*</span></label>
 					<select class="form-control form-control-sm @error('client_id') is-invalid @enderror" name="client_id" id="client_id">
 						<option>Select name</option>
-						@foreach($clients as $client)
-							<option value="{{ $client->id }}">{{ $client->user->name }}</option>
+						@foreach($users as $user)
+							@if($user->role_id == 5)
+								<option value="{{ $user->id }}">{{ $user->name }}</option>
+							@endif
 						@endforeach
 					</select>
 					@error('client_id')

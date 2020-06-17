@@ -13,18 +13,20 @@
 		<div class="card card-primary card-outline">
 			<div class="card-body box-profile">
 				<div class="text-center">
-					@foreach($booking->clients as $client)
-					@if($client->profile_image)
-						<img class="profile-user-img img-fluid img-circle" src="{{ asset('storage/' . $client->profile_image) }}" alt="User profile picture">
+					{{-- @foreach($booking->clients as $client) --}}
+
+					{{-- @foreach($booking->user as $user) --}}
+					@if($booking->user->client->profile_image)
+						<img class="profile-user-img img-fluid img-circle" src="{{ asset('storage/' . $booking->user->client->profile_image) }}" alt="User profile picture">
 					@else
 						<img class="profile-user-img img-fluid img-circle" src="{{ asset('images/profiles/profile.png') }}" alt="User profile picture">
 					@endif
-					@endforeach
+					{{-- @endforeach --}}
 				</div>
-					<h3 class="profile-username text-center">{{	$client->user->name }}</h3>
+					<h3 class="profile-username text-center">{{	$booking->user->name }}</h3>
 
-					<p class="text-muted text-center"><i class="far fa-envelope"></i> {{ $client->user->email }}</p>
-					<p class="text-muted text-center"><i class="fas fa-phone-alt"></i> {{ $client->phone_number }}</p>
+					<p class="text-muted text-center"><i class="far fa-envelope"></i> {{ $booking->user->email }}</p>
+					{{-- <p class="text-muted text-center"><i class="fas fa-phone-alt"></i> {{ $client->phone_number }}</p> --}}
 			</div>
 			<!-- /.card-body -->
 		</div>

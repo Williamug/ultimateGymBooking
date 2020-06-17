@@ -8,7 +8,7 @@
 @endif
 <div class="card">
 	<div class="card-header">
-		<h4 class="card-title">Bookings</h4>
+		<h4 class="card-title">My Bookings</h4>
 
 		<div class="card-tools">
 			<div class="input-group input-group-sm" style="width: 150px;">
@@ -22,8 +22,8 @@
 		<table class="table table-hover text-nowrap">
 			<thead>
 				<tr>
-					<th>Client</th>
-					<th>Phone Number</th>
+					{{-- <th>Client</th>
+					<th>Phone Number</th> --}}
 					<th>Service</th>
 					<th>Bill</th>
 					<th>Status</th>
@@ -36,10 +36,11 @@
 			@foreach($bookings as $booking)
 			<tbody>
 				<tr>
-					@foreach($booking->clients as $clients => $client)
+					{{-- <td>{{ $booking->user->name }}</td>
+					<td>{{ $booking->user->client->phone_number }}</td> --}}
+					{{-- @foreach($booking->clients as $clients => $client)
 						<td>{{ $client->user->name }}</td>
-						<td>{{ $client->phone_number }}</td>
-					@endforeach
+					@endforeach --}}
 					@foreach($booking->services as $service)
 						<td>{{ $service->title }}</td>
 						<td>{{ $service->price }}</td>
@@ -65,12 +66,17 @@
 
 					<td>
                         <div class="row">
-                            <div class="col-md-6">
-						          <a href="{{ route('bookings.show', ['booking' => $booking]) }}" title="View" class="btn bg-gradient-primary btn-sm">
-							         <i class="fas fa-eye"></i>
+                            <div class="col-md-3">
+						          <a href="{{ route('bookings.show', ['booking' => $booking]) }}" title="Pay" class="btn bg-gradient-success btn-sm">
+							         <i class="fas fa-money-bill-alt"></i>
 						          </a>
                             </div>
-                            <div class="">
+                            <div class="col-md-4">
+						          <a href="{{ route('client-bookings.edit', ['booking' => $booking]) }}" title="Edit" class="btn bg-gradient-primary btn-sm">
+							         <i class="fas fa-pen"></i>
+						          </a>
+                            </div>
+                           {{--  <div class="">
                                 <form action="{{ route('bookings.destroy', ['booking' => $booking]) }}" method="post">
                                     @method('DELETE')
                                     @csrf
@@ -78,7 +84,7 @@
                                         <i class="far fa-trash-alt"></i>
                                     </button>
                                 </form>
-                            </div>
+                            </div> --}}
                         </div>
 					</td>
 				</tr>

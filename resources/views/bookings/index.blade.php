@@ -36,10 +36,8 @@
 			@foreach($bookings as $booking)
 			<tbody>
 				<tr>
-					@foreach($booking->clients as $clients => $client)
-						<td>{{ $client->user->name }}</td>
-						<td>{{ $client->phone_number }}</td>
-					@endforeach
+					<td>{{ $booking->user->name }}</td>
+					<td>{{ $booking->user->client->phone_number }}</td>
 					@foreach($booking->services as $service)
 						<td>{{ $service->title }}</td>
 						<td>{{ $service->price }}</td>
@@ -65,7 +63,12 @@
 
 					<td>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-3">
+						          <a href="{{-- {{ route('bookings.show', ['booking' => $booking]) }} --}}" title="Pay" class="btn bg-gradient-success btn-sm">
+							         <i class="fas fa-money-bill-alt"></i>
+						          </a>
+                            </div>
+                            <div class="col-md-4">
 						          <a href="{{ route('bookings.show', ['booking' => $booking]) }}" title="View" class="btn bg-gradient-primary btn-sm">
 							         <i class="fas fa-eye"></i>
 						          </a>

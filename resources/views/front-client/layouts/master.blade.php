@@ -214,7 +214,7 @@
 			<!-- Main content -->
 			<div class="container">
 				@guest
-				{{ route('login') }}
+				<h4>You need to <a href="{{ route('login') }}">{{ __('login') }}</a> to resume your session</h4>
 				@else
 				@yield('content')
 				@endguest
