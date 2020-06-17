@@ -32,6 +32,19 @@
 				</li>
 				<!-- / .Dashboard -->
 
+				<!-- Instructor -->
+				<li class="nav-item">
+					<a href="{{ route('instructors.index') }}"
+						class="nav-link {{ Route::current()->getName() == 'instructors.index' ? 'active' : '' }}">
+						<i class="nav-icon fas fa-running"></i>
+						<p>
+							Instructor
+							{{-- <span class="right badge badge-danger">New</span> --}}
+						</p>
+					</a>
+				</li>
+				<!-- / .Instructor -->
+
 				<!-- Services -->
 				<li class="nav-item">
 					<a href="{{ route('services.index') }}"
@@ -70,20 +83,6 @@
 					</a>
 				</li>
 				<!-- / .Clients -->
-
-				<!-- Instructor -->
-				<li class="nav-item">
-					<a href="{{ route('instructors.index') }}"
-						class="nav-link {{ Route::current()->getName() == 'instructors.index' ? 'active' : '' }}">
-						<i class="nav-icon fas fa-running"></i>
-						<p>
-							Instructor
-							{{-- <span class="right badge badge-danger">New</span> --}}
-						</p>
-					</a>
-				</li>
-				<!-- / .Instructor -->
-
 
 				<!-- Administrators -->
 				<li class="nav-item">
