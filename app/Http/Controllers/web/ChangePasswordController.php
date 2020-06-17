@@ -26,7 +26,8 @@ class ChangePasswordController extends Controller {
 				'password'              => ['required'],
 				'password_confirmation' => ['same:password'],
 			]);
-		$user->update(['password'                             => Hash::make($request->password)]);
-		return redirect()->route('user-profile.show', ['user' => $user])->with('toast_success', 'Your password has been change successfully');
+		$user->update(['password' => Hash::make($request->password)]);
+
+		return back()->with('toast_success', 'Your password has been changed');
 	}
 }
