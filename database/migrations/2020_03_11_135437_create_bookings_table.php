@@ -19,6 +19,7 @@ class CreateBookingsTable extends Migration {
 				$table->text('comment')->nullable();
 				$table->string('status')->nullable();
 				$table->unsignedBigInteger('payment_id')->nullable();
+				$table->unsignedBigInteger('user_id')->nullable();
 				$table->timestamps();
 			});
 	}

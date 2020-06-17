@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Model\Admin;
+use App\Model\Booking;
 use App\Model\Client;
 use App\Model\Instructor;
 use App\Model\Role;
@@ -55,5 +56,8 @@ class User extends Authenticatable {
 	}
 	public function admin() {
 		return $this->hasOne(Admin::class );
+	}
+	public function bookings() {
+		return $this->hasMany(Booking::class );
 	}
 }
