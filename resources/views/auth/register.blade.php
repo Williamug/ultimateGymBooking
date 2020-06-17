@@ -20,7 +20,7 @@
                 @csrf
 
         		<div class="input-group mb-3">
-          			<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" placeholder="Full name" autofocus>
+          			<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" placeholder="Full name" autofocus="true">
           			<div class="input-group-append">
             			<div class="input-group-text">
               				<span class="fas fa-user"></span>
