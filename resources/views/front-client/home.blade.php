@@ -79,8 +79,9 @@
           <div class="row">
           	<div class="col-10">
           		Start creating your amazing application!
+          		Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur aliquet quam id dui posuere blandit. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id orci porta dapibus.
           	</div>
-          	<div class="">time ago</div>
+          	<div class="" id="timeago">time ago</div>
           </div>
         </div>
         <!-- /.card-body -->
