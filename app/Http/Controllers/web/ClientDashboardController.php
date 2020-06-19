@@ -5,6 +5,8 @@ namespace App\Http\Controllers\web;
 use App\Http\Controllers\Controller;
 use App\Model\Booking;
 use App\Model\Client;
+
+use App\Model\NutritionalPost;
 use App\Model\Setting;
 use App\User;
 use Illuminate\Http\Request;
@@ -30,9 +32,10 @@ class ClientDashboardController extends Controller {
 				['user_id', auth()->id()],
 				['status', 3],
 			]);
-		$setting = Setting::first();
+		$setting         = Setting::first();
+		$nutritionalTips = NutritionalPost::where('id', '>', 0)->orderBy('id', 'desc')->paginate(10);
 
-		return view('front-client.home', compact('clients', 'totalBooking', 'confirmedBooking', 'pendingBooking', 'cancelBooking', 'setting'));
+		return view('front-client.home', compact('clients', 'totalBooking', 'confirmedBooking', 'pendingBooking', 'cancelBooking', 'setting', 'nutritionalTips'));
 	}
 
 	/**
@@ -50,9 +53,9 @@ class ClientDashboardController extends Controller {
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request) {
-		//
-	}
+	// public function store(NutritionalPost $tip) {
+
+	// }
 
 	/**
 	 * Display the specified resource.
@@ -60,8 +63,9 @@ class ClientDashboardController extends Controller {
 	 * @param  \App\User  $user
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(User $user) {
-		//
+	public function show(NutritionalPost $tip) {
+		$setting = Setting::first();
+		return view('front-client.nutrition-tips.show', compact('tip', 'setting'));
 	}
 
 	/**
