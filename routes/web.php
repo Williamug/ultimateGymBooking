@@ -138,3 +138,8 @@ Route::get('cleint/instructors/{instructor}', 'web\Client\ClientInstructorsContr
 // update user profile
 Route::get('client/profile/{user}', 'web\Client\ClientProfilesController@show')->name('client-profile.show');
 Route::patch('client/profile/{user}', 'web\Client\ClientProfilesController@update')->name('client-profile.update');
+
+// nutrition tips and comments
+Route::post('client/nutrition/{tip}/comments', 'web\Client\NutritionalCommentController@store')->name('nutrition-comment.store');
+
+Route::get('client/nutrition/{tip}', 'web\ClientDashboardController@show')->name('nutrition-tip.show');
