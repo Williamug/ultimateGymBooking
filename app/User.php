@@ -6,6 +6,8 @@ use App\Model\Admin;
 use App\Model\Booking;
 use App\Model\Client;
 use App\Model\Instructor;
+use App\Model\NutritionalComment;
+use App\Model\NutritionalPost;
 use App\Model\Role;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -59,5 +61,12 @@ class User extends Authenticatable {
 	}
 	public function bookings() {
 		return $this->hasMany(Booking::class );
+	}
+
+	public function nutritionalPosts() {
+		return $this->hasMany(NutritionalPost::class );
+	}
+	public function nutritionalcomments() {
+		return $this->hasMany(NutritionalComment::class );
 	}
 }
