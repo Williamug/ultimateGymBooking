@@ -49,17 +49,19 @@ class ClientsController extends Controller {
 	 */
 	public function store(Request $request) {
 		$validation = request()->validate([
-				'name'     => 'required',
-				'email'    => 'required|unique:users',
-				'password' => 'required|min:8'
+				'name'          => 'required',
+				'email'         => 'required|unique:users',
+				'password'      => 'required|min:8',
+				'profile_image' => 'sometimes|file|image|max:5000',
 			]);
 
 		$role = Role::find(5);
 		$user = User::create([
-				'name'     => $request['name'],
-				'email'    => $request['email'],
-				'password' => Hash::make($request['password']),
-				'role_id'  => $role->id,
+				'name'          => $request['name'],
+				'email'         => $request['email'],
+				'password'      => Hash::make($request['password']),
+				'role_id'       => $role->id,
+				'profile_image' => request()->profile_image->store('profiles', 'public')
 			]);
 
 		request()->validate([
@@ -82,6 +84,9 @@ class ClientsController extends Controller {
 			$client->update([
 					'profile_image' => request()->profile_image->store('profiles', 'public'),
 				]);
+			// $user->update([
+			// 		'profile_image' => request()->profile_image->store('profiles', 'public'),
+			// 	]);
 		}
 		return redirect()->route('clients.index')->with('toast_success', 'A new client has been added');
 	}
@@ -122,9 +127,16 @@ class ClientsController extends Controller {
 				'dob'          => $request['dob'],
 			]);
 		if (request()->has('profile_image')) {
-			$client->update([
-					'profile_image' => request()->profile_image->store('profiles', 'public'),
-				]);
+			// $user->update([
+			// 	'profile_image' =>request()->profile_image->store('profiles', 'public');
+			// ]);
+
+			if (request()->has('profile_image')) {
+				$client->update([
+						'profile_image' => request()->profile_image->store('profiles', 'public'),
+					]);
+			}
+
 		}
 
 		return redirect()->route('clients.show', ['client' => $client])->with('toast_success', 'You have updated client details');

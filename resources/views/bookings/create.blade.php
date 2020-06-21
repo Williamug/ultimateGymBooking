@@ -92,14 +92,14 @@
 			</div>
 			<div class="col-md-6">
 				<!-- time-->
-				<div class="form-group">
+				{{-- <div class="form-group">
 					<label for="booking_time">Booking Time</label>
 					<input type="time" class="form-control form-control-sm @error('booking_time') is-invalid @enderror"
-						name="booking_time" id="booking_time" placeholder="Enter booking time">
+						name="booking_time" id="booking_time" placeholder="Enter booking time" value="{{ $booking->booking_time }}">
 					@error('booking_time')
 					<div class="error-alert">{{ $message }}</div>
 					@enderror
-				</div>
+				</div> --}}
 				<!-- /.time-->
 
 				<!-- quantity-->
@@ -117,11 +117,11 @@
 				<div class="form-group">
 					<label for="">Status</label>
 					<div class="custom-control custom-radio">
-						<input class="custom-control-input" type="radio" id="confirmed" name="status" value="1" checked>
+						<input class="custom-control-input" type="radio" id="confirmed" name="status" value="1" >
 						<label for="confirmed" class="custom-control-label">Confirmed</label>
 					</div>
 					<div class="custom-control custom-radio">
-						<input class="custom-control-input" type="radio" id="pending" name="status" value="2">
+						<input class="custom-control-input" type="radio" id="pending" name="status" value="2" checked>
 						<label for="pending" class="custom-control-label">Pending</label>
 					</div>
 					<div class="custom-control custom-radio">

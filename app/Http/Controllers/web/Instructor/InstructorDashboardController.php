@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\web;
+namespace App\Http\Controllers\web\Instructor;
 
 use App\Http\Controllers\Controller;
 use App\Model\Booking;
 use App\Model\Client;
-
+use App\Model\Instructor;
 use App\Model\NutritionalPost;
 use App\Model\Setting;
-use App\User;
 use Illuminate\Http\Request;
 
-class ClientDashboardController extends Controller {
+class InstructorDashboardController extends Controller {
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -35,7 +34,7 @@ class ClientDashboardController extends Controller {
 		$setting         = Setting::first();
 		$nutritionalTips = NutritionalPost::where('id', '>', 0)->orderBy('id', 'desc')->paginate(3);
 
-		return view('front-client.home', compact('clients', 'totalBooking', 'confirmedBooking', 'pendingBooking', 'cancelBooking', 'setting', 'nutritionalTips'));
+		return view('front-instructor.home', compact('clients', 'totalBooking', 'confirmedBooking', 'pendingBooking', 'cancelBooking', 'setting', 'nutritionalTips'));
 	}
 
 	/**
@@ -53,28 +52,27 @@ class ClientDashboardController extends Controller {
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	// public function store(NutritionalPost $tip) {
-
-	// }
+	public function store(Request $request) {
+		//
+	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  \App\User  $user
+	 * @param  \App\Model\Instructor  $instructor
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(NutritionalPost $tip) {
-		$setting = Setting::first();
-		return view('front-client.nutrition-tips.show', compact('tip', 'setting'));
+	public function show(Instructor $instructor) {
+		//
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  \App\User  $user
+	 * @param  \App\Model\Instructor  $instructor
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit(User $user) {
+	public function edit(Instructor $instructor) {
 		//
 	}
 
@@ -82,20 +80,20 @@ class ClientDashboardController extends Controller {
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\User  $user
+	 * @param  \App\Model\Instructor  $instructor
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, User $user) {
+	public function update(Request $request, Instructor $instructor) {
 		//
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  \App\User  $user
+	 * @param  \App\Model\Instructor  $instructor
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(User $user) {
+	public function destroy(Instructor $instructor) {
 		//
 	}
 }

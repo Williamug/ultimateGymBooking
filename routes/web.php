@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',
+// Route::get('/',
 
-function () {
-		return view('welcome');
-	})->name('landing_page');
+// function () {
+// 		return view('welcome');
+// 	})->name('landing_page');
+Route::get('/', 'web\WelcomeController@index')->name('landing-page');
 
 Auth::routes();
 
@@ -90,6 +91,10 @@ Route::get('bookings/{booking}/edit', 'web\BookingsController@edit')->name('book
 Route::patch('bookings/{booking}', 'web\BookingsController@update')->name('bookings.update');
 Route::delete('bookings/{booking}', 'web\BookingsController@destroy')->name('bookings.destroy');
 
+// bookig payment
+Route::get('booking-payment/create/{booking}', 'web\BookingPaymentController@create')->name('booking-payment.create');
+Route::post('booking-payment/{booking}', 'web\BookingPaymentController@store')->name('booking-payment.store');
+
 // roles
 Route::get('roles/{role}', 'web\RolesController@show');
 Route::patch('roles/{role}', 'web\RolesController@update');
@@ -143,3 +148,30 @@ Route::patch('client/profile/{user}', 'web\Client\ClientProfilesController@updat
 Route::post('client/nutrition/{tip}/comments', 'web\Client\NutritionalCommentController@store')->name('nutrition-comment.store');
 
 Route::get('client/nutrition/{tip}', 'web\ClientDashboardController@show')->name('nutrition-tip.show');
+
+/*---------------------------------------------------------------------
+|
+| Instructor
+|------------------------------------------------------------------------
+ */
+Route::get('instructor-dashboard', 'web\Instructor\InstructorDashboardController@index')->name('instructor-dashboard');
+
+// service
+Route::get('instructor/services', 'web\Instructor\InstructorServicesController@index')->name('instructor-services.index');
+Route::get('instructor/services/{service}', 'web\Instructor\InstructorServicesController@show')->name('instructor-services.show');
+
+// bookings
+Route::get('instructor/bookings', 'web\Instructor\InstructorBookingsController@index')->name('instructor-bookings.index');
+Route::get('instructor/bookings/{booking}', 'web\Instructor\InstructorBookingsController@show')->name('instructor-bookings.show');
+
+// post/tip of the day
+Route::get('instructor/posts', 'web\Instructor\InstructorPostsController@index')->name('instructor-post.index');
+Route::get('instructor/posts/create', 'web\Instructor\InstructorPostsController@create')->name('instructor-post.create');
+Route::post('instructor/posts', 'web\Instructor\InstructorPostsController@store')->name('instructor-post.store');
+Route::get('instructor/posts/{tip}', 'web\Instructor\InstructorPostsController@show')->name('instructor-post.show');
+Route::get('instructor/posts/{tip}/edit', 'web\Instructor\InstructorPostsController@edit')->name('instructor-post.edit');
+Route::patch('instructor/posts/{tip}', 'web\Instructor\InstructorPostsController@update')->name('instructor-post.update');
+
+// update user profile
+Route::get('instructor/profile/{user}', 'web\Instructor\InstructorProfilesController@show')->name('instructor-profile.show');
+Route::patch('instructor/profile/{user}', 'web\Instructor\InstructorProfilesController@update')->name('instructor-profile.update');

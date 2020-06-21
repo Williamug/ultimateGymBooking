@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 	<!-- Brand Logo -->
-	<a href="{{ route('home') }}" class="brand-link">
+	<a href="{{ route('instructor-dashboard') }}" class="brand-link">
 		@if(!empty($setting->logo))
 			<img src="{{ asset('storage/' . $setting->logo) }}" alt="company logo" class="brand-image img-circle elevation-3" style="opacity: .8">
 		@else
@@ -21,8 +21,8 @@
 
 				<!-- Dashboard -->
 				<li class="nav-item">
-					<a href="{{ route('home') }}"
-						class="nav-link {{ Route::current()->getName() == 'home' ? 'active' : '' }}">
+					<a href="{{ route('instructor-dashboard') }}"
+						class="nav-link {{ Route::current()->getName() == 'instructor-dashboard' ? 'active' : '' }}">
 						<i class="nav-icon fas fa-tv"></i>
 						<p>
 							Dashboard
@@ -32,23 +32,10 @@
 				</li>
 				<!-- / .Dashboard -->
 
-				<!-- Instructor -->
-				<li class="nav-item">
-					<a href="{{ route('instructors.index') }}"
-						class="nav-link {{ Route::current()->getName() == 'instructors.index' ? 'active' : '' }}">
-						<i class="nav-icon fas fa-running"></i>
-						<p>
-							Instructor
-							{{-- <span class="right badge badge-danger">New</span> --}}
-						</p>
-					</a>
-				</li>
-				<!-- / .Instructor -->
-
 				<!-- Services -->
 				<li class="nav-item">
-					<a href="{{ route('services.index') }}"
-						class="nav-link {{ Route::current()->getName() == 'services.index' ? 'active' : '' }}">
+					<a href="{{ route('instructor-services.index') }}"
+						class="nav-link {{ Route::current()->getName() == 'instructor-services.index' ? 'active' : '' }}">
 						<i class="nav-icon fas fa-globe-americas"></i>
 						<p>
 							Services
@@ -60,8 +47,8 @@
 
 				<!-- Bookings -->
 				<li class="nav-item">
-					<a href="{{ route('bookings.index') }}"
-						class="nav-link {{ Route::current()->getName() == 'bookings.index' ? 'active' : '' }}">
+					<a href="{{ route('instructor-bookings.index') }}"
+						class="nav-link {{ Route::current()->getName() == 'instructor-bookings.index' ? 'active' : '' }}">
 						<i class="nav-icon fas fa-calendar-alt"></i>
 						<p>
 							Bookings
@@ -71,42 +58,30 @@
 				</li>
 				<!-- / .Bookings -->
 
-				<!-- Clients -->
+				<!-- tip of the day -->
 				<li class="nav-item">
-					<a href="{{ route('clients.index') }}"
-						class="nav-link {{ Route::current()->getName() == 'clients.index' ? 'active' : '' }}">
-						<i class="nav-icon fas fa-users"></i>
+					<a href="{{ route('instructor-post.index') }}"
+						class="nav-link {{ Route::current()->getName() == 'instructor-post.index' ? 'active' : '' }}">
+						<i class="nav-icon fas fa-newspaper"></i>
 						<p>
-							Clients
+							Tip of the day
 							{{-- <span class="right badge badge-danger">New</span> --}}
 						</p>
 					</a>
 				</li>
-				<!-- / .Clients -->
+				<!-- / .tip of the day -->
 
-				<!-- Administrators -->
-				<li class="nav-item">
-					<a href="{{ route('admins.index') }}"
-						class="nav-link {{ Route::current()->getName() == 'admins.index' ? 'active' : '' }}">
-						<i class="nav-icon fas fa-key"></i>
-						<p>
-							Administrators
-							{{-- <span class="right badge badge-danger">New</span> --}}
-						</p>
-					</a>
-				</li>
-				<!-- / .Administrators -->
 
 				<!-- Reports -->
-				<li class="nav-item">
+				{{-- <li class="nav-item">
 					<a href="{{ route('reports.index') }}" class="nav-link {{ Route::current()->getName() == 'reports.index' ? 'active' : '' }}">
 						<i class="nav-icon fas fa-chart-pie"></i>
 						<p>
-							Reports
+							Reports --}}
 							{{-- <span class="right badge badge-danger">New</span> --}}
-						</p>
+					{{-- 	</p>
 					</a>
-				</li>
+				</li> --}}
 				<!-- / .Reports -->
 
 				<!-- Email -->
@@ -140,19 +115,6 @@
             		</ul>
           		</li> --}}
           		<!-- /.email -->
-
-				<!-- Settings -->
-				<li class="nav-item">
-					<a href="{{ route('settings.index') }}"
-						class="nav-link {{ Route::current()->getName() == 'settings.index' ? 'active' : '' }}">
-						<i class="nav-icon fas fa-cogs"></i>
-						<p>
-							Settings
-							{{-- <span class="right badge badge-danger">New</span> --}}
-						</p>
-					</a>
-				</li>
-				<!-- / .Settings -->
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->

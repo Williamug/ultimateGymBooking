@@ -46,10 +46,11 @@ class InstructorsController extends Controller {
 	 */
 	public function store(Request $request) {
 		request()->validate([
-				'name'     => 'required',
-				'email'    => 'required|unique:users',
-				'password' => 'required|min:8',
-				'role_id'  => '',
+				'name'          => 'required',
+				'email'         => 'required|unique:users',
+				'password'      => 'required|min:8',
+				'role_id'       => '',
+				'profile_image' => 'sometimes|file|image|max:5000',
 			]);
 		$role = Role::find(4);
 		$user = User::create([
@@ -81,6 +82,12 @@ class InstructorsController extends Controller {
 					'profile_image' => request()->profile_image->store('profiles', 'public'),
 				]);
 		}
+		if (request()->has('profile_image')) {
+			$user->update([
+					'profile_image' => request()->profile_image->store('profiles', 'public'),
+				]);
+		}
+
 		return redirect()->route('instructors.index')->with('toast_success', 'You have added a new instructor');
 	}
 
@@ -125,6 +132,7 @@ class InstructorsController extends Controller {
 				'dob'           => '',
 				'profile_image' => 'sometimes|file|image|max:5000',
 			]);
+		$user = new User();
 
 		$instructor->update([
 				'gender'        => $request['gender'],
@@ -135,6 +143,11 @@ class InstructorsController extends Controller {
 
 		if (request()->has('profile_image')) {
 			$instructor->update([
+					'profile_image' => request()->profile_image->store('profiles', 'public'),
+				]);
+		}
+		if (request()->has('profile_image')) {
+			$user->update([
 					'profile_image' => request()->profile_image->store('profiles', 'public'),
 				]);
 		}

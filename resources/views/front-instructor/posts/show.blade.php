@@ -1,10 +1,16 @@
-@extends('front-client.layouts.masterClient')
+@extends('front-instructor.layouts.masterInstructor')
 
 {{-- @section('title', $service->title) --}}
 
 @section('content')
-
-<h4><i>Nutritional tip of the day...</i></h4>
+<div class="row mb-2">
+      <div class="col-10">
+        <h4><i>Nutritional tip of the day...</i></h4>
+      </div>
+      <div class="pl-3">
+        <a href="{{ route('instructor-post.create') }}" class="btn bg-gradient-primary btn-sm">Add a new tip <i class="fas fa-plus"></i></a>
+      </div>
+    </div>
             <div class="card card-widget">
               <div class="card-header">
                 <div class="user-block">
@@ -19,21 +25,31 @@
                 </div>
                 <!-- /.user-block -->
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                  <div class="row">
+                    <div class="col-4">
+                        <a href="{{ route('instructor-post.edit', ['tip' => $tip]) }}" class="btn btn-tool delete-btn" data-card-widget="delete"><i class="fas fa-edit"></i></a>
+                    </div>
+                    <div>
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                      <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                    </div>
+                  </div>
                 </div>
                 <!-- /.card-tools -->
               </div>
               <!-- /.card-header -->
               <div class="card-body" style="display: block;">
-                <!-- post text -->
-                <p>{{ $tip->post }}</p>
-
                 <!-- Attachment -->
                 <div>
-
+                    <img src="{{ asset('storage/' . $tip->image) }}" alt="" width="800" height="400" align="center">
                 </div>
                 <!-- /.attachment-block -->
+                <br>
+                <!-- post text -->
+                <div>
+                  <p>{!! $tip->post !!}</p>
+                </div>
+
 
                 <!-- Social sharing buttons -->
                 {{-- <button type="button" class="btn btn-default btn-sm"><i class="far fa-thumbs-up"></i> Like</button> --}}
@@ -44,13 +60,10 @@
                 <div class="card-comment">
                   <!-- User image -->
                   @foreach($tip->nutritionalcomments as $comment)
-                  {{-- <img src="{{ asset('storage/' . $comment->user->profile_image) }}" class="img-fluid img-circle img-sm" alt="Image"> --}}
-                  @if($comment->user->profile_image != null)
-                    <img src="{{ asset('storage/' . $comment->user->profile_image) }}" class="img-fluid img-circle img-sm" alt="Image">
-
+                    @if($comment->user->profile_image !== null)
+                        <img src="{{ asset('storage/' . $comment->user->profile_image) }}" class="img-fluid img-circle img-sm" alt="Image">
                     @else
-                        <img src="{{ asset('images/profiles/profile.png') }}" class="img-fluid img-circle img-sm" alt="Image">
-                            {{-- {{ Auth::user()->name }} <span class="caret"></span> --}}
+                        <img src="{{ asset('images/profiles/profile.png') }}" class="img-circle elevation-1" alt="User Image" width="35" height="35">
                     @endif
 
                   <div class="comment-text">
@@ -70,8 +83,8 @@
               <div class="card-footer" style="display: block;">
                 <form action="{{ route('nutrition-comment.store', ['tip' => $tip]) }}" method="post">
                   @csrf
-                    @if(Auth::user()->client->profile_image != null)
-                    <img src="{{ asset('storage/' . Auth::user()->client->profile_image) }}" class="img-fluid img-circle img-sm" alt="Image">
+                    @if(Auth::user()->instructor->profile_image != null)
+                    <img src="{{ asset('storage/' . Auth::user()->instructor->profile_image) }}" class="img-fluid img-circle img-sm" alt="Image">
 
                     @else
                         <img src="{{ asset('images/profiles/profile.png') }}" class="img-fluid img-circle img-sm" alt="Image">
@@ -80,7 +93,7 @@
                   <!-- .img-push is used to add margin to elements next to floating images -->
                   <div class="img-push">
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-sm" name="comment" placeholder="Enter your comment here">
+                        <input type="text" class="form-control form-control-sm" name="comment" placeholder="Reply commnents...">
                     </div>
                     <button type="submit" class="btn bg-gradient-primary btn-sm">Submit</button>
                   </div>

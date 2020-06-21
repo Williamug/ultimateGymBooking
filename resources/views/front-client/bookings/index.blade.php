@@ -57,7 +57,7 @@
 					<td>{{ Carbon\Carbon::parse($booking->booking_date)->format('jS M Y') }}</td>
 					<td>{{ Carbon\Carbon::parse($booking->booking_time)->format('h:i A') }}</td>
 					<td>
-						@if($booking->payments !== null)
+						@if($booking->payment_id !== null)
 						<small class="badge badge-success">Paid</small>
 						@else
 						<small class="badge badge-danger">Due</small>

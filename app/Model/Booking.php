@@ -21,7 +21,7 @@ class Booking extends Model {
 		'currency_id',
 		'user_id'
 	];
-	public function payments() {
+	public function payment() {
 		return $this->belongsTo(Payment::class );
 	}
 

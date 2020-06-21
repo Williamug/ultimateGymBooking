@@ -1,10 +1,10 @@
-@extends('front-client.layouts.masterClient')
+@extends('front-instructor.layouts.masterInstructor')
 
 @section('title', 'Home')
 
 @section('content')
      <div class="container-fluid">
-		<div class="row">
+		{{-- <div class="row">
           <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
               <span class="info-box-icon bg-info"><i class="fas fa-chart-bar"></i></span>
@@ -30,7 +30,7 @@
             </div>
             <!-- /.info-box -->
           </div>
-          <!-- /.col -->
+          /.col
 
           <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
@@ -59,7 +59,7 @@
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
-        </div>
+        </div> --}}
 
 	<!-- Nutritional tip -->
 		<br><br>
@@ -90,7 +90,7 @@
                 <!-- post text -->
                 <p>
                   {{ Str::limit(strip_tags($tip->post), 50) }}
-                  @if(strlen(strip_tags($tip->post)) > 10)<a href="{{ route('nutrition-tip.show', ['tip' => $tip]) }}">Read More</a>
+                  @if(strlen(strip_tags($tip->post)) > 50)<a href="{{ route('instructor-post.show', ['tip' => $tip]) }}">Read More</a>
                   @endif
                 </p>
 
@@ -108,6 +108,6 @@
 
             </div>
         @endforeach
-        <div class="ml-4 mt-4">{{ $nutritionalTips->links() }}</div>
+       <div class="ml-4 mt4">{{ $nutritionalTips->links() }}</div>
 </div><!-- /.container-fluid -->
 @endsection

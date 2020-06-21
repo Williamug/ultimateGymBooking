@@ -38,8 +38,9 @@ class BookingsController extends Controller {
 		$users    = User::all();
 		$clients  = Client::all();
 		$setting  = Setting::first();
+		$booking  = new Booking();
 
-		return view('bookings.create', compact('services', 'users', 'clients', 'setting'));
+		return view('bookings.create', compact('services', 'users', 'clients', 'setting', 'booking'));
 	}
 
 	/**

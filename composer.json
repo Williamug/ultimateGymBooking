@@ -18,6 +18,7 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
+        "laraveldaily/laravel-charts": "^0.1.18",
         "livewire/livewire": "^1.1",
         "qoraiche/laravel-mail-editor": "^2.0",
         "realrashid/sweet-alert": "^3.1"

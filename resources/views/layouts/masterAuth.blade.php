@@ -18,7 +18,7 @@
 	</head>
 
 	<body class="hold-transition register-page login-page">
-		<div class="register-box" id="app">
+		<div class="register-box flex-center position-ref full-height content-welcome-page" id="app">
 			@yield('content')
 		</div>
 		<script src="{{ asset('js/app.js') }}"></script>
