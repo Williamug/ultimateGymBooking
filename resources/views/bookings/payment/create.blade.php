@@ -79,9 +79,15 @@
 					@enderror
 				</div>
 				<!-- /.time-->
-				<div class="form-group">
-					<button type="submit" class="btn bg-gradient-primary btn-sm">Pay Now</button>
-				</div>
+				@if($booking->status == 1)
+					<div class="form-group">
+						<button type="submit" class="btn bg-gradient-primary btn-sm" disabled="true">Paid</button>
+					</div>
+				@else
+					<div class="form-group">
+						<button type="submit" class="btn bg-gradient-primary btn-sm">Pay Now</button>
+					</div>
+				@endif
 			</div>
 			<div class="col-md-3">
 			</div>

@@ -65,11 +65,19 @@
 
 					<td>
                         <div class="row">
-                            <div class="col-md-3">
-						          <a href="{{ route('booking-payment.create', ['booking' => $booking]) }}" title="Pay" class="btn bg-gradient-success btn-sm">
-							         <i class="fas fa-money-bill-alt"></i>
-						          </a>
-                            </div>
+                        	@if($booking->payment_id != null)
+                            	<div class="col-md-3">
+						          	<a href="{{ route('booking-payment.create', ['booking' => $booking]) }}" title="Paid" class="btn bg-gradient-secondary btn-sm disabled">
+							         	<i class="fas fa-money-bill-alt"></i>
+						          	</a>
+                            	</div>
+                            @else
+                            	<div class="col-md-3">
+						          	<a href="{{ route('booking-payment.create', ['booking' => $booking]) }}" title="Pay" class="btn bg-gradient-success btn-sm">
+							         	<i class="fas fa-money-bill-alt"></i>
+						          	</a>
+                            	</div>
+                            @endif
                             <div class="col-md-4">
 						          <a href="{{ route('bookings.show', ['booking' => $booking]) }}" title="View" class="btn bg-gradient-primary btn-sm">
 							         <i class="fas fa-eye"></i>

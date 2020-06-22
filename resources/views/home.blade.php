@@ -124,8 +124,6 @@
               </div>
               <div class="card-body">
                 <div class="d-flex">
-                  <br>
-                  <br>
                   {{-- <p class="d-flex flex-column">
                     <span class="text-bold text-lg">
                         Shs. {{ $totalPayments }}

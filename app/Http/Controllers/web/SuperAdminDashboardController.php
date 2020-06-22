@@ -40,6 +40,9 @@ class SuperAdminDashboardController extends Controller {
 			'group_by_field'  => 'created_at',
 			'group_by_period' => 'month',
 			'chart_type'      => 'bar',
+			'conditions'      => [
+				['name'          => 'Monthly bookings', 'color'          => 'red']
+			],
 
 			'filter_field'  => 'created_at',
 			'filter_days'   => 30, // show only transactions for last 30 days
@@ -54,6 +57,9 @@ class SuperAdminDashboardController extends Controller {
 			'group_by_field'  => 'created_at',
 			'group_by_period' => 'month',
 			'chart_type'      => 'bar',
+			'conditions'      => [
+				['name'          => 'Monthly Income', 'color'          => 'red']
+			],
 		];
 
 		$salesChart = new LaravelChart($chart_sales_options1);
