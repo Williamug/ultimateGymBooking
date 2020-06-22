@@ -8,6 +8,9 @@ use App\Model\NutritionalPost;
 use Illuminate\Http\Request;
 
 class NutritionalCommentController extends Controller {
+	public function __construct() {
+		$this->middleware(['auth', 'verified']);
+	}
 	/**
 	 * Display a listing of the resource.
 	 *

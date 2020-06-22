@@ -8,6 +8,9 @@ use App\Model\Instructor;
 use App\Model\Setting;
 
 class ClientInstructorsController extends Controller {
+	public function __construct() {
+		$this->middleware(['auth', 'verified']);
+	}
 	/**
 	 * Display a listing of the resource.
 	 *

@@ -79,11 +79,10 @@
               </div>
               <div class="card-body">
                 <div class="d-flex">
-                  <p class="d-flex flex-column">
-                    {{-- {{ $bookingChart->options['chart_title'] }} --}}
+                  {{-- <p class="d-flex flex-column">
                     <span class="text-bold text-lg">{{ $totalBooking->count() }}</span>
                     <span>Bookings Over Time</span>
-                  </p>
+                  </p> --}}
                   {{-- <p class="ml-auto d-flex flex-column text-right">
                     <span class="text-success">
                       <i class="fas fa-arrow-up"></i> 12.5%
@@ -125,18 +124,19 @@
               </div>
               <div class="card-body">
                 <div class="d-flex">
-                  <p class="d-flex flex-column">
+                  <br>
+                  <br>
+                  {{-- <p class="d-flex flex-column">
                     <span class="text-bold text-lg">
-                        {{-- @if($totalPayments->amount === ) --}}
-                        {{ $totalPayments }}
+                        Shs. {{ $totalPayments }}
                     </span>
                     <span>Sales Over Time</span>
-                  </p>
-                  {{-- <p class="ml-auto d-flex flex-column text-right">
+                  </p> --}}
+                 {{--  <p class="ml-auto d-flex flex-column text-right">
                     <span class="text-success">
                       <i class="fas fa-arrow-up"></i> 12.5%
                     </span>
-                    <span class="text-muted">Since last week</span>
+                    <span class="text-muted">Since last month</span>
                   </p> --}}
                 </div>
                 <!-- /.d-flex -->
@@ -209,7 +209,7 @@
                     <h4 class="card-title">Clients</h4>
 
                     <div class="card-tools">
-                      <small class="badge badge-danger">{{ $clients->count() }} Clients today</small>
+                      <small class="badge badge-danger">{{ $clients->count() }} Clients</small>
                       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                       </button>
                       <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
@@ -227,7 +227,7 @@
                                 <img class="profile-user-img img-fluid img-circle" src="{{ asset('images/profiles/profile.png') }}" alt="User profile picture">
                             @endif
                           <a class="users-list-name" href="{{ route('clients.show', ['client' => $client]) }}">{{ $client->user->name }}</a>
-                          <span class="users-list-date">{{ Carbon\Carbon::parse($client->user->created_at)->calendar() }}</span>
+                          <span class="users-list-date">{{ $client->user->created_at->diffForHumans() }}</span>
                         </li>
                       @endforeach
                     </ul>

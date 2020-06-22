@@ -9,10 +9,11 @@ use App\Model\Instructor;
 use App\Model\NutritionalComment;
 use App\Model\NutritionalPost;
 use App\Model\Role;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable {
+class User extends Authenticatable implements MustVerifyEmail {
 	use Notifiable;
 
 	/**

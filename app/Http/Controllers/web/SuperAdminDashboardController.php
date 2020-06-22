@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\web;
 
-use App\Charts\MonthlyBooking;
-use App\Charts\MonthlySales;
 use App\Http\Controllers\Controller;
 use App\Model\Booking;
 use App\Model\Client;
+use App\Model\NutritionalPost;
+use App\Model\Payment;
 use App\Model\Setting;
-use Carbon\Carbon;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class SuperAdminDashboardController extends Controller {
 	/**
@@ -16,7 +16,7 @@ class SuperAdminDashboardController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		$this->middleware('auth');
+		$this->middleware(['auth', 'verified']);
 	}
 
 	/**
@@ -30,35 +30,34 @@ class SuperAdminDashboardController extends Controller {
 		$confirmedBooking = Booking::where('status', 1);
 		$pendingBooking   = Booking::where('status', 2);
 		$setting          = Setting::first();
+		$nutritionalTips  = NutritionalPost::where('id', '>', 0)->orderBy('id', 'desc')->paginate(2);
+		$totalPayments    = Payment::where('id', '>', 0)->sum('amount');
 
-		$options = [
-			'backgroundColor' => '#6cb2eb',
-			'boardColor'      => '#6cb2eb'
-			// 'fill' => false,
+		$chart_booking_options = [
+			'chart_title'     => 'Booking overview',
+			'report_type'     => 'group_by_date',
+			'model'           => 'App\Model\Booking',
+			'group_by_field'  => 'created_at',
+			'group_by_period' => 'month',
+			'chart_type'      => 'bar',
+
+			'filter_field'  => 'created_at',
+			'filter_days'   => 30, // show only transactions for last 30 days
+			'filter_period' => 'month', // show only transactions for this month
 		];
-		$salesOptions = [
-			'backgroundColor' => '#6cb2eb',
-			'boardColor'      => '#6cb2eb',
-			'fill'            => false,
+		$bookingChart = new LaravelChart($chart_booking_options);
+
+		$chart_sales_options1 = [
+			'chart_title'     => 'Monthly sales overview',
+			'report_type'     => 'group_by_date',
+			'model'           => 'App\Model\Payment',
+			'group_by_field'  => 'created_at',
+			'group_by_period' => 'month',
+			'chart_type'      => 'bar',
 		];
 
-		$bookingThisWeek = Booking::whereDate('created_at', Carbon::today())->count();
-		$bookingLastWeek = Booking::whereDate('created_at', Carbon::today()->subDay())->count();
+		$salesChart = new LaravelChart($chart_sales_options1);
 
-		$chart = new MonthlyBooking;
-		$chart->labels(['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']);
-		$chart->dataset('Last Week', 'bar', [$bookingLastWeek]);
-		// $chart->dataset('This Week', 'bar', [1, 7, 13, 4, 33, 43, 12])->options($options);
-		$chart->dataset('This Week', 'bar', [$bookingThisWeek])->options($options);
-		$chart->height(200);
-		$chart->width(445);
-
-		$monthlySales = new MonthlySales;
-		$monthlySales->labels(['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']);
-		$monthlySales->dataset('Sales', 'line', [1, 7, 13, 4, 33, 43, 70])->options($salesOptions);
-		$monthlySales->height(200);
-		$monthlySales->width(445);
-
-		return view('superAdmin.super-admin-dashboard', compact('clients', 'totalBooking', 'pendingBooking', 'confirmedBooking', 'setting', 'chart', 'monthlySales'));
+		return view('home', compact('clients', 'totalBooking', 'pendingBooking', 'confirmedBooking', 'setting', 'nutritionalTips', 'totalPayments', 'bookingChart', 'salesChart'));
 	}
 }

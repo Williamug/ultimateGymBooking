@@ -25,7 +25,8 @@ class HomeController extends Controller {
 	 * @return \Illuminate\Contracts\Support\Renderable
 	 */
 	public function index() {
-		$clients          = Client::all();
+		// $clients          = Client::all()->take(3);
+		$clients          = Client::where('id', '>', 0)->orderBy('created_at', 'desc')->paginate(4);
 		$totalBooking     = Booking::all();
 		$confirmedBooking = Booking::where('status', 1);
 		$pendingBooking   = Booking::where('status', 2);
@@ -40,6 +41,9 @@ class HomeController extends Controller {
 			'group_by_field'  => 'created_at',
 			'group_by_period' => 'month',
 			'chart_type'      => 'bar',
+			'conditions'      => [
+				['name'          => 'Monthly bookings', 'color'          => 'red']
+			],
 
 			'filter_field'  => 'created_at',
 			'filter_days'   => 30, // show only transactions for last 30 days
@@ -54,6 +58,10 @@ class HomeController extends Controller {
 			'group_by_field'  => 'created_at',
 			'group_by_period' => 'month',
 			'chart_type'      => 'bar',
+			'conditions'      => [
+				['name'          => 'Monthly Sales', 'color'          => 'blue']
+			],
+
 		];
 
 		$salesChart = new LaravelChart($chart_sales_options1);

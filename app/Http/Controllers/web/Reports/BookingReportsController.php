@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\web\Instructor;
+namespace App\Http\Controllers\web\Reports;
 
 use App\Http\Controllers\Controller;
 use App\Model\Booking;
-use App\Model\Client;
 use App\Model\Payment;
-use App\Model\Service;
 use App\Model\Setting;
-use App\User;
 use Illuminate\Http\Request;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
-class InstructorBookingsController extends Controller {
+class BookingReportsController extends Controller {
 	public function __construct() {
 		$this->middleware(['auth', 'verified']);
 	}
@@ -21,12 +19,25 @@ class InstructorBookingsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$bookings = Booking::where('status', 1)->orderBy('id', 'desc')->paginate(10);
-		// $bookings = Booking::where('user_id', auth()->id())->paginate(10);
-		$payments = Payment::all();
-		$setting  = Setting::first();
+		$setting       = Setting::first();
+		$totalBooking  = Booking::all();
+		$totalPayments = Payment::where('id', '>', 0)->sum('amount');
 
-		return view('front-instructor.bookings.index', compact('bookings', 'payments', 'setting'));
+		$chart_sales_options1 = [
+			'chart_title'     => 'Monthly sales overview',
+			'report_type'     => 'group_by_date',
+			'model'           => 'App\Model\Payment',
+			'group_by_field'  => 'created_at',
+			'group_by_period' => 'month',
+			'chart_type'      => 'bar',
+			'conditions'      => [
+				['name'          => 'Monthly Income', 'color'          => '#000']
+			],
+		];
+
+		$bookingChart = new LaravelChart($chart_sales_options1);
+
+		return view('reports.booking-report.index', compact('setting', 'totalBooking', 'bookingChart'));
 	}
 
 	/**
@@ -55,13 +66,7 @@ class InstructorBookingsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show(Booking $booking) {
-		$client  = Client::all();
-		$payment = Payment::all();
-		$service = Service::all();
-		$setting = Setting::first();
-		$user    = User::all();
-
-		return view('front-instructor.bookings.show', compact('booking', 'client', 'payment', 'service', 'setting', 'user'));
+		//
 	}
 
 	/**

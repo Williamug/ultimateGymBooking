@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminsController extends Controller {
 	public function __construct() {
-		$this->middleware('auth');
+		$this->middleware(['auth', 'verified']);
 	}
 	/**
 	 * Display a listing of the resource.
@@ -59,7 +59,7 @@ class AdminsController extends Controller {
 
 		request()->validate([
 				'gender'        => '',
-				'phone_number'  => 'required',
+				'phone_number'  => '',
 				'dob'           => '',
 				'profile_image' => 'sometimes|file|image|max:5000',
 				'user_id'       => '',

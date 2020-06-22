@@ -26,14 +26,15 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body" style="display: block;">
-                <!-- post text -->
-                <p>{{ $tip->post }}</p>
-
-                <!-- Attachment -->
-                <div>
-
+                 <div>
+                    <img src="{{ asset('storage/' . $tip->image) }}" alt="" width="800" height="400" align="center">
                 </div>
                 <!-- /.attachment-block -->
+                <br>
+                <!-- post text -->
+                <div>
+                  <p>{!! $tip->post !!}</p>
+                </div>
 
                 <!-- Social sharing buttons -->
                 {{-- <button type="button" class="btn btn-default btn-sm"><i class="far fa-thumbs-up"></i> Like</button> --}}

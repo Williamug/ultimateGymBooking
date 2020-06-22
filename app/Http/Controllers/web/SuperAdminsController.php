@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class SuperAdminsController extends Controller {
+	public function __construct() {
+		$this->middleware(['auth', 'verified']);
+	}
 
 	/**
 	 * Show the form for creating a new resource.

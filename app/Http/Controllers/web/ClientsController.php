@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ClientsController extends Controller {
 	public function __construct() {
-		$this->middleware('auth');
+		$this->middleware(['auth', 'verified']);
 	}
 
 	/**
@@ -57,11 +57,11 @@ class ClientsController extends Controller {
 
 		$role = Role::find(5);
 		$user = User::create([
-				'name'          => $request['name'],
-				'email'         => $request['email'],
-				'password'      => Hash::make($request['password']),
-				'role_id'       => $role->id,
-				'profile_image' => request()->profile_image->store('profiles', 'public')
+				'name'     => $request['name'],
+				'email'    => $request['email'],
+				'password' => Hash::make($request['password']),
+				'role_id'  => $role->id,
+				// 'profile_image' => request()->profile_image->store('profiles', 'public')
 			]);
 
 		request()->validate([

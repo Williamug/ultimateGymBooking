@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 // 	})->name('landing_page');
 Route::get('/', 'web\WelcomeController@index')->name('landing-page');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 /**
 |--------------------------------------
@@ -21,7 +21,7 @@ Auth::routes();
 | Clients
 | Instructor
  */
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Route::get('/super-dashboard', 'web\SuperAdminDashboardController@index')->name('super-dashboard');
 
 // register super admin
@@ -31,8 +31,10 @@ Route::post('super-admin', 'web\SuperAdminsController@store')->name('super-admin
 // users
 Route::patch('user/{user}', 'web\UsersController@update')->name('user.update');
 
-// testing routes
-Route::get('reports', 'web\SettingsController@index')->name('reports.index');
+// reports
+Route::get('income', 'web\Reports\IncomesController@index')->name('income.index');
+Route::get('booking-report', 'web\Reports\BookingReportsController@index')->name('booking-report.index');
+Route::get('client-report', 'web\Reports\ClientReportsController@index')->name('client-report.index');
 
 // email
 Route::get('inbox', 'web\EmailInboxesController@index')->name('inbox.index');
@@ -123,7 +125,7 @@ Route::patch('change-password/{user}', 'web\ChangePasswordController@update')->n
 | clients
 |------------------------------------------------------------------------------------------------
  */
-Route::get('clients-dashboard', 'web\ClientDashboardController@index')->name('clients-dashboard');
+Route::get('clients-dashboard', 'web\ClientDashboardController@index')->name('clients-dashboard')->middleware('verified');
 
 // service
 Route::get('client/services', 'web\Client\ClientServicesController@index')->name('client-services.index');
@@ -154,7 +156,7 @@ Route::get('client/nutrition/{tip}', 'web\ClientDashboardController@show')->name
 | Instructor
 |------------------------------------------------------------------------
  */
-Route::get('instructor-dashboard', 'web\Instructor\InstructorDashboardController@index')->name('instructor-dashboard');
+Route::get('instructor-dashboard', 'web\Instructor\InstructorDashboardController@index')->name('instructor-dashboard')->middleware('verified');
 
 // service
 Route::get('instructor/services', 'web\Instructor\InstructorServicesController@index')->name('instructor-services.index');

@@ -98,15 +98,35 @@
 				<!-- / .Administrators -->
 
 				<!-- Reports -->
-				<li class="nav-item">
-					<a href="{{ route('reports.index') }}" class="nav-link {{ Route::current()->getName() == 'reports.index' ? 'active' : '' }}">
-						<i class="nav-icon fas fa-chart-pie"></i>
+				<li class="nav-item has-treeview">
+            		<a href="#" class="nav-link">
+              			<i class="nav-icon fas fa-chart-pie"></i>
 						<p>
 							Reports
 							{{-- <span class="right badge badge-danger">New</span> --}}
 						</p>
-					</a>
-				</li>
+            		</a>
+            		<ul class="nav nav-treeview" style="display: none;">
+              			<li class="nav-item">
+                			<a href="{{ route('income.index') }}" class="nav-link {{ Route::current()->getName() == 'income.index' ? 'active' : '' }}">
+                  				<i class="far fa-circle nav-icon"></i>
+                  				<p>Income/Sales</p>
+                			</a>
+              			</li>
+              			<li class="nav-item">
+                			<a href="{{ route('booking-report.index') }}" class="nav-link {{ Route::current()->getName() == 'booking-report.index' ? 'active' : '' }}">
+                  				<i class="far fa-circle nav-icon"></i>
+                  				<p>Booking</p>
+                			</a>
+              			</li>
+              			<li class="nav-item">
+                			<a href="{{ route('client-report.index') }}" class="nav-link {{ Route::current()->getName() == 'client-report.index' ? 'active' : '' }}">
+                  				<i class="far fa-circle nav-icon"></i>
+                  				<p>Clients</p>
+                			</a>
+              			</li>
+            		</ul>
+          		</li>
 				<!-- / .Reports -->
 
 				<!-- Email -->

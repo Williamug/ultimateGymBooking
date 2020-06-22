@@ -52,6 +52,7 @@
 							         <i class="fas fa-eye"></i>
 						          </a>
                             </div>
+                            @if(Auth()->user()->role->role === 'Super Admin')
                             <div class="">
                                 <form action="{{ route('admins.destroy', ['admin' => $admin]) }}" method="post">
                                     @method('DELETE')
@@ -61,6 +62,17 @@
                                     </button>
                                 </form>
                             </div>
+                            @else
+                            	<div class="">
+                                <form action="{{ route('admins.destroy', ['admin' => $admin]) }}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn bg-gradient-danger btn-sm" title="Delete" disabled="true">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </div>
+							@endif
                         </div>
 					</td>
 				</tr>

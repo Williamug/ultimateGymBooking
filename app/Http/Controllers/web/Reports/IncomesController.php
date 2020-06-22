@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\web;
+namespace App\Http\Controllers\web\Reports;
 
 use App\Http\Controllers\Controller;
-use App\Model\Booking;
 use App\Model\Payment;
-use App\Model\PaymentMethod;
 use App\Model\Setting;
 use Illuminate\Http\Request;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
-class BookingPaymentController extends Controller {
+class IncomesController extends Controller {
 	public function __construct() {
 		$this->middleware(['auth', 'verified']);
 	}
@@ -19,7 +18,24 @@ class BookingPaymentController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		//
+		$setting       = Setting::first();
+		$totalPayments = Payment::where('id', '>', 0)->sum('amount');
+
+		$chart_sales_options1 = [
+			'chart_title'     => 'Monthly sales overview',
+			'report_type'     => 'group_by_date',
+			'model'           => 'App\Model\Payment',
+			'group_by_field'  => 'created_at',
+			'group_by_period' => 'month',
+			'chart_type'      => 'bar',
+			'conditions'      => [
+				['name'          => 'Monthly Income', 'color'          => '#000']
+			],
+		];
+
+		$salesChart = new LaravelChart($chart_sales_options1);
+
+		return view('reports.income-report.index', compact('setting', 'totalPayments', 'salesChart'));
 	}
 
 	/**
@@ -27,11 +43,8 @@ class BookingPaymentController extends Controller {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create(Booking $booking) {
-		$setting        = Setting::first();
-		$paymentMethods = PaymentMethod::all();
-
-		return view('bookings.payment.create', compact('booking', 'setting', 'paymentMethods'));
+	public function create() {
+		//
 	}
 
 	/**
@@ -40,18 +53,8 @@ class BookingPaymentController extends Controller {
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Booking $booking) {
-		$payment = Payment::create([
-				'payment_method_id' => request('payment_method_id'),
-				'amount'            => request('amount'),
-			]);
-
-		$booking->update([
-				'payment_id' => $payment->id,
-				'status'     => 1,
-			]);
-
-		return redirect()->route('bookings.index')->with('toast_success', 'Payment has been made');
+	public function store(Request $request) {
+		//
 	}
 
 	/**

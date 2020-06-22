@@ -9,8 +9,8 @@ use App\Model\Setting;
 use Illuminate\Http\Request;
 
 class ClientServicesController extends Controller {
-	public function __contruct() {
-		$this->middleware('auth');
+	public function __construct() {
+		$this->middleware(['auth', 'verified']);
 	}
 	/**
 	 * Display a listing of the resource.
