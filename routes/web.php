@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 // 	})->name('landing_page');
 Route::get('/', 'web\WelcomeController@index')->name('landing-page');
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 /**
 |--------------------------------------
