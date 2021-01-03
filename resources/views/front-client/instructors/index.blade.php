@@ -12,9 +12,9 @@
 
 		<div class="card-tools">
 			<div class="input-group input-group-sm" style="width: 150px;">
-				<a href="{{ route('instructors.create') }}" class="btn bg-gradient-primary btn-sm">Add New Instructor <i
+				{{-- <a href="{{ route('instructors.create') }}" class="btn bg-gradient-primary btn-sm">Add New Instructor <i
 						class="fas fa-plus"></i></a>
-			</div>
+ --}}			</div>
 		</div>
 	</div>
 	<!-- /.card-header -->

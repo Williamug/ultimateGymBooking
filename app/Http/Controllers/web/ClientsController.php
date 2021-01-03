@@ -52,7 +52,7 @@ class ClientsController extends Controller {
 				'name'          => 'required',
 				'email'         => 'required|unique:users',
 				'password'      => 'required|min:8',
-				'profile_image' => 'sometimes|file|image|max:5000',
+				'profile_image' => 'sometimes|required|image|mimes:jpeg,png,jpg|max:5000',
 			]);
 
 		$role = Role::find(5);
